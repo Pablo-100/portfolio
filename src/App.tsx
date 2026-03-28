@@ -25,7 +25,7 @@ const useMousePosition = () => {
 
 // Data
 const DATA = {
-  name: "Mustapha Amine Tbini",
+  name: "TBINI Mustapha Amine",
   role: "SOC Analyst L1 & Full-Stack Developer",
   location: "Tunis – Tunisia",
   phone: "+216 46-345-226",
