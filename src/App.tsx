@@ -901,7 +901,7 @@ export default function App() {
                     <div className="w-full h-full overflow-hidden rounded-xl relative">
                       <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-cyber-dark)]/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                       <img 
-                        src={`https://raw.githubusercontent.com/Pablo-100/portfolio/main/images/${(project as any).image}`} 
+                        src={`https://cdn.jsdelivr.net/gh/Pablo-100/portfolio@main/images/${(project as any).image}`} 
                         alt={project.title} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
