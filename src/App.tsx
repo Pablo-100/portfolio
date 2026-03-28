@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWindows } from '@fortawesome/free-brands-svg-icons';
 import { 
   Github, Linkedin, Mail, Phone, MapPin, 
   Terminal, Shield, Server, Code, Award, 
@@ -36,10 +34,14 @@ const DATA = {
   github: "Pablo-100",
   summary: "System and Network Administrator SOC Analyst L1 with hands-on experience in secure infrastructures, network administration, and security monitoring. Skilled in Linux and Windows Server environments, SIEM systems (ELK Stack), and incident detection and analysis. Strong background in Cisco and Huawei networking, with practical experience in SOC operations and cybersecurity projects. Active full-stack developer with multiple production-grade platforms built from scratch.",
   skills: {
-    "Security & Monitoring": ["ELK Stack", "SIEM Implementation", "IDS/IPS", "MITRE ATT&CK", "Penetration Testing", "Vulnerability Assessment", "Metasploit", "Nessus", "OpenVAS", "Nmap", "Burp Suite", "Kali Linux", "Incident Response", "SOC Operations", "Wireshark", "TCPDump"],
-    "Networking": ["Cisco CCNA", "Huawei Equipment", "VLAN", "IP-MSAN", "xDSL", "Eth-Trunk", "IPsec VPN", "Layer 3 Switching", "Routing (RIP, Static)", "ACL", "QoS"],
-    "Systems & Virtualization": ["Ubuntu", "Rocky Linux", "CentOS", "RedHat", "Windows Server", "Active Directory", "VMware", "ESXi", "VirtualBox", "Docker"],
-    "Web & Development": ["PHP", "Python", "Scapy", "Flask", "Laravel 12", "Symfony 7", "Livewire", "React", "TypeScript", "Node.js", "Express", "Tailwind CSS", "MySQL", "PostgreSQL", "Bash", "PowerShell"]
+    "Networking": ["Cisco CCNA", "Huawei Equipment", "VLAN Configuration", "IP-MSAN", "xDSL", "Eth-Trunk", "IPsec VPN", "Layer 3 Switching", "Routing Protocols (RIP, Static)", "Network Design", "Access Control Lists (ACL)", "Quality of Service (QoS)"],
+    "Security": ["ELK Stack", "SIEM Implementation", "IDS/IPS", "MITRE ATT&CK", "Penetration Testing", "Vulnerability Assessment", "Metasploit", "Nessus", "OpenVAS", "Nmap", "Burp Suite", "Kali Linux", "Security Monitoring", "Incident Response", "SOC Operations"],
+    "Systems": ["Ubuntu", "Kali Linux", "Rocky Linux", "CentOS", "RedHat", "Windows Server", "Active Directory"],
+    "Virtualization": ["VMware", "ESXi", "VirtualBox", "Docker"],
+    "Monitoring": ["Wireshark", "TCPDump", "Netstat", "htop"],
+    "Web & Dev": ["PHP", "Python", "Scapy", "scikit-learn", "Flask", "Laravel 12", "Symfony 7", "Livewire", "React", "TypeScript", "Node.js", "Express", "tRPC", "Alpine.js", "Tailwind CSS", "Drizzle ORM", "Doctrine ORM", "OAuth2", "JAVA", "Bash", "PowerShell", "HTML", "CSS", "JavaScript", "Chart.js"],
+    "Databases": ["MySQL", "PostgreSQL", "SQLite", "MariaDB"],
+    "Services": ["Apache", "FTP", "DHCP", "DNS", "Samba", "NFS", "Group Policy", "WebSocket", "Vite", "Git"]
   },
   experience: [
     {
@@ -161,6 +163,24 @@ const DATA = {
   ]
 };
 
+const STRONG_SKILLS = [
+  "SOC Operations", "Incident Response", "SIEM Implementation", "ELK Stack", "MITRE ATT&CK", "Penetration Testing", "Vulnerability Assessment",
+  "React", "TypeScript", "Node.js", "Laravel 12", "Symfony 7", "Python", "JAVA",
+  "Cisco CCNA", "IPsec VPN", "Network Design",
+  "Docker", "ESXi", "VMware", "Active Directory", "Kali Linux", "Ubuntu", "Windows Server",
+  "MySQL", "PostgreSQL", "Burp Suite", "Metasploit", "Nessus", "OpenVAS", "Nmap"
+];
+
+const SIMPLE_SKILLS = [
+  "HTML", "CSS", "JavaScript", "SQLite", "MariaDB", "FTP", "DHCP", "DNS", "Samba", "NFS", "VirtualBox", "VLAN Configuration", "xDSL", "Chart.js", "Alpine.js", "Tailwind CSS"
+];
+
+const SORTED_MARQUEE_SKILLS = Object.values(DATA.skills).flat().sort((a, b) => {
+  const scoreA = STRONG_SKILLS.includes(a) ? 2 : (SIMPLE_SKILLS.includes(a) ? 0 : 1);
+  const scoreB = STRONG_SKILLS.includes(b) ? 2 : (SIMPLE_SKILLS.includes(b) ? 0 : 1);
+  return scoreB - scoreA;
+});
+
 const TRANSLATIONS = {
   en: {
     about: "About",
@@ -223,26 +243,6 @@ const SectionHeading = ({ title, icon: Icon }: { title: string, icon: any }) => 
     <div className="h-px flex-1 bg-gradient-to-r from-[var(--color-cyber-border)] to-transparent ml-4"></div>
   </div>
 );
-
-const getIconUrl = (skill: string) => {
-  const map: Record<string, string> = {
-    "ELK Stack (Elasticsearch, Logstash, Kibana)": "elasticsearch",
-    "Splunk": "splunk",
-    "PfSense": "pfsense",
-    "Cisco": "cisco",
-    "Huawei": "huawei",
-    "Linux (Ubuntu, CentOS, Kali)": "linux",
-    "Docker": "docker",
-    "AWS (EC2, S3)": "amazonaws",
-    "Python": "python",
-    "Bash": "gnubash",
-    "JavaScript/TypeScript": "typescript",
-    "React": "react",
-    "Node.js": "nodedotjs",
-    "SQL/NoSQL": "postgresql"
-  };
-  return map[skill] ? `https://cdn.simpleicons.org/${map[skill]}/00f0ff` : null;
-};
 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -444,7 +444,7 @@ export default function App() {
             <motion.div 
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-6 left-1/2 -translate-x-1/2 md:top-4 md:left-auto md:-translate-x-0 md:-left-32 glass-panel px-4 py-2 md:px-5 md:py-3 rounded-full flex items-center gap-2 md:gap-3 font-mono text-xs md:text-sm text-white shadow-[0_0_20px_rgba(14,165,233,0.3)] z-20 whitespace-nowrap"
+              className="absolute -top-6 left-1/2 -translate-x-1/2 md:top-4 md:left-auto md:-translate-x-0 md:-left-32 glass-panel px-4 py-2 md:px-5 md:py-3 rounded-full flex items-center gap-2 md:gap-3 font-mono text-xs md:text-sm text-[var(--color-cyber-text-light)] shadow-[0_0_20px_rgba(14,165,233,0.3)] z-20 whitespace-nowrap"
             >
               <Server size={18} className="text-[var(--color-cyber-blue)]" /> System & Network Administrator
             </motion.div>
@@ -453,7 +453,7 @@ export default function App() {
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 glass-panel px-3 py-1.5 md:px-4 md:py-2 rounded-full flex items-center gap-2 font-mono text-[10px] md:text-xs text-white shadow-[0_0_15px_rgba(14,165,233,0.2)] z-20 whitespace-nowrap"
+              className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 glass-panel px-3 py-1.5 md:px-4 md:py-2 rounded-full flex items-center gap-2 font-mono text-[10px] md:text-xs text-[var(--color-cyber-text-light)] shadow-[0_0_15px_rgba(14,165,233,0.2)] z-20 whitespace-nowrap"
             >
               <Shield size={14} className="text-[var(--color-cyber-blue)]" /> SOC L1
             </motion.div>
@@ -462,7 +462,7 @@ export default function App() {
             <motion.div 
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 md:bottom-8 md:left-auto md:-translate-x-0 md:-left-8 glass-panel px-3 py-1.5 rounded-full flex items-center gap-1.5 font-mono text-[10px] text-white shadow-[0_0_10px_rgba(14,165,233,0.15)] z-20 whitespace-nowrap"
+              className="absolute -bottom-4 left-1/2 -translate-x-1/2 md:bottom-8 md:left-auto md:-translate-x-0 md:-left-8 glass-panel px-3 py-1.5 rounded-full flex items-center gap-1.5 font-mono text-[10px] text-[var(--color-cyber-text-light)] shadow-[0_0_10px_rgba(14,165,233,0.15)] z-20 whitespace-nowrap"
             >
               <Code size={12} className="text-[var(--color-cyber-blue)]" /> Full-Stack
             </motion.div>
@@ -470,17 +470,12 @@ export default function App() {
         </section>
 
         {/* Skills Marquee */}
-        <section className="py-12 overflow-hidden border-y border-[var(--color-cyber-border)] bg-[var(--color-cyber-card)]/30 mb-24 mt-8 md:mt-0">
+        <section className="py-12 overflow-hidden mt-20 mb-8 md:mt-32 md:mb-12">
           <div className="relative flex overflow-x-hidden group">
-            <div className="animate-marquee flex gap-12 items-center px-4">
-              {Array(4).fill(Object.values(DATA.skills).flat().filter(skill => getIconUrl(skill) || skill === "Windows Server")).flat().map((skill, i) => (
-                <div key={i} className="flex items-center gap-3 whitespace-nowrap">
-                  {skill === "Windows Server" ? (
-                    <FontAwesomeIcon icon={faWindows} className="w-8 h-8 text-[var(--color-cyber-blue)]" />
-                  ) : (
-                    <img src={getIconUrl(skill)!} alt={skill} className="w-8 h-8 object-contain" />
-                  )}
-                  <span className="font-mono text-lg font-medium text-[var(--color-cyber-text-light)]">{skill}</span>
+            <div className="animate-marquee flex gap-16 items-center px-4">
+              {Array(4).fill(SORTED_MARQUEE_SKILLS).flat().map((skill, i) => (
+                <div key={i} className="flex items-center justify-center px-8 py-4 rounded-full glass-panel hover:bg-white/5 transition-all hover:scale-105 border border-[var(--color-cyber-border)] hover:border-[var(--color-cyber-blue)] whitespace-nowrap hover:shadow-[0_0_15px_rgba(14,165,233,0.3)]">
+                  <span className="font-mono text-2xl font-medium text-[var(--color-cyber-text-light)]">{skill}</span>
                 </div>
               ))}
             </div>
