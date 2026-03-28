@@ -275,31 +275,37 @@ const TRANSLATIONS = {
     projectsList: [
       {
         title: "Oktopus SOC – Custom SIEM / IDS / IPS",
+        image: "OCTUPUS SOC.png",
         stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
         description: "Built a full Security Operations Center from scratch covering log collection, detection, prevention, geo-IP, and MITRE ATT&CK mapping. Implemented 36+ IDS detection rules and multi-OS agents."
       },
       {
         title: "OCTUPUS Education – RHCSA Platform",
+        image: "OCTUPUS Education.png",
         stack: ["React 19", "TypeScript", "Node.js", "Express", "tRPC", "PostgreSQL", "Tailwind"],
         description: "Comprehensive RHCSA certification platform with 12 chapters, 18 labs, and AI-powered assistant. Implemented type-safe full-stack API with JWT and OAuth2."
       },
       {
         title: "Smart Invest Summit – B2B Matchmaking",
+        image: "smart invest.png",
         stack: ["Laravel 12", "PHP 8.2+", "Tailwind CSS", "Alpine.js", "MySQL 8"],
         description: "B2B event platform connecting investors and startups with registration, admin validation, matchmaking, private messaging, and meeting scheduling."
       },
       {
         title: "Delivery Platform – Logistics System",
+        image: "delevery pro.png",
         stack: ["Laravel 11", "Livewire 3", "Tailwind CSS", "MySQL 8", "APIs"],
         description: "Multi-role delivery management platform with multi-depot architecture. Implemented parcel lifecycle tracking, QR codes, GPS tracking, and SMS notifications."
       },
       {
         title: "Network Intrusion Detection System",
+        image: "NIDS - Detection d'intrusion reseau.png",
         stack: ["Python", "Scapy", "scikit-learn", "Flask"],
         description: "Hybrid NIDS for real-time traffic analysis with signature-based and anomaly-based detection (Isolation Forest). Built Flask REST API and monitoring dashboard."
       },
       {
         title: "Full-Stack E-commerce Platform",
+        image: "synf_project.png",
         stack: ["Symfony 7", "PHP 8", "Doctrine ORM", "Docker"],
         description: "Secure full-stack e-commerce web application with MVC architecture, REST-like controllers, OAuth2, RBAC, and Docker deployment."
       },
@@ -320,8 +326,23 @@ const TRANSLATIONS = {
       },
       {
         title: "Full-Stack Task Management Application",
+        image: "task_manegemnt_sys.png",
         stack: ["PHP 7.4", "MySQL 5.7", "JS", "HTML5", "CSS3", "Apache XAMPP"],
         description: "Developed secure web app for internal team task tracking. Implemented role-based authentication with admin/user separation."
+      },
+      {
+        title: "Plane Management System",
+        image: "Plane_Management_Sys.png",
+        stack: ["Java", "OOP", "CLI", "Design Patterns"],
+        description: "Java command-line (CLI) application for comprehensive management of planes, pilots, and passengers with an interactive interface. Implemented design patterns (Singleton, Factory, MVC).",
+        link: "https://github.com/Pablo-100/Plane_Management_Sys"
+      },
+      {
+        title: "LunaChat - Chatbot",
+        image: "Luna chat bot.png",
+        stack: ["Python", "Gemini API", "AI", "Chatbot"],
+        description: "Intelligent conversational chatbot powered by the Gemini API. Interactive user interface for real-time conversations.",
+        link: "https://github.com/Pablo-100/LunaChat---Chatbot"
       }
     ],
     educationList: [
@@ -438,31 +459,37 @@ const TRANSLATIONS = {
     projectsList: [
       {
         title: "Oktopus SOC – SIEM / IDS / IPS Personnalisé",
+        image: "OCTUPUS SOC.png",
         stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
         description: "Création d'un centre des opérations de sécurité (SOC) complet à partir de zéro, couvrant la collecte de journaux, la détection, la prévention, la géo-IP et le mappage MITRE ATT&CK. Mise en œuvre de plus de 36 règles de détection IDS et d'agents multi-OS."
       },
       {
         title: "OCTUPUS Education – Plateforme RHCSA",
+        image: "OCTUPUS Education.png",
         stack: ["React 19", "TypeScript", "Node.js", "Express", "tRPC", "PostgreSQL", "Tailwind"],
         description: "Plateforme complète de certification RHCSA avec 12 chapitres, 18 laboratoires et un assistant alimenté par l'IA. Mise en œuvre d'une API full-stack typée avec JWT et OAuth2."
       },
       {
         title: "Smart Invest Summit – Mise en relation B2B",
+        image: "smart invest.png",
         stack: ["Laravel 12", "PHP 8.2+", "Tailwind CSS", "Alpine.js", "MySQL 8"],
         description: "Plateforme d'événements B2B connectant investisseurs et startups avec inscription, validation par l'administrateur, mise en relation, messagerie privée et planification de réunions."
       },
       {
         title: "Plateforme de Livraison – Système Logistique",
+        image: "delevery pro.png",
         stack: ["Laravel 11", "Livewire 3", "Tailwind CSS", "MySQL 8", "APIs"],
         description: "Plateforme de gestion de livraison multi-rôles avec architecture multi-dépôts. Mise en œuvre du suivi du cycle de vie des colis, des codes QR, du suivi GPS et des notifications SMS."
       },
       {
         title: "Système de Détection d'Intrusion Réseau",
+        image: "NIDS - Detection d'intrusion reseau.png",
         stack: ["Python", "Scapy", "scikit-learn", "Flask"],
         description: "NIDS hybride pour l'analyse du trafic en temps réel avec détection basée sur les signatures et les anomalies (Isolation Forest). Création d'une API REST Flask et d'un tableau de bord de surveillance."
       },
       {
         title: "Plateforme E-commerce Full-Stack",
+        image: "synf_project.png",
         stack: ["Symfony 7", "PHP 8", "Doctrine ORM", "Docker"],
         description: "Application web e-commerce full-stack sécurisée avec architecture MVC, contrôleurs de type REST, OAuth2, RBAC et déploiement Docker."
       },
@@ -483,8 +510,23 @@ const TRANSLATIONS = {
       },
       {
         title: "Application de Gestion de Tâches Full-Stack",
+        image: "task_manegemnt_sys.png",
         stack: ["PHP 7.4", "MySQL 5.7", "JS", "HTML5", "CSS3", "Apache XAMPP"],
         description: "Développement d'une application web sécurisée pour le suivi des tâches de l'équipe interne. Mise en œuvre d'une authentification basée sur les rôles avec séparation administrateur/utilisateur."
+      },
+      {
+        title: "Système de Gestion d'Avions",
+        image: "Plane_Management_Sys.png",
+        stack: ["Java", "OOP", "CLI", "Design Patterns"],
+        description: "Application Java en ligne de commande (CLI) pour la gestion complète des avions, pilotes et passagers avec une interface interactive. Implémentation de design patterns (Singleton, Factory, MVC).",
+        link: "https://github.com/Pablo-100/Plane_Management_Sys"
+      },
+      {
+        title: "LunaChat - Chatbot",
+        image: "Luna chat bot.png",
+        stack: ["Python", "Gemini API", "AI", "Chatbot"],
+        description: "Chatbot conversationnel intelligent alimenté par l'API Gemini. Interface utilisateur interactive pour des conversations en temps réel.",
+        link: "https://github.com/Pablo-100/LunaChat---Chatbot"
       }
     ],
     educationList: [
@@ -837,7 +879,13 @@ export default function App() {
         <section id="projects" className="py-24">
           <SectionHeading title={t.keyProjects} icon={Code} />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {t.projectsList.map((project, index) => (
+            {[...t.projectsList].sort((a, b) => {
+              const aHasImage = !!(a as any).image;
+              const bHasImage = !!(b as any).image;
+              if (aHasImage && !bHasImage) return -1;
+              if (!aHasImage && bHasImage) return 1;
+              return 0;
+            }).map((project, index) => (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -847,11 +895,25 @@ export default function App() {
                 className="glass-panel rounded-3xl p-8 flex flex-col h-full hover:-translate-y-2 transition-all duration-300 hover:border-[var(--color-cyber-blue)]/50 hover:shadow-[0_0_30px_rgba(14,165,233,0.15)] group relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cyber-blue)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {(project as any).image && (
+                  <div className="relative z-10 mb-6 rounded-2xl aspect-video bg-[var(--color-cyber-dark)] border-2 border-[var(--color-cyber-blue)]/20 p-1.5 shadow-[0_0_15px_rgba(14,165,233,0.1)] group-hover:border-[var(--color-cyber-blue)]/60 group-hover:shadow-[0_0_25px_rgba(14,165,233,0.3)] transition-all duration-500">
+                    <div className="w-full h-full overflow-hidden rounded-xl relative">
+                      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-cyber-dark)]/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                      <img 
+                        src={`/images/${(project as any).image}`} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                    </div>
+                  </div>
+                )}
+
                 <div className="relative z-10 flex justify-between items-start mb-4">
                   <div className="p-3 rounded-2xl bg-[var(--color-cyber-border)] text-[var(--color-cyber-text-light)] group-hover:bg-[var(--color-cyber-blue)] group-hover:text-white transition-colors">
                     <Terminal size={20} />
                   </div>
-                  <a href={`https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" className="text-[var(--color-cyber-text)] hover:text-[var(--color-cyber-text-light)] transition-colors">
+                  <a href={(project as any).link || `https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" className="text-[var(--color-cyber-text)] hover:text-[var(--color-cyber-text-light)] transition-colors">
                     <ExternalLink size={20} />
                   </a>
                 </div>
@@ -888,7 +950,11 @@ export default function App() {
                   <span className="text-[var(--color-cyber-blue)]">#</span> {t.skillsCategories[category as keyof typeof t.skillsCategories] || category}
                 </h3>
                 <div className="flex flex-wrap gap-3">
-                  {skills.map((skill, i) => (
+                  {[...skills].sort((a, b) => {
+                    const scoreA = STRONG_SKILLS.includes(a) ? 2 : (SIMPLE_SKILLS.includes(a) ? 0 : 1);
+                    const scoreB = STRONG_SKILLS.includes(b) ? 2 : (SIMPLE_SKILLS.includes(b) ? 0 : 1);
+                    return scoreB - scoreA;
+                  }).map((skill, i) => (
                     <span 
                       key={i} 
                       className="px-4 py-2 rounded-full border border-[var(--color-cyber-border)] bg-[var(--color-cyber-dark)]/50 text-sm hover:border-[var(--color-cyber-blue)] hover:text-[var(--color-cyber-text-light)] hover:bg-[var(--color-cyber-blue)]/10 transition-all duration-300 cursor-default hover:scale-105"
