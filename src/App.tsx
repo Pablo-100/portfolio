@@ -197,15 +197,153 @@ const TRANSLATIONS = {
     certifications: "Certifications",
     whatsNext: "04. What's Next?",
     sayHello: "Say Hello",
+    contactText: "Whether you have a question, a project proposal, or just want to say hi, I'll try my best to get back to you!",
     designedBy: "Designed & Built by",
     allRights: "All rights reserved.",
     role1: "System & Network Administrator",
     role2: "SOC Analyst L1",
     role3: "Full-Stack Developer",
+    badge1: "SOC L1",
+    badge2: "Full-Stack",
     summary: "System and Network Administrator SOC Analyst L1 with hands-on experience in secure infrastructures, network administration, and security monitoring. Skilled in Linux and Windows Server environments, SIEM systems (ELK Stack), and incident detection and analysis. Strong background in Cisco and Huawei networking, with practical experience in SOC operations and cybersecurity projects. Active full-stack developer with multiple production-grade platforms built from scratch.",
     about1: "I am a dedicated System and Network Administrator and SOC Analyst L1 with a strong passion for secure infrastructures and proactive security monitoring.",
     about2: "My expertise spans across Linux and Windows Server environments, SIEM systems (particularly the ELK Stack), and incident detection and analysis. I have a solid foundation in Cisco and Huawei networking, complemented by practical experience in SOC operations.",
-    about3: "Beyond infrastructure and security, I am an active Full-Stack Developer. I enjoy building production-grade platforms from scratch, bridging the gap between secure backend architectures and intuitive user interfaces."
+    about3: "Beyond infrastructure and security, I am an active Full-Stack Developer. I enjoy building production-grade platforms from scratch, bridging the gap between secure backend architectures and intuitive user interfaces.",
+    location: "Tunis – Tunisia",
+    locationLabel: "Location:",
+    emailLabel: "Email:",
+    phoneLabel: "Phone:",
+    contactInfo: "Contact Info",
+    languagesLabel: "Languages:",
+    languages: "Arabic, French, English",
+    skillsCategories: {
+      "Networking": "Networking",
+      "Security": "Security",
+      "Systems": "Systems",
+      "Virtualization": "Virtualization",
+      "Monitoring": "Monitoring",
+      "Development": "Development",
+      "Databases": "Databases",
+      "Protocols & Services": "Protocols & Services"
+    },
+    experienceList: [
+      {
+        company: "TDS",
+        location: "Tunis, Tunisia",
+        role: "VOC – Vulnerability Intelligence Dashboard",
+        date: "Jul 2025 – Sep 2025",
+        points: [
+          "Developed a real-time CVE dashboard collecting, filtering, and displaying new vulnerability entries with automatic updates every minute",
+          "Integrated multi-source threat intelligence from NVD and Vulners APIs, merging and deduplicating data",
+          "Implemented Telegram alerting for critical and high severity vulnerabilities",
+          "Designed interactive visualizations using Chart.js, Bootstrap, and DataTables"
+        ]
+      },
+      {
+        company: "Topnet",
+        location: "Tunis, Tunisia",
+        role: "PFE Internship – Cybersecurity Intern",
+        date: "Feb 2024 – Jul 2024",
+        points: [
+          "Deployed SIEM solution using ELK Stack for 50+ endpoints, improving incident visibility by 40%",
+          "Configured Logstash pipelines and Kibana dashboards for real-time monitoring",
+          "Installed multi-platform agents for centralized log collection",
+          "Performed penetration tests and vulnerability scans with Kali Linux, discovering 12+ critical issues"
+        ]
+      },
+      {
+        company: "Tunisie Telecom",
+        location: "Tunis, Tunisia",
+        role: "Technician Internship – Network Operations",
+        date: "Jan 2023 – Feb 2023",
+        points: [
+          "Configured xDSL and IP-MSAN services for over 300 clients with <5% downtime",
+          "Deployed and tested fiber optic connections with signal quality >98%"
+        ]
+      },
+      {
+        company: "Tunisie Telecom",
+        location: "Tunis, Tunisia",
+        role: "Technician Internship – Cisco Networks",
+        date: "Jan 2022 – Feb 2022",
+        points: [
+          "Installed and configured 20+ Cisco routers and switches in real environments",
+          "Structured cabling and patch panel deployment across 3 company sites"
+        ]
+      }
+    ],
+    projectsList: [
+      {
+        title: "Oktopus SOC – Custom SIEM / IDS / IPS",
+        stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
+        description: "Built a full Security Operations Center from scratch covering log collection, detection, prevention, geo-IP, and MITRE ATT&CK mapping. Implemented 36+ IDS detection rules and multi-OS agents."
+      },
+      {
+        title: "OCTUPUS Education – RHCSA Platform",
+        stack: ["React 19", "TypeScript", "Node.js", "Express", "tRPC", "PostgreSQL", "Tailwind"],
+        description: "Comprehensive RHCSA certification platform with 12 chapters, 18 labs, and AI-powered assistant. Implemented type-safe full-stack API with JWT and OAuth2."
+      },
+      {
+        title: "Smart Invest Summit – B2B Matchmaking",
+        stack: ["Laravel 12", "PHP 8.2+", "Tailwind CSS", "Alpine.js", "MySQL 8"],
+        description: "B2B event platform connecting investors and startups with registration, admin validation, matchmaking, private messaging, and meeting scheduling."
+      },
+      {
+        title: "Delivery Platform – Logistics System",
+        stack: ["Laravel 11", "Livewire 3", "Tailwind CSS", "MySQL 8", "APIs"],
+        description: "Multi-role delivery management platform with multi-depot architecture. Implemented parcel lifecycle tracking, QR codes, GPS tracking, and SMS notifications."
+      },
+      {
+        title: "Network Intrusion Detection System",
+        stack: ["Python", "Scapy", "scikit-learn", "Flask"],
+        description: "Hybrid NIDS for real-time traffic analysis with signature-based and anomaly-based detection (Isolation Forest). Built Flask REST API and monitoring dashboard."
+      },
+      {
+        title: "Full-Stack E-commerce Platform",
+        stack: ["Symfony 7", "PHP 8", "Doctrine ORM", "Docker"],
+        description: "Secure full-stack e-commerce web application with MVC architecture, REST-like controllers, OAuth2, RBAC, and Docker deployment."
+      },
+      {
+        title: "Windows Server & AD Infrastructure (Academic)",
+        stack: ["Windows Server", "Active Directory", "Group Policy", "DHCP"],
+        description: "Built enterprise Windows Server environment with Active Directory and Group Policy. Managed users, groups, and access control policies. Configured DHCP, firewall rules, audit policies, and backup system."
+      },
+      {
+        title: "Enterprise Network Architecture",
+        stack: ["Cisco", "Huawei", "eNSP", "Ubuntu Server"],
+        description: "Designed multi-site network with Layer 3 switches, VLAN segmentation, and ACLs. Configured Eth-Trunk and high-availability routes for critical infrastructure."
+      },
+      {
+        title: "VoIP System Deployment (Academic)",
+        stack: ["Cisco CUCM", "VoIP", "VLANs", "QoS"],
+        description: "Deployed VoIP solution using Cisco CUCM for 100+ users. Configured voice VLANs, DHCP for IP phones, and QoS policies. Reduced communication cost by 60% versus traditional PSTN."
+      },
+      {
+        title: "Full-Stack Task Management Application",
+        stack: ["PHP 7.4", "MySQL 5.7", "JS", "HTML5", "CSS3", "Apache XAMPP"],
+        description: "Developed secure web app for internal team task tracking. Implemented role-based authentication with admin/user separation."
+      }
+    ],
+    educationList: [
+      {
+        school: "TEK-UP University",
+        degree: "Engineer's Degree, Computer Systems & Network Security",
+        date: "2024 – Present"
+      },
+      {
+        school: "Higher Institute of Technological Studies",
+        degree: "Bachelor's Degree, Computer Networks and Services",
+        date: "Graduated 2024"
+      }
+    ],
+    certificationsList: [
+      "PCAP: Programming Essentials in Python (OpenEDG)",
+      "CCNA1: Introduction to Networks (Cisco)",
+      "Networking Devices & Initial Configuration (Cisco)",
+      "Junior Cybersecurity Analyst Career Path (Cisco)",
+      "Fortinet Certified Associate in Cybersecurity",
+      "Blue Team: PowerShell, SOC, Virtual Machines (Security Blue Team)"
+    ]
   },
   fr: {
     about: "À propos",
@@ -222,15 +360,153 @@ const TRANSLATIONS = {
     certifications: "Certifications",
     whatsNext: "04. Et Ensuite ?",
     sayHello: "Dire Bonjour",
+    contactText: "Que vous ayez une question, une proposition de projet, ou que vous vouliez simplement dire bonjour, je ferai de mon mieux pour vous répondre !",
     designedBy: "Conçu & Développé par",
     allRights: "Tous droits réservés.",
     role1: "Administrateur Systèmes et Réseaux",
     role2: "Analyste SOC L1",
     role3: "Développeur Full-Stack",
+    badge1: "SOC L1",
+    badge2: "Full-Stack",
     summary: "Administrateur Systèmes et Réseaux / Analyste SOC L1 avec une expérience pratique des infrastructures sécurisées, de l'administration réseau et de la surveillance de sécurité. Compétent dans les environnements Linux et Windows Server, les systèmes SIEM (ELK Stack), et la détection/analyse d'incidents. Solide base en réseaux Cisco et Huawei, avec une expérience pratique des opérations SOC et des projets de cybersécurité. Développeur full-stack actif avec plusieurs plateformes de niveau production construites de zéro.",
     about1: "Je suis un Administrateur Systèmes et Réseaux et Analyste SOC L1 dévoué, avec une forte passion pour les infrastructures sécurisées et la surveillance proactive de la sécurité.",
     about2: "Mon expertise s'étend aux environnements Linux et Windows Server, aux systèmes SIEM (en particulier la suite ELK), ainsi qu'à la détection et l'analyse d'incidents. J'ai de solides bases en réseaux Cisco et Huawei, complétées par une expérience pratique des opérations SOC.",
-    about3: "Au-delà de l'infrastructure et de la sécurité, je suis un Développeur Full-Stack actif. J'aime construire des plateformes de niveau production à partir de zéro, faisant le pont entre des architectures backend sécurisées et des interfaces utilisateur intuitives."
+    about3: "Au-delà de l'infrastructure et de la sécurité, je suis un Développeur Full-Stack actif. J'aime construire des plateformes de niveau production à partir de zéro, faisant le pont entre des architectures backend sécurisées et des interfaces utilisateur intuitives.",
+    location: "Tunis – Tunisie",
+    locationLabel: "Lieu :",
+    emailLabel: "Email :",
+    phoneLabel: "Tél :",
+    contactInfo: "Coordonnées",
+    languagesLabel: "Langues :",
+    languages: "Arabe, Français, Anglais",
+    skillsCategories: {
+      "Networking": "Réseaux",
+      "Security": "Sécurité",
+      "Systems": "Systèmes",
+      "Virtualization": "Virtualisation",
+      "Monitoring": "Surveillance",
+      "Development": "Développement",
+      "Databases": "Bases de Données",
+      "Protocols & Services": "Protocoles & Services"
+    },
+    experienceList: [
+      {
+        company: "TDS",
+        location: "Tunis, Tunisie",
+        role: "VOC – Tableau de bord de renseignement sur les vulnérabilités",
+        date: "Juil 2025 – Sep 2025",
+        points: [
+          "Développement d'un tableau de bord CVE en temps réel collectant, filtrant et affichant de nouvelles entrées de vulnérabilité avec des mises à jour automatiques chaque minute",
+          "Intégration de renseignements sur les menaces multi-sources à partir des API NVD et Vulners, fusion et déduplication des données",
+          "Mise en œuvre d'alertes Telegram pour les vulnérabilités de gravité critique et élevée",
+          "Conception de visualisations interactives utilisant Chart.js, Bootstrap et DataTables"
+        ]
+      },
+      {
+        company: "Topnet",
+        location: "Tunis, Tunisie",
+        role: "Stage PFE – Stagiaire en Cybersécurité",
+        date: "Fév 2024 – Juil 2024",
+        points: [
+          "Déploiement d'une solution SIEM utilisant la pile ELK pour plus de 50 points finaux, améliorant la visibilité des incidents de 40 %",
+          "Configuration des pipelines Logstash et des tableaux de bord Kibana pour une surveillance en temps réel",
+          "Installation d'agents multiplateformes pour la collecte centralisée des journaux",
+          "Réalisation de tests d'intrusion et d'analyses de vulnérabilité avec Kali Linux, découvrant plus de 12 problèmes critiques"
+        ]
+      },
+      {
+        company: "Tunisie Telecom",
+        location: "Tunis, Tunisie",
+        role: "Stage Technicien – Opérations Réseau",
+        date: "Jan 2023 – Fév 2023",
+        points: [
+          "Configuration des services xDSL et IP-MSAN pour plus de 300 clients avec <5 % de temps d'arrêt",
+          "Déploiement et test de connexions en fibre optique avec une qualité de signal >98 %"
+        ]
+      },
+      {
+        company: "Tunisie Telecom",
+        location: "Tunis, Tunisie",
+        role: "Stage Technicien – Réseaux Cisco",
+        date: "Jan 2022 – Fév 2022",
+        points: [
+          "Installation et configuration de plus de 20 routeurs et commutateurs Cisco dans des environnements réels",
+          "Câblage structuré et déploiement de panneaux de brassage sur 3 sites de l'entreprise"
+        ]
+      }
+    ],
+    projectsList: [
+      {
+        title: "Oktopus SOC – SIEM / IDS / IPS Personnalisé",
+        stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
+        description: "Création d'un centre des opérations de sécurité (SOC) complet à partir de zéro, couvrant la collecte de journaux, la détection, la prévention, la géo-IP et le mappage MITRE ATT&CK. Mise en œuvre de plus de 36 règles de détection IDS et d'agents multi-OS."
+      },
+      {
+        title: "OCTUPUS Education – Plateforme RHCSA",
+        stack: ["React 19", "TypeScript", "Node.js", "Express", "tRPC", "PostgreSQL", "Tailwind"],
+        description: "Plateforme complète de certification RHCSA avec 12 chapitres, 18 laboratoires et un assistant alimenté par l'IA. Mise en œuvre d'une API full-stack typée avec JWT et OAuth2."
+      },
+      {
+        title: "Smart Invest Summit – Mise en relation B2B",
+        stack: ["Laravel 12", "PHP 8.2+", "Tailwind CSS", "Alpine.js", "MySQL 8"],
+        description: "Plateforme d'événements B2B connectant investisseurs et startups avec inscription, validation par l'administrateur, mise en relation, messagerie privée et planification de réunions."
+      },
+      {
+        title: "Plateforme de Livraison – Système Logistique",
+        stack: ["Laravel 11", "Livewire 3", "Tailwind CSS", "MySQL 8", "APIs"],
+        description: "Plateforme de gestion de livraison multi-rôles avec architecture multi-dépôts. Mise en œuvre du suivi du cycle de vie des colis, des codes QR, du suivi GPS et des notifications SMS."
+      },
+      {
+        title: "Système de Détection d'Intrusion Réseau",
+        stack: ["Python", "Scapy", "scikit-learn", "Flask"],
+        description: "NIDS hybride pour l'analyse du trafic en temps réel avec détection basée sur les signatures et les anomalies (Isolation Forest). Création d'une API REST Flask et d'un tableau de bord de surveillance."
+      },
+      {
+        title: "Plateforme E-commerce Full-Stack",
+        stack: ["Symfony 7", "PHP 8", "Doctrine ORM", "Docker"],
+        description: "Application web e-commerce full-stack sécurisée avec architecture MVC, contrôleurs de type REST, OAuth2, RBAC et déploiement Docker."
+      },
+      {
+        title: "Infrastructure Windows Server & AD (Académique)",
+        stack: ["Windows Server", "Active Directory", "Group Policy", "DHCP"],
+        description: "Création d'un environnement d'entreprise Windows Server avec Active Directory et stratégie de groupe. Gestion des utilisateurs, des groupes et des politiques de contrôle d'accès. Configuration du DHCP, des règles de pare-feu, des politiques d'audit et du système de sauvegarde."
+      },
+      {
+        title: "Architecture Réseau d'Entreprise",
+        stack: ["Cisco", "Huawei", "eNSP", "Ubuntu Server"],
+        description: "Conception d'un réseau multi-sites avec commutateurs de couche 3, segmentation VLAN et ACL. Configuration de l'Eth-Trunk et de routes à haute disponibilité pour l'infrastructure critique."
+      },
+      {
+        title: "Déploiement de Système VoIP (Académique)",
+        stack: ["Cisco CUCM", "VoIP", "VLANs", "QoS"],
+        description: "Déploiement d'une solution VoIP utilisant Cisco CUCM pour plus de 100 utilisateurs. Configuration de VLAN vocaux, DHCP pour téléphones IP et politiques QoS. Réduction des coûts de communication de 60 % par rapport au RTPC traditionnel."
+      },
+      {
+        title: "Application de Gestion de Tâches Full-Stack",
+        stack: ["PHP 7.4", "MySQL 5.7", "JS", "HTML5", "CSS3", "Apache XAMPP"],
+        description: "Développement d'une application web sécurisée pour le suivi des tâches de l'équipe interne. Mise en œuvre d'une authentification basée sur les rôles avec séparation administrateur/utilisateur."
+      }
+    ],
+    educationList: [
+      {
+        school: "Université TEK-UP",
+        degree: "Diplôme d'Ingénieur, Systèmes Informatiques et Sécurité des Réseaux",
+        date: "2024 – Présent"
+      },
+      {
+        school: "Institut Supérieur des Études Technologiques",
+        degree: "Licence, Réseaux Informatiques et Services",
+        date: "Diplômé en 2024"
+      }
+    ],
+    certificationsList: [
+      "PCAP: L'essentiel de la programmation en Python (OpenEDG)",
+      "CCNA1: Introduction aux Réseaux (Cisco)",
+      "Périphériques Réseau & Configuration Initiale (Cisco)",
+      "Parcours de Carrière Analyste Junior en Cybersécurité (Cisco)",
+      "Associé Certifié Fortinet en Cybersécurité",
+      "Blue Team: PowerShell, SOC, Machines Virtuelles (Security Blue Team)"
+    ]
   }
 };
 
@@ -446,7 +722,7 @@ export default function App() {
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -top-6 left-1/2 -translate-x-1/2 md:top-4 md:left-auto md:-translate-x-0 md:-left-32 glass-panel px-4 py-2 md:px-5 md:py-3 rounded-full flex items-center gap-2 md:gap-3 font-mono text-xs md:text-sm text-[var(--color-cyber-text-light)] shadow-[0_0_20px_rgba(14,165,233,0.3)] z-20 whitespace-nowrap"
             >
-              <Server size={18} className="text-[var(--color-cyber-blue)]" /> System & Network Administrator
+              <Server size={18} className="text-[var(--color-cyber-blue)]" /> {t.role1}
             </motion.div>
             
             {/* Medium Badge: SOC L1 */}
@@ -455,7 +731,7 @@ export default function App() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 glass-panel px-3 py-1.5 md:px-4 md:py-2 rounded-full flex items-center gap-2 font-mono text-[10px] md:text-xs text-[var(--color-cyber-text-light)] shadow-[0_0_15px_rgba(14,165,233,0.2)] z-20 whitespace-nowrap"
             >
-              <Shield size={14} className="text-[var(--color-cyber-blue)]" /> SOC L1
+              <Shield size={14} className="text-[var(--color-cyber-blue)]" /> {t.badge1}
             </motion.div>
             
             {/* Small Badge: Full-Stack */}
@@ -464,7 +740,7 @@ export default function App() {
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               className="absolute -bottom-4 left-1/2 -translate-x-1/2 md:bottom-8 md:left-auto md:-translate-x-0 md:-left-8 glass-panel px-3 py-1.5 rounded-full flex items-center gap-1.5 font-mono text-[10px] text-[var(--color-cyber-text-light)] shadow-[0_0_10px_rgba(14,165,233,0.15)] z-20 whitespace-nowrap"
             >
-              <Code size={12} className="text-[var(--color-cyber-blue)]" /> Full-Stack
+              <Code size={12} className="text-[var(--color-cyber-blue)]" /> {t.badge2}
             </motion.div>
           </motion.div>
         </section>
@@ -493,24 +769,24 @@ export default function App() {
             </div>
             <div className="glass-panel p-8 rounded-3xl space-y-6">
               <h3 className="text-xl font-mono text-[var(--color-cyber-text-light)] mb-4 flex items-center gap-2">
-                <MapPin size={20} className="text-[var(--color-cyber-blue)]" /> Contact Info
+                <MapPin size={20} className="text-[var(--color-cyber-blue)]" /> {t.contactInfo}
               </h3>
               <ul className="space-y-4 font-mono text-sm">
                 <li className="flex items-center gap-4">
-                  <span className="text-[var(--color-cyber-text)] w-24">Location:</span>
-                  <span className="text-[var(--color-cyber-text-light)]">{DATA.location}</span>
+                  <span className="text-[var(--color-cyber-text)] w-24">{t.locationLabel}</span>
+                  <span className="text-[var(--color-cyber-text-light)]">{t.location}</span>
                 </li>
                 <li className="flex items-center gap-4">
-                  <span className="text-[var(--color-cyber-text)] w-24">Email:</span>
+                  <span className="text-[var(--color-cyber-text)] w-24">{t.emailLabel}</span>
                   <a href={`mailto:${DATA.email}`} className="text-[var(--color-cyber-blue)] hover:underline">{DATA.email}</a>
                 </li>
                 <li className="flex items-center gap-4">
-                  <span className="text-[var(--color-cyber-text)] w-24">Phone:</span>
+                  <span className="text-[var(--color-cyber-text)] w-24">{t.phoneLabel}</span>
                   <span className="text-[var(--color-cyber-text-light)]">{DATA.phone}</span>
                 </li>
                 <li className="flex items-center gap-4">
-                  <span className="text-[var(--color-cyber-text)] w-24">Languages:</span>
-                  <span className="text-[var(--color-cyber-text-light)]">Arabic, French, English</span>
+                  <span className="text-[var(--color-cyber-text)] w-24">{t.languagesLabel}</span>
+                  <span className="text-[var(--color-cyber-text-light)]">{t.languages}</span>
                 </li>
               </ul>
             </div>
@@ -521,7 +797,7 @@ export default function App() {
         <section id="experience" className="py-24">
           <SectionHeading title={t.experience} icon={Briefcase} />
           <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[var(--color-cyber-border)] before:to-transparent">
-            {DATA.experience.map((exp, index) => (
+            {t.experienceList.map((exp, index) => (
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -561,7 +837,7 @@ export default function App() {
         <section id="projects" className="py-24">
           <SectionHeading title={t.keyProjects} icon={Code} />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {DATA.projects.map((project, index) => (
+            {t.projectsList.map((project, index) => (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -609,7 +885,7 @@ export default function App() {
                 className="glass-panel p-8 rounded-3xl hover:border-[var(--color-cyber-blue)]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(14,165,233,0.1)] group"
               >
                 <h3 className="text-xl font-mono text-[var(--color-cyber-text-light)] mb-6 flex items-center gap-2 group-hover:text-[var(--color-cyber-blue)] transition-colors">
-                  <span className="text-[var(--color-cyber-blue)]">#</span> {category}
+                  <span className="text-[var(--color-cyber-blue)]">#</span> {t.skillsCategories[category as keyof typeof t.skillsCategories] || category}
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {skills.map((skill, i) => (
@@ -632,7 +908,7 @@ export default function App() {
             <div>
               <SectionHeading title={t.education} icon={GraduationCap} />
               <div className="space-y-6">
-                {DATA.education.map((edu, index) => (
+                {t.educationList.map((edu, index) => (
                   <div key={index} className="glass-panel p-8 rounded-3xl border-l-4 border-l-[var(--color-cyber-blue)] hover:translate-x-2 transition-all duration-300 hover:shadow-[0_0_20px_rgba(14,165,233,0.1)]">
                     <h3 className="font-bold text-[var(--color-cyber-text-light)] text-lg">{edu.degree}</h3>
                     <div className="text-[var(--color-cyber-blue)] font-mono text-sm my-2">{edu.school}</div>
@@ -646,7 +922,7 @@ export default function App() {
               <SectionHeading title={t.certifications} icon={Award} />
               <div className="glass-panel p-8 rounded-3xl hover:border-[var(--color-cyber-blue)]/30 transition-all duration-300 hover:shadow-[0_0_20px_rgba(14,165,233,0.1)]">
                 <ul className="space-y-4">
-                  {DATA.certifications.map((cert, index) => (
+                  {t.certificationsList.map((cert, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <Award size={18} className="text-[var(--color-cyber-blue)] shrink-0 mt-0.5" />
                       <span className="text-sm text-[var(--color-cyber-text-light)]">{cert}</span>
@@ -663,7 +939,7 @@ export default function App() {
           <div className="font-mono text-[var(--color-cyber-blue)] mb-4">{t.whatsNext}</div>
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-cyber-text-light)] mb-6">{t.getInTouch}</h2>
           <p className="text-lg mb-10 leading-relaxed">
-            Whether you have a question, a project proposal, or just want to say hi, I'll try my best to get back to you!
+            {t.contactText}
           </p>
           <a 
             href={`mailto:${DATA.email}`}
