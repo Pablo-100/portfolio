@@ -190,6 +190,7 @@ const TRANSLATIONS = {
     contact: "Contact",
     hello: "> Hello, World! I am",
     getInTouch: "Get In Touch",
+    downloadCV: "Download CV",
     aboutMe: "About Me",
     keyProjects: "Key Projects",
     techArsenal: "Technical Arsenal",
@@ -374,6 +375,7 @@ const TRANSLATIONS = {
     contact: "Contact",
     hello: "> Bonjour le monde ! Je suis",
     getInTouch: "Me Contacter",
+    downloadCV: "Télécharger CV",
     aboutMe: "À Propos de Moi",
     keyProjects: "Projets Clés",
     techArsenal: "Arsenal Technique",
@@ -724,6 +726,9 @@ export default function App() {
               <a href={`mailto:${DATA.email}`} className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-cyber-blue)] text-white hover:bg-[var(--color-cyber-blue)]/90 transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(14,165,233,0.4)]">
                 <Mail size={16} /> {t.getInTouch}
               </a>
+              <a href="/TBINI_Mustapha_Amine_CV.pdf" download="TBINI_Mustapha_Amine_CV.pdf" className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-cyber-light)]/10 text-[var(--color-cyber-text-light)] border border-[var(--color-cyber-blue)] hover:bg-[var(--color-cyber-blue)]/20 transition-all hover:scale-105">
+                <Download size={16} /> {t.downloadCV}
+              </a>
               <a href={`https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 rounded-full glass-panel hover:bg-white/5 transition-all hover:scale-105 hover:border-[var(--color-cyber-blue)]">
                 <Github size={16} /> GitHub
               </a>
@@ -901,7 +906,7 @@ export default function App() {
                     <div className="w-full h-full overflow-hidden rounded-xl relative">
                       <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-cyber-dark)]/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                       <img 
-                        src={`https://cdn.jsdelivr.net/gh/Pablo-100/portfolio@main/images/${(project as any).image}`} 
+                        src={`/images/${(project as any).image}`} 
                         alt={project.title} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
