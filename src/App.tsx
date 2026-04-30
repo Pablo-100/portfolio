@@ -276,37 +276,37 @@ const TRANSLATIONS = {
     projectsList: [
       {
         title: "Oktopus SOC – Custom SIEM / IDS / IPS",
-        image: "OCTUPUS SOC.png",
+        image: "octupus-soc.png",
         stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
         description: "Built a full Security Operations Center from scratch covering log collection, detection, prevention, geo-IP, and MITRE ATT&CK mapping. Implemented 36+ IDS detection rules and multi-OS agents."
       },
       {
         title: "OCTUPUS Education – RHCSA Platform",
-        image: "OCTUPUS Education.png",
+        image: "octupus-education.png",
         stack: ["React 19", "TypeScript", "Node.js", "Express", "tRPC", "PostgreSQL", "Tailwind"],
         description: "Comprehensive RHCSA certification platform with 12 chapters, 18 labs, and AI-powered assistant. Implemented type-safe full-stack API with JWT and OAuth2."
       },
       {
         title: "Smart Invest Summit – B2B Matchmaking",
-        image: "smart invest.png",
+        image: "smart-invest.png",
         stack: ["Laravel 12", "PHP 8.2+", "Tailwind CSS", "Alpine.js", "MySQL 8"],
         description: "B2B event platform connecting investors and startups with registration, admin validation, matchmaking, private messaging, and meeting scheduling."
       },
       {
         title: "Delivery Platform – Logistics System",
-        image: "delevery pro.png",
+        image: "delivery-pro.png",
         stack: ["Laravel 11", "Livewire 3", "Tailwind CSS", "MySQL 8", "APIs"],
         description: "Multi-role delivery management platform with multi-depot architecture. Implemented parcel lifecycle tracking, QR codes, GPS tracking, and SMS notifications."
       },
       {
         title: "Network Intrusion Detection System",
-        image: "NIDS - Detection d'intrusion reseau.png",
+        image: "nids.png",
         stack: ["Python", "Scapy", "scikit-learn", "Flask"],
         description: "Hybrid NIDS for real-time traffic analysis with signature-based and anomaly-based detection (Isolation Forest). Built Flask REST API and monitoring dashboard."
       },
       {
         title: "Full-Stack E-commerce Platform",
-        image: "synf_project.png",
+        image: "synf-project.png",
         stack: ["Symfony 7", "PHP 8", "Doctrine ORM", "Docker"],
         description: "Secure full-stack e-commerce web application with MVC architecture, REST-like controllers, OAuth2, RBAC, and Docker deployment."
       },
@@ -327,20 +327,20 @@ const TRANSLATIONS = {
       },
       {
         title: "Full-Stack Task Management Application",
-        image: "task_manegemnt_sys.png",
+        image: "task-management-sys.png",
         stack: ["PHP 7.4", "MySQL 5.7", "JS", "HTML5", "CSS3", "Apache XAMPP"],
         description: "Developed secure web app for internal team task tracking. Implemented role-based authentication with admin/user separation."
       },
       {
         title: "Plane Management System",
-        image: "Plane_Management_Sys.png",
+        image: "plane-management-sys.png",
         stack: ["Java", "OOP", "CLI", "Design Patterns"],
         description: "Java command-line (CLI) application for comprehensive management of planes, pilots, and passengers with an interactive interface. Implemented design patterns (Singleton, Factory, MVC).",
         link: "https://github.com/Pablo-100/Plane_Management_Sys"
       },
       {
         title: "LunaChat - Chatbot",
-        image: "Luna chat bot.png",
+        image: "luna-chat-bot.png",
         stack: ["Python", "Gemini API", "AI", "Chatbot"],
         description: "Intelligent conversational chatbot powered by the Gemini API. Interactive user interface for real-time conversations.",
         link: "https://github.com/Pablo-100/LunaChat---Chatbot"
@@ -461,37 +461,37 @@ const TRANSLATIONS = {
     projectsList: [
       {
         title: "Oktopus SOC – SIEM / IDS / IPS Personnalisé",
-        image: "OCTUPUS SOC.png",
+        image: "octupus-soc.png",
         stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
         description: "Création d'un centre des opérations de sécurité (SOC) complet à partir de zéro, couvrant la collecte de journaux, la détection, la prévention, la géo-IP et le mappage MITRE ATT&CK. Mise en œuvre de plus de 36 règles de détection IDS et d'agents multi-OS."
       },
       {
         title: "OCTUPUS Education – Plateforme RHCSA",
-        image: "OCTUPUS Education.png",
+        image: "octupus-education.png",
         stack: ["React 19", "TypeScript", "Node.js", "Express", "tRPC", "PostgreSQL", "Tailwind"],
         description: "Plateforme complète de certification RHCSA avec 12 chapitres, 18 laboratoires et un assistant alimenté par l'IA. Mise en œuvre d'une API full-stack typée avec JWT et OAuth2."
       },
       {
         title: "Smart Invest Summit – Mise en relation B2B",
-        image: "smart invest.png",
+        image: "smart-invest.png",
         stack: ["Laravel 12", "PHP 8.2+", "Tailwind CSS", "Alpine.js", "MySQL 8"],
         description: "Plateforme d'événements B2B connectant investisseurs et startups avec inscription, validation par l'administrateur, mise en relation, messagerie privée et planification de réunions."
       },
       {
         title: "Plateforme de Livraison – Système Logistique",
-        image: "delevery pro.png",
+        image: "delivery-pro.png",
         stack: ["Laravel 11", "Livewire 3", "Tailwind CSS", "MySQL 8", "APIs"],
         description: "Plateforme de gestion de livraison multi-rôles avec architecture multi-dépôts. Mise en œuvre du suivi du cycle de vie des colis, des codes QR, du suivi GPS et des notifications SMS."
       },
       {
         title: "Système de Détection d'Intrusion Réseau",
-        image: "NIDS - Detection d'intrusion reseau.png",
+        image: "nids.png",
         stack: ["Python", "Scapy", "scikit-learn", "Flask"],
         description: "NIDS hybride pour l'analyse du trafic en temps réel avec détection basée sur les signatures et les anomalies (Isolation Forest). Création d'une API REST Flask et d'un tableau de bord de surveillance."
       },
       {
         title: "Plateforme E-commerce Full-Stack",
-        image: "synf_project.png",
+        image: "synf-project.png",
         stack: ["Symfony 7", "PHP 8", "Doctrine ORM", "Docker"],
         description: "Application web e-commerce full-stack sécurisée avec architecture MVC, contrôleurs de type REST, OAuth2, RBAC et déploiement Docker."
       },
@@ -512,20 +512,20 @@ const TRANSLATIONS = {
       },
       {
         title: "Application de Gestion de Tâches Full-Stack",
-        image: "task_manegemnt_sys.png",
+        image: "task-management-sys.png",
         stack: ["PHP 7.4", "MySQL 5.7", "JS", "HTML5", "CSS3", "Apache XAMPP"],
         description: "Développement d'une application web sécurisée pour le suivi des tâches de l'équipe interne. Mise en œuvre d'une authentification basée sur les rôles avec séparation administrateur/utilisateur."
       },
       {
         title: "Système de Gestion d'Avions",
-        image: "Plane_Management_Sys.png",
+        image: "plane-management-sys.png",
         stack: ["Java", "OOP", "CLI", "Design Patterns"],
         description: "Application Java en ligne de commande (CLI) pour la gestion complète des avions, pilotes et passagers avec une interface interactive. Implémentation de design patterns (Singleton, Factory, MVC).",
         link: "https://github.com/Pablo-100/Plane_Management_Sys"
       },
       {
         title: "LunaChat - Chatbot",
-        image: "Luna chat bot.png",
+        image: "luna-chat-bot.png",
         stack: ["Python", "Gemini API", "AI", "Chatbot"],
         description: "Chatbot conversationnel intelligent alimenté par l'API Gemini. Interface utilisateur interactive pour des conversations en temps réel.",
         link: "https://github.com/Pablo-100/LunaChat---Chatbot"
@@ -726,7 +726,7 @@ export default function App() {
               <a href={`mailto:${DATA.email}`} className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-cyber-blue)] text-white hover:bg-[var(--color-cyber-blue)]/90 transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(14,165,233,0.4)]">
                 <Mail size={16} /> {t.getInTouch}
               </a>
-              <a href="/TBINI_Mustapha_Amine_CV.pdf" download="TBINI_Mustapha_Amine_CV.pdf" className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-cyber-light)]/10 text-[var(--color-cyber-text-light)] border border-[var(--color-cyber-blue)] hover:bg-[var(--color-cyber-blue)]/20 transition-all hover:scale-105">
+              <a href="/cv.pdf" download="TBINI_Mustapha_Amine_CV.pdf" className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-cyber-light)]/10 text-[var(--color-cyber-text-light)] border border-[var(--color-cyber-blue)] hover:bg-[var(--color-cyber-blue)]/20 transition-all hover:scale-105">
                 <Download size={16} /> {t.downloadCV}
               </a>
               <a href={`https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 rounded-full glass-panel hover:bg-white/5 transition-all hover:scale-105 hover:border-[var(--color-cyber-blue)]">
