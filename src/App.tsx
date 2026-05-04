@@ -726,7 +726,7 @@ export default function App() {
               <a href={`mailto:${DATA.email}`} className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-cyber-blue)] text-white hover:bg-[var(--color-cyber-blue)]/90 transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(14,165,233,0.4)]">
                 <Mail size={16} /> {t.getInTouch}
               </a>
-              <a href="/TBINI_Mustapha_Amine_CV.pdf" download="TBINI_Mustapha_Amin_CV_Final.docx.pdf" className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-cyber-light)]/10 text-[var(--color-cyber-text-light)] border border-[var(--color-cyber-blue)] hover:bg-[var(--color-cyber-blue)]/20 transition-all hover:scale-105">
+              <a href="/TBINI_Mustapha_Amin_CV_Final.docx.pdf" download="TBINI_Mustapha_Amin_CV_Final.docx.pdf" className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-cyber-light)]/10 text-[var(--color-cyber-text-light)] border border-[var(--color-cyber-blue)] hover:bg-[var(--color-cyber-blue)]/20 transition-all hover:scale-105">
                 <Download size={16} /> {t.downloadCV}
               </a>
               <a href={`https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 rounded-full glass-panel hover:bg-white/5 transition-all hover:scale-105 hover:border-[var(--color-cyber-blue)]">
