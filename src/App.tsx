@@ -4,8 +4,11 @@ import {
   Github, Linkedin, Mail, Phone, MapPin, 
   Terminal, Shield, Server, Code, Award, 
   Briefcase, GraduationCap, ChevronRight, ExternalLink,
-  Menu, X, Download, Sun, Moon, Globe
+  Menu, X, Download, Sun, Moon, Globe, Sparkles, Activity, Command
 } from 'lucide-react';
+import { CyberHeroCanvas } from './components/CyberHeroCanvas';
+import { ArchitectureModal } from './components/ArchitectureModal';
+import { BentoProjectsGrid } from './components/BentoProjectsGrid';
 
 const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -25,14 +28,14 @@ const useMousePosition = () => {
 
 // Data
 const DATA = {
-  name: "TBINI Mustapha Amine",
-  role: "SOC Analyst L1 & Full-Stack Developer",
+  name: "TBINI Mustapha Amin",
+  role: "Administrateur Systèmes et Réseaux & Analyste SOC L1 & Développeur Full-Stack Passionné",
   location: "Tunis – Tunisia",
   phone: "+216 46-345-226",
   email: "mustaphaamintbini@gmail.com",
   linkedin: "mustapha-amin-tbini",
   github: "Pablo-100",
-  summary: "System and Network Administrator SOC Analyst L1 with hands-on experience in secure infrastructures, network administration, and security monitoring. Skilled in Linux and Windows Server environments, SIEM systems (ELK Stack), and incident detection and analysis. Strong background in Cisco and Huawei networking, with practical experience in SOC operations and cybersecurity projects. Active full-stack developer with multiple production-grade platforms built from scratch.",
+  summary: "Administrateur Systèmes et Réseaux & Analyste SOC L1 avec une solide expérience pratique des infrastructures sécurisées, de l'administration réseau et de la surveillance d'incidents. Développeur Full-Stack passionné concevant des applications de niveau production.",
   skills: {
     "Networking": ["Cisco CCNA", "Huawei Equipment", "VLAN Configuration", "IP-MSAN", "xDSL", "Eth-Trunk", "IPsec VPN", "Layer 3 Switching", "Routing Protocols (RIP, Static)", "Network Design", "Access Control Lists (ACL)", "Quality of Service (QoS)"],
     "Security": ["ELK Stack", "SIEM Implementation", "IDS/IPS", "MITRE ATT&CK", "Penetration Testing", "Vulnerability Assessment", "Metasploit", "Nessus", "OpenVAS", "Nmap", "Burp Suite", "Kali Linux", "Security Monitoring", "Incident Response", "SOC Operations"],
@@ -90,6 +93,18 @@ const DATA = {
     }
   ],
   projects: [
+    {
+      title: "ARGUS VOC – Unified Vulnerability Platform",
+      stack: ["FastAPI", "Celery", "Elasticsearch", "Nmap", "OpenVAS", "Docker", "Redis"],
+      description: "Unified enterprise vulnerability management & threat intelligence platform with automated Nmap/OpenVAS scanning, Celery task queue, Elasticsearch/Kibana indexing, SLA routing, and attack graphs.",
+      link: "https://github.com/Pablo-100/ARGUS_VOC"
+    },
+    {
+      title: "Rja3chi – Outage Tracker & Incident Reports",
+      stack: ["React", "Node.js", "Express", "Tailwind CSS", "Tunisia Map"],
+      description: "Crowdsourced real-time incident reporting platform for electricity, water, and fire outages across Tunisia. Features citizen verification, anti-fake security engine, location feeds, and live resolution analytics.",
+      link: "https://github.com/Pablo-100/Rja3chi"
+    },
     {
       title: "Oktopus SOC – Custom SIEM / IDS / IPS",
       stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
@@ -175,11 +190,185 @@ const SIMPLE_SKILLS = [
   "HTML", "CSS", "JavaScript", "SQLite", "MariaDB", "FTP", "DHCP", "DNS", "Samba", "NFS", "VirtualBox", "VLAN Configuration", "xDSL", "Chart.js", "Alpine.js", "Tailwind CSS"
 ];
 
-const SORTED_MARQUEE_SKILLS = Object.values(DATA.skills).flat().sort((a, b) => {
-  const scoreA = STRONG_SKILLS.includes(a) ? 2 : (SIMPLE_SKILLS.includes(a) ? 0 : 1);
-  const scoreB = STRONG_SKILLS.includes(b) ? 2 : (SIMPLE_SKILLS.includes(b) ? 0 : 1);
-  return scoreB - scoreA;
-});
+// Explicit skill order for Marquee banner: Cyber Security -> Networking -> System -> Development
+const CYBER_SEC_SKILLS = [
+  "SOC Operations", "SIEM Implementation", "ELK Stack", "MITRE ATT&CK", "IDS/IPS", 
+  "Penetration Testing", "Vulnerability Assessment", "Incident Response", "Security Monitoring", 
+  "Metasploit", "Burp Suite", "Nessus", "OpenVAS", "Nmap", "Kali Linux", "Wireshark", "TCPDump"
+];
+
+const NETWORK_SKILLS = [
+  "Cisco CCNA", "Huawei Equipment", "VLAN Configuration", "IPsec VPN", 
+  "Layer 3 Switching", "Routing Protocols (RIP, Static)", "Network Design", 
+  "Access Control Lists (ACL)", "Quality of Service (QoS)", "IP-MSAN", "xDSL", "Eth-Trunk"
+];
+
+const SYSTEM_SKILLS = [
+  "Windows Server", "Active Directory", "Ubuntu", "Rocky Linux", "CentOS", "RedHat", 
+  "Docker", "VMware", "ESXi", "VirtualBox", "Group Policy", "Bash", "PowerShell"
+];
+
+const DEV_SKILLS = [
+  "React", "TypeScript", "Node.js", "Python", "Laravel 12", "Symfony 7", "Express", "tRPC", 
+  "PHP", "JAVA", "JavaScript", "HTML", "CSS", "MySQL", "PostgreSQL", "SQLite", "MariaDB", 
+  "Tailwind CSS", "Git", "Vite"
+];
+
+const MARQUEE_SKILLS_ORDERED = [
+  ...CYBER_SEC_SKILLS.map(s => ({ name: s, category: "Cyber Security" })),
+  ...NETWORK_SKILLS.map(s => ({ name: s, category: "Networking" })),
+  ...SYSTEM_SKILLS.map(s => ({ name: s, category: "System" })),
+  ...DEV_SKILLS.map(s => ({ name: s, category: "Development" }))
+];
+
+// Tech Logo mapping dictionary for Technical Arsenal
+const TECH_LOGOS: Record<string, string> = {
+  // Security
+  "ELK Stack": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg",
+  "SIEM Implementation": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg",
+  "Kali Linux": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/kalilinux.svg",
+  "Burp Suite": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/burpsuite.svg",
+  "Wireshark": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/wireshark.svg",
+  "Metasploit": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/metasploit.svg",
+  "Nmap": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/nmap.svg",
+  "Nessus": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/tenable.svg",
+  "OpenVAS": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/greenbone.svg",
+  "MITRE ATT&CK": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/mitre.svg",
+  
+  // Networking
+  "Cisco CCNA": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/cisco.svg",
+  "Cisco": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/cisco.svg",
+  "Cisco CUCM": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/cisco.svg",
+  "Huawei Equipment": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/huawei.svg",
+  "Huawei": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/huawei.svg",
+  
+  // Systems & Virtualization
+  "Ubuntu": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg",
+  "Rocky Linux": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/rockylinux.svg",
+  "CentOS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/centos/centos-original.svg",
+  "RedHat": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redhat/redhat-original.svg",
+  "Linux": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+  "Windows Server": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg",
+  "Active Directory": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg",
+  "Docker": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  "VMware": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vmware.svg",
+  "ESXi": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vmware.svg",
+  "VirtualBox": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/virtualbox.svg",
+  "Bash": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
+  "PowerShell": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg",
+
+  // Development & Databases
+  "Python": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  "PHP": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+  "Laravel": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
+  "Symfony": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg",
+  "Livewire": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/livewire.svg",
+  "Express": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+  "tRPC": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/trpc.svg",
+  "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  "JAVA": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  "HTML": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+  "MySQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  "PostgreSQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  "SQLite": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg",
+  "MariaDB": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg",
+  "Chart.js": "https://www.chartjs.org/img/chartjs-logo.svg",
+  "Alpine.js": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/alpinedotjs.svg",
+  "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  "Vite": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg",
+  "Apache": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg",
+  "Flask": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+  "scikit-learn": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg",
+  "Bootstrap": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
+  "WebSocket": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/socketdotio.svg",
+  "Drizzle ORM": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/drizzle.svg",
+  "Doctrine ORM": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/doctrine.svg",
+  "OAuth2": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/auth0.svg"
+};
+
+function getLogoForSkill(skillName: string): string | undefined {
+  if (TECH_LOGOS[skillName]) return TECH_LOGOS[skillName];
+
+  const lower = skillName.toLowerCase();
+  if (lower.includes('cisco')) return TECH_LOGOS['Cisco'];
+  if (lower.includes('huawei')) return TECH_LOGOS['Huawei'];
+  if (lower.includes('python')) return TECH_LOGOS['Python'];
+  if (lower.includes('react')) return TECH_LOGOS['React'];
+  if (lower.includes('typescript')) return TECH_LOGOS['TypeScript'];
+  if (lower.includes('javascript') || lower === 'js') return TECH_LOGOS['JavaScript'];
+  if (lower.includes('php')) return TECH_LOGOS['PHP'];
+  if (lower.includes('laravel')) return TECH_LOGOS['Laravel'];
+  if (lower.includes('symfony')) return TECH_LOGOS['Symfony'];
+  if (lower.includes('livewire')) return TECH_LOGOS['Livewire'];
+  if (lower.includes('trpc')) return TECH_LOGOS['tRPC'];
+  if (lower.includes('express')) return TECH_LOGOS['Express'];
+  if (lower.includes('java')) return TECH_LOGOS['Java'];
+  if (lower.includes('html')) return TECH_LOGOS['HTML'];
+  if (lower.includes('css')) return TECH_LOGOS['CSS'];
+  if (lower.includes('tailwind')) return TECH_LOGOS['Tailwind CSS'];
+  if (lower.includes('mysql')) return TECH_LOGOS['MySQL'];
+  if (lower.includes('postgres')) return TECH_LOGOS['PostgreSQL'];
+  if (lower.includes('sqlite')) return TECH_LOGOS['SQLite'];
+  if (lower.includes('mariadb')) return TECH_LOGOS['MariaDB'];
+  if (lower.includes('linux') || lower.includes('ubuntu')) return TECH_LOGOS['Ubuntu'];
+  if (lower.includes('centos')) return TECH_LOGOS['CentOS'];
+  if (lower.includes('redhat')) return TECH_LOGOS['RedHat'];
+  if (lower.includes('windows') || lower.includes('directory')) return TECH_LOGOS['Windows Server'];
+  if (lower.includes('docker')) return TECH_LOGOS['Docker'];
+  if (lower.includes('vmware') || lower.includes('esxi')) return TECH_LOGOS['VMware'];
+  if (lower.includes('virtualbox')) return TECH_LOGOS['VirtualBox'];
+  if (lower.includes('elk') || lower.includes('siem') || lower.includes('kibana') || lower.includes('logstash')) return TECH_LOGOS['ELK Stack'];
+  if (lower.includes('kali')) return TECH_LOGOS['Kali Linux'];
+  if (lower.includes('burp')) return TECH_LOGOS['Burp Suite'];
+  if (lower.includes('metasploit')) return TECH_LOGOS['Metasploit'];
+  if (lower.includes('wireshark')) return TECH_LOGOS['Wireshark'];
+  if (lower.includes('nmap')) return TECH_LOGOS['Nmap'];
+  if (lower.includes('nessus')) return TECH_LOGOS['Nessus'];
+  if (lower.includes('openvas')) return TECH_LOGOS['OpenVAS'];
+  if (lower.includes('mitre')) return TECH_LOGOS['MITRE ATT&CK'];
+  if (lower.includes('apache')) return TECH_LOGOS['Apache'];
+  if (lower.includes('bash')) return TECH_LOGOS['Bash'];
+  if (lower.includes('powershell')) return TECH_LOGOS['PowerShell'];
+  if (lower.includes('flask')) return TECH_LOGOS['Flask'];
+  if (lower.includes('git')) return TECH_LOGOS['Git'];
+  if (lower.includes('vite')) return TECH_LOGOS['Vite'];
+  if (lower.includes('websocket')) return TECH_LOGOS['WebSocket'];
+  if (lower.includes('doctrine')) return TECH_LOGOS['Doctrine ORM'];
+  if (lower.includes('drizzle')) return TECH_LOGOS['Drizzle ORM'];
+  if (lower.includes('oauth')) return TECH_LOGOS['OAuth2'];
+  if (lower.includes('bootstrap')) return TECH_LOGOS['Bootstrap'];
+  if (lower.includes('alpine')) return TECH_LOGOS['Alpine.js'];
+  if (lower.includes('chart')) return TECH_LOGOS['Chart.js'];
+
+  return undefined;
+}
+
+function SkillTag({ skill }: { skill: string; key?: React.Key }) {
+  const [imgError, setImgError] = useState(false);
+  const logoUrl = getLogoForSkill(skill);
+
+  return (
+    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full ios-pill text-xs md:text-sm font-medium text-[var(--color-cyber-text-light)] hover:scale-105 active:scale-95 cursor-default group/tag shadow-2xs">
+      {logoUrl && !imgError && (
+        <span className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center p-0.5 bg-white/95 rounded-md shrink-0 shadow-2xs group-hover/tag:scale-110 transition-transform duration-200">
+          <img
+            src={logoUrl}
+            alt=""
+            className="w-full h-full object-contain"
+            onError={() => setImgError(true)}
+          />
+        </span>
+      )}
+      <span>{skill}</span>
+    </span>
+  );
+}
 
 const TRANSLATIONS = {
   en: {
@@ -203,11 +392,11 @@ const TRANSLATIONS = {
     allRights: "All rights reserved.",
     role1: "System & Network Administrator",
     role2: "SOC Analyst L1",
-    role3: "Full-Stack Developer",
+    role3: "Passionate Full-Stack Developer",
     badge1: "SOC L1",
     badge2: "Full-Stack",
-    summary: "System and Network Administrator SOC Analyst L1 with hands-on experience in secure infrastructures, network administration, and security monitoring. Skilled in Linux and Windows Server environments, SIEM systems (ELK Stack), and incident detection and analysis. Strong background in Cisco and Huawei networking, with practical experience in SOC operations and cybersecurity projects. Active full-stack developer with multiple production-grade platforms built from scratch.",
-    about1: "I am a dedicated System and Network Administrator and SOC Analyst L1 with a strong passion for secure infrastructures and proactive security monitoring.",
+    summary: "System and Network Administrator & SOC Analyst L1 with hands-on experience in secure infrastructures, network administration, and security monitoring. Skilled in Linux & Windows Server, SIEM (ELK Stack), and incident detection. Passionate Full-Stack Developer building production-grade applications from scratch.",
+    about1: "I am a dedicated System and Network Administrator & SOC Analyst L1, and a passionate Full-Stack Developer with a strong drive for secure infrastructures and modern software craftsmanship.",
     about2: "My expertise spans across Linux and Windows Server environments, SIEM systems (particularly the ELK Stack), and incident detection and analysis. I have a solid foundation in Cisco and Huawei networking, complemented by practical experience in SOC operations.",
     about3: "Beyond infrastructure and security, I am an active Full-Stack Developer. I enjoy building production-grade platforms from scratch, bridging the gap between secure backend architectures and intuitive user interfaces.",
     location: "Tunis – Tunisia",
@@ -275,6 +464,30 @@ const TRANSLATIONS = {
     ],
     projectsList: [
       {
+        title: "OCTUPUS VOC – Vulnerability Operations Center",
+        image: "oktopus-voc.png",
+        badge: "VOC Flagship",
+        stack: ["Next.js", "TypeScript", "Tailwind CSS", "NVD API", "EPSS", "CISA KEV", "Vercel"],
+        description: "A Vulnerability Operations Center (RBVM · VOC) that turns CVE chaos into decisions: prioritization by real-world risk (CVSS · EPSS · CISA KEV), internet-exposure intelligence, 0-day tracker, and SOC alert workflows.",
+        demoUrl: "https://oktopus-voc.vercel.app",
+        githubUrl: "https://github.com/Pablo-100/Oktopus-VOC"
+      },
+      {
+        title: "ARGUS VOC – Unified Vulnerability & Threat Platform",
+        image: "voc.png",
+        stack: ["FastAPI", "Celery", "Elasticsearch", "Nmap", "OpenVAS", "Docker", "Redis"],
+        description: "Unified enterprise vulnerability management & threat intelligence platform with automated Nmap/OpenVAS scanning, Celery task queue, Elasticsearch/Kibana indexing, SLA routing, and attack graphs.",
+        link: "https://github.com/Pablo-100/ARGUS_VOC"
+      },
+      {
+        title: "Rja3chi – Outage Tracker & Incident Reports",
+        image: "rja3chi.png",
+        stack: ["React", "Node.js", "Express", "Tailwind CSS", "Tunisia Map"],
+        description: "Crowdsourced real-time incident reporting platform for electricity, water, and fire outages across Tunisia. Features citizen verification, anti-fake security engine, location feeds, and live resolution analytics.",
+        githubUrl: "https://github.com/Pablo-100/Rja3chi",
+        demoUrl: "https://rja3chi.vercel.app"
+      },
+      {
         title: "Oktopus SOC – Custom SIEM / IDS / IPS",
         image: "octupus-soc.png",
         stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
@@ -284,7 +497,9 @@ const TRANSLATIONS = {
         title: "OCTUPUS Education – RHCSA Platform",
         image: "octupus-education.png",
         stack: ["React 19", "TypeScript", "Node.js", "Express", "tRPC", "PostgreSQL", "Tailwind"],
-        description: "Comprehensive RHCSA certification platform with 12 chapters, 18 labs, and AI-powered assistant. Implemented type-safe full-stack API with JWT and OAuth2."
+        description: "Comprehensive RHCSA certification platform with 12 chapters, 18 labs, and AI-powered assistant. Implemented type-safe full-stack API with JWT and OAuth2.",
+        githubUrl: "https://github.com/Pablo-100",
+        demoUrl: "https://octupus-education.onrender.com"
       },
       {
         title: "Smart Invest Summit – B2B Matchmaking",
@@ -388,11 +603,11 @@ const TRANSLATIONS = {
     allRights: "Tous droits réservés.",
     role1: "Administrateur Systèmes et Réseaux",
     role2: "Analyste SOC L1",
-    role3: "Développeur Full-Stack",
+    role3: "Développeur Full-Stack Passionné",
     badge1: "SOC L1",
     badge2: "Full-Stack",
-    summary: "Administrateur Systèmes et Réseaux / Analyste SOC L1 avec une expérience pratique des infrastructures sécurisées, de l'administration réseau et de la surveillance de sécurité. Compétent dans les environnements Linux et Windows Server, les systèmes SIEM (ELK Stack), et la détection/analyse d'incidents. Solide base en réseaux Cisco et Huawei, avec une expérience pratique des opérations SOC et des projets de cybersécurité. Développeur full-stack actif avec plusieurs plateformes de niveau production construites de zéro.",
-    about1: "Je suis un Administrateur Systèmes et Réseaux et Analyste SOC L1 dévoué, avec une forte passion pour les infrastructures sécurisées et la surveillance proactive de la sécurité.",
+    summary: "Administrateur Systèmes et Réseaux & Analyste SOC L1 avec une solide expérience des infrastructures sécurisées, de l'administration réseau et de la surveillance SIEM. Développeur Full-Stack passionné concevant des applications de niveau production.",
+    about1: "Je suis un Administrateur Systèmes et Réseaux & Analyste SOC L1, ainsi qu'un Développeur Full-Stack passionné avec une forte maîtrise des infrastructures sécurisées et du développement applicatif.",
     about2: "Mon expertise s'étend aux environnements Linux et Windows Server, aux systèmes SIEM (en particulier la suite ELK), ainsi qu'à la détection et l'analyse d'incidents. J'ai de solides bases en réseaux Cisco et Huawei, complétées par une expérience pratique des opérations SOC.",
     about3: "Au-delà de l'infrastructure et de la sécurité, je suis un Développeur Full-Stack actif. J'aime construire des plateformes de niveau production à partir de zéro, faisant le pont entre des architectures backend sécurisées et des interfaces utilisateur intuitives.",
     location: "Tunis – Tunisie",
@@ -460,6 +675,30 @@ const TRANSLATIONS = {
     ],
     projectsList: [
       {
+        title: "OCTUPUS VOC – Centre d'Opérations de Vulnérabilités",
+        image: "oktopus-voc.png",
+        badge: "VOC Flagship",
+        stack: ["Next.js", "TypeScript", "Tailwind CSS", "NVD API", "EPSS", "CISA KEV", "Vercel"],
+        description: "Centre d'Opérations de Vulnérabilités (RBVM · VOC) transformant le chaos des CVE en décisions : priorisation par risque réel (CVSS · EPSS · CISA KEV), veille 0-day, renseignement sur l'exposition Internet et workflows d'alertes SOC.",
+        demoUrl: "https://oktopus-voc.vercel.app",
+        githubUrl: "https://github.com/Pablo-100/Oktopus-VOC"
+      },
+      {
+        title: "ARGUS VOC – Plateforme Unifiée de Vulnérabilités & Threat Intel",
+        image: "voc.png",
+        stack: ["FastAPI", "Celery", "Elasticsearch", "Nmap", "OpenVAS", "Docker", "Redis"],
+        description: "Plateforme d'entreprise unifiée de gestion des vulnérabilités et de renseignement sur les menaces avec scans automatisés Nmap/OpenVAS, file Celery, indexation Elasticsearch/Kibana, routage SLA et graphes d'attaque.",
+        link: "https://github.com/Pablo-100/ARGUS_VOC"
+      },
+      {
+        title: "Rja3chi – Suivi Collaboratif des Pannes & Incidents",
+        image: "rja3chi.png",
+        stack: ["React", "Node.js", "Express", "Tailwind CSS", "Tunisia Map"],
+        description: "Plateforme collaborative de signalement d'incidents en temps réel (électricité, eau, incendie) en Tunisie. Intègre la vérification citoyenne, la sécurité anti-fake, la géolocalisation et des statistiques en temps réel.",
+        githubUrl: "https://github.com/Pablo-100/Rja3chi",
+        demoUrl: "https://rja3chi.vercel.app"
+      },
+      {
         title: "Oktopus SOC – SIEM / IDS / IPS Personnalisé",
         image: "octupus-soc.png",
         stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
@@ -469,7 +708,9 @@ const TRANSLATIONS = {
         title: "OCTUPUS Education – Plateforme RHCSA",
         image: "octupus-education.png",
         stack: ["React 19", "TypeScript", "Node.js", "Express", "tRPC", "PostgreSQL", "Tailwind"],
-        description: "Plateforme complète de certification RHCSA avec 12 chapitres, 18 laboratoires et un assistant alimenté par l'IA. Mise en œuvre d'une API full-stack typée avec JWT et OAuth2."
+        description: "Plateforme complète de certification RHCSA avec 12 chapitres, 18 laboratoires et un assistant alimenté par l'IA. Mise en œuvre d'une API full-stack typée avec JWT et OAuth2.",
+        githubUrl: "https://github.com/Pablo-100",
+        demoUrl: "https://octupus-education.onrender.com"
       },
       {
         title: "Smart Invest Summit – Mise en relation B2B",
@@ -555,20 +796,24 @@ const TRANSLATIONS = {
 };
 
 const SectionHeading = ({ title, icon: Icon }: { title: string, icon: any }) => (
-  <div className="flex items-center gap-3 mb-8">
-    <div className="p-3 rounded-2xl bg-[var(--color-cyber-blue)]/10 text-[var(--color-cyber-blue)]">
-      <Icon size={24} />
+  <div className="flex items-center gap-3.5 mb-10">
+    <div className="p-3.5 rounded-2xl bg-sky-500/15 text-[var(--color-cyber-blue)] border border-sky-500/20 shadow-sm backdrop-blur-md">
+      <Icon size={22} />
     </div>
-    <h2 className="text-3xl font-bold font-mono text-gradient">{title}</h2>
-    <div className="h-px flex-1 bg-gradient-to-r from-[var(--color-cyber-border)] to-transparent ml-4"></div>
+    <h2 className="text-3xl font-extrabold font-display tracking-tight text-gradient">{title}</h2>
+    <div className="h-px flex-1 bg-gradient-to-r from-sky-500/30 via-sky-500/10 to-transparent ml-4"></div>
   </div>
 );
 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [lang, setLang] = useState<'en' | 'fr'>('en');
+  const [lang, setLang] = useState<'en' | 'fr'>('fr'); // Default to French for user preference
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [archModalProject, setArchModalProject] = useState<string | null>(null);
+  const [proUiMode, setProUiMode] = useState(true);
   const mousePosition = useMousePosition();
 
   const t = TRANSLATIONS[lang];
@@ -583,9 +828,42 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
+
+      const sections = ['about', 'experience', 'projects', 'skills', 'education', 'contact'];
+      const scrollPosition = window.scrollY + 220;
+
+      // Check if near top (hero section before 'about')
+      const aboutEl = document.getElementById('about');
+      if (aboutEl && window.scrollY + 250 < aboutEl.offsetTop) {
+        setActiveSection('');
+        return;
+      }
+
+      // Check if near bottom of page
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80) {
+        setActiveSection('contact');
+        return;
+      }
+
+      let current = '';
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sectionId = sections[i];
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop - 120;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && window.scrollY < top + height + 100) {
+            current = sectionId;
+            break;
+          }
+        }
+      }
+      setActiveSection(current);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -600,102 +878,176 @@ export default function App() {
   return (
     <div className={`min-h-screen bg-[var(--color-cyber-dark)] text-[var(--color-cyber-text)] selection:bg-[var(--color-cyber-blue)] selection:text-white ${theme}`}>
       
-      {/* Background Effects */}
+      {/* iOS 27 Spatial Liquid Background */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <motion.div 
-          className="absolute w-[800px] h-[800px] rounded-full bg-[var(--color-cyber-blue)]/10 blur-[120px] -z-10"
+          className="absolute w-[700px] h-[700px] rounded-full bg-gradient-to-br from-sky-500/15 via-blue-600/10 to-teal-400/5 blur-[130px] -z-10"
           animate={{
-            x: mousePosition.x - 400,
-            y: mousePosition.y - 400,
+            x: mousePosition.x - 350,
+            y: mousePosition.y - 350,
           }}
-          transition={{ type: "tween", ease: "backOut", duration: 0.5 }}
+          transition={{ type: "spring", damping: 30, stiffness: 120 }}
         />
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[var(--color-cyber-blue)]/5 blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[var(--color-cyber-blue)]/5 blur-[120px]"></div>
+        <div className="absolute top-[-15%] left-[20%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-br from-sky-500/10 to-indigo-500/5 blur-[140px]"></div>
+        <div className="absolute bottom-[-10%] right-[10%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-tr from-cyan-500/10 to-blue-600/5 blur-[130px]"></div>
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-noise mix-blend-overlay"></div>
       </div>
 
-      {/* Navbar */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-panel py-3' : 'bg-transparent py-5'}`}>
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <div className="font-mono font-bold text-xl text-[var(--color-cyber-text-light)] tracking-tighter">
-            <span className="text-[var(--color-cyber-blue)]">~/</span>{DATA.github}
-          </div>
-          
-          <div className="hidden md:flex items-center gap-8 font-mono text-sm">
-            {['About', 'Experience', 'Projects', 'Skills'].map((item) => (
-              <button 
-                key={item} 
-                onClick={() => scrollTo(item.toLowerCase())}
-                className="hover:text-[var(--color-cyber-blue)] transition-colors"
-              >
-                {t[item.toLowerCase() as keyof typeof t]}
-              </button>
-            ))}
-            <button 
-              onClick={() => scrollTo('contact')}
-              className="px-5 py-2.5 rounded-full border border-[var(--color-cyber-blue)]/30 text-[var(--color-cyber-blue)] hover:bg-[var(--color-cyber-blue)]/10 transition-colors"
-            >
-              {t.contact}
-            </button>
-            <div className="flex items-center gap-4 border-l border-[var(--color-cyber-border)] pl-4">
-              <button onClick={() => setLang(lang === 'en' ? 'fr' : 'en')} className="flex items-center gap-1 hover:text-[var(--color-cyber-blue)] transition-colors">
-                <Globe size={16} /> {lang.toUpperCase()}
-              </button>
-              <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="hover:text-[var(--color-cyber-blue)] transition-colors">
-                {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-              </button>
+      {/* iOS 27 Spatial Floating Dock Navbar */}
+      <div className="fixed top-5 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
+        <header className="pointer-events-auto ios-dock px-5 py-2.5 flex items-center justify-between gap-6 md:gap-8 max-w-5xl w-full">
+          {/* Logo */}
+          <button 
+            onClick={() => scrollTo('about')}
+            className="flex items-center gap-2.5 group cursor-pointer shrink-0"
+          >
+            <div className="w-8 h-8 rounded-full bg-sky-500/20 border border-sky-400/30 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform shadow-sm">
+              <Terminal size={16} />
             </div>
-          </div>
-
-          <button className="md:hidden text-[var(--color-cyber-text-light)]" onClick={() => setMobileMenuOpen(true)}>
-            <Menu size={24} />
+            <span className="font-mono font-bold text-sm tracking-tight text-[var(--color-cyber-text-light)]">
+              <span className="text-sky-400 font-extrabold">TBINI</span>
+            </span>
           </button>
-        </div>
-      </nav>
+          
+          {/* Desktop Links */}
+          <nav className="hidden md:flex items-center gap-1 p-1 rounded-full bg-black/10 dark:bg-white/5 border border-black/10 dark:border-white/10">
+            {['About', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'].map((item) => {
+              const sectionId = item.toLowerCase();
+              const isActive = activeSection === sectionId;
+              return (
+                <button 
+                  key={item} 
+                  onClick={() => scrollTo(sectionId)}
+                  className={`relative px-3.5 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wide transition-all duration-300 ${
+                    isActive 
+                      ? 'text-white drop-shadow-sm' 
+                      : 'text-[var(--color-cyber-text)] hover:text-[var(--color-cyber-text-light)]'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div 
+                      layoutId="iosActiveNavPill"
+                      className="absolute inset-0 bg-gradient-to-r from-sky-500 to-sky-600 rounded-full shadow-[0_4px_16px_rgba(14,165,233,0.4)]"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{t[sectionId as keyof typeof t] || item}</span>
+                </button>
+              );
+            })}
+          </nav>
 
-      {/* Mobile Menu */}
+          {/* Quick Controls */}
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={() => setProUiMode(!proUiMode)}
+              className={`ios-pill px-3 py-1.5 flex items-center gap-1.5 text-xs font-mono font-bold transition hover:scale-105 active:scale-95 ${
+                proUiMode 
+                  ? 'bg-sky-500/20 text-sky-400 border border-sky-400/50 shadow-[0_0_12px_rgba(56,189,248,0.25)]' 
+                  : 'text-slate-400 border border-slate-300 dark:border-slate-700'
+              }`}
+              title="Toggle Pro UI Mode"
+            >
+              <Sparkles size={13} className={proUiMode ? 'text-sky-400' : ''} />
+              <span className="hidden sm:inline">PRO UI:</span> <span>{proUiMode ? 'ON' : 'OFF'}</span>
+            </button>
+            <button 
+              onClick={() => setLang(lang === 'en' ? 'fr' : 'en')} 
+              className="ios-pill px-3 py-1.5 flex items-center gap-1.5 text-xs font-mono font-medium text-[var(--color-cyber-text-light)] hover:scale-105 active:scale-95"
+              title="Change Language"
+            >
+              <Globe size={14} className="text-sky-400" /> 
+              <span>{lang.toUpperCase()}</span>
+            </button>
+            <button 
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} 
+              className="ios-pill p-2 flex items-center justify-center text-[var(--color-cyber-text-light)] hover:scale-105 active:scale-95"
+              title="Toggle Theme"
+            >
+              {theme === 'dark' ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-sky-500" />}
+            </button>
+            
+            <button 
+              className="md:hidden ios-pill p-2 text-[var(--color-cyber-text-light)]" 
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu size={18} />
+            </button>
+          </div>
+        </header>
+      </div>
+
+      {/* Mobile Glass Menu Sheet */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-50 glass-panel flex flex-col p-6 md:hidden"
+            initial={{ opacity: 0, y: '-100%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '-100%' }}
+            transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+            className="fixed inset-0 z-50 bg-[var(--color-cyber-dark)]/90 backdrop-blur-3xl flex flex-col p-8 md:hidden justify-between"
           >
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex items-center gap-4">
-                <button onClick={() => setLang(lang === 'en' ? 'fr' : 'en')} className="flex items-center gap-1 hover:text-[var(--color-cyber-blue)] transition-colors">
-                  <Globe size={16} /> {lang.toUpperCase()}
-                </button>
-                <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="hover:text-[var(--color-cyber-blue)] transition-colors">
-                  {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-                </button>
+            <div className="flex justify-between items-center pt-4">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-sky-500/20 border border-sky-400/30 flex items-center justify-center text-sky-400">
+                  <Terminal size={16} />
+                </div>
+                <span className="font-mono text-sm tracking-tight text-[var(--color-cyber-text-light)]">
+                  ~/<span className="font-bold text-sky-400">TBINI</span>_MustaphaAmin
+                </span>
               </div>
-              <button onClick={() => setMobileMenuOpen(false)} className="text-[var(--color-cyber-text-light)]">
-                <X size={24} />
+              <button 
+                onClick={() => setMobileMenuOpen(false)} 
+                className="w-10 h-10 rounded-full bg-white/10 dark:bg-white/10 flex items-center justify-center text-[var(--color-cyber-text-light)]"
+              >
+                <X size={20} />
               </button>
             </div>
-            <div className="flex flex-col gap-6 font-mono text-lg text-center">
-              {['About', 'Experience', 'Projects', 'Skills', 'Contact'].map((item) => (
-                <button 
-                  key={item} 
-                  onClick={() => scrollTo(item.toLowerCase())}
-                  className="hover:text-[var(--color-cyber-blue)] transition-colors py-2"
-                >
-                  {t[item.toLowerCase() as keyof typeof t] || item}
-                </button>
-              ))}
+
+            <div className="flex flex-col gap-3 font-sans text-center my-auto py-6">
+              {['About', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'].map((item) => {
+                const sectionId = item.toLowerCase();
+                const isActive = activeSection === sectionId;
+                return (
+                  <button 
+                    key={item} 
+                    onClick={() => scrollTo(sectionId)}
+                    className={`py-3 px-6 rounded-2xl transition-all duration-300 font-semibold text-base ${
+                      isActive
+                        ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/30'
+                        : 'ios-glass-card text-[var(--color-cyber-text-light)]'
+                    }`}
+                  >
+                    {t[sectionId as keyof typeof t] || item}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="flex justify-center items-center gap-6 pb-6">
+              <button 
+                onClick={() => setLang(lang === 'en' ? 'fr' : 'en')} 
+                className="ios-glass-card px-5 py-2.5 flex items-center gap-2 text-sm font-semibold text-[var(--color-cyber-text-light)]"
+              >
+                <Globe size={16} className="text-sky-400" /> {lang === 'en' ? 'Français' : 'English'}
+              </button>
+              <button 
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} 
+                className="ios-glass-card p-3 text-[var(--color-cyber-text-light)]"
+              >
+                {theme === 'dark' ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} className="text-sky-500" />}
+              </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-36 pb-24">
         
-        {/* Hero Section */}
-        <section className="min-h-[80vh] flex flex-col-reverse md:flex-row items-center justify-center gap-16 md:gap-24 mb-16 md:mb-0">
+        {/* Hero Section - Frameless & Unboxed */}
+        <section className="relative min-h-[75vh] flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-16 mb-16 overflow-hidden">
+          {proUiMode && <CyberHeroCanvas interactive={true} />}
+          
           <motion.div 
             initial="hidden"
             animate="visible"
@@ -703,137 +1055,193 @@ export default function App() {
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
             }}
-            className="flex-1 flex flex-col gap-6"
+            className="relative z-10 flex-1 flex flex-col gap-6"
           >
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="font-mono text-[var(--color-cyber-blue)] tracking-widest uppercase text-sm">
-              {t.hello}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+              <div className="inline-flex flex-wrap items-center gap-2 px-4 py-1.5 rounded-full ios-badge text-sky-500 dark:text-sky-400 font-mono text-xs font-semibold tracking-wider uppercase mb-3 border border-sky-500/30 bg-sky-500/10 dark:bg-sky-950/60 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping"></span>
+                <span>🟢 SOC L1 Systems Operational</span>
+                <span className="opacity-40">|</span>
+                <span className="text-[var(--color-cyber-text)] font-normal">{t.hello}</span>
+              </div>
             </motion.div>
-            <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-5xl md:text-7xl font-black font-display text-[var(--color-cyber-text-light)] tracking-tight leading-tight mb-2">
-              {DATA.name}.
+
+            <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-4xl sm:text-5xl md:text-6xl font-normal font-display text-[var(--color-cyber-text-light)] tracking-tight leading-[1.1]">
+              <span className="font-extrabold text-sky-500 dark:text-sky-400 drop-shadow-sm">TBINI</span> Mustapha Amin
             </motion.h1>
-            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-2xl md:text-4xl font-bold text-[var(--color-cyber-text)] tracking-tight leading-tight mb-4">
-              <span className="text-gradient-blue">{t.role1}</span>
-              <br className="hidden md:block" />
-              <span className="text-gradient"> & {t.role2}</span>
-              <br className="hidden md:block" />
-              <span className="text-gradient"> & {t.role3}</span>
+
+            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-2xl md:text-3xl font-semibold text-[var(--color-cyber-text)] tracking-tight leading-snug">
+              <span className="text-gradient-blue font-bold">{t.role1}</span>
+              <span className="text-[var(--color-cyber-text)] font-normal text-xl md:text-2xl mx-2">&</span>
+              <span className="text-gradient font-bold">{t.role2}</span>
+              <div className="mt-2.5 text-sky-500 dark:text-sky-400 font-medium text-lg md:text-xl flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-sky-500 dark:bg-sky-400 animate-pulse inline-block shadow-[0_0_8px_rgba(56,189,248,0.8)]"></span>
+                <span>{t.role3}</span>
+              </div>
             </motion.h2>
-            <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-lg text-[var(--color-cyber-text)] max-w-2xl leading-relaxed">
+
+            <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-base md:text-lg text-[var(--color-cyber-text)] max-w-2xl leading-relaxed">
               {t.summary}
             </motion.p>
             
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap items-center gap-4 mt-4 font-mono text-sm">
-              <a href={`mailto:${DATA.email}`} className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-cyber-blue)] text-white hover:bg-[var(--color-cyber-blue)]/90 transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(14,165,233,0.4)]">
+            {/* Action Buttons as iOS Liquid Glass Pills */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap items-center gap-3.5 mt-2 font-medium text-sm">
+              <a 
+                href={`mailto:${DATA.email}`} 
+                className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold hover:shadow-[0_8px_25px_rgba(14,165,233,0.4)] transition-all hover:scale-105 active:scale-95"
+              >
                 <Mail size={16} /> {t.getInTouch}
               </a>
-              <a href="/TBINI_Mustapha_Amin_CV_Final.docx.pdf" download="TBINI_Mustapha_Amin_CV_Final.docx.pdf" className="flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-cyber-light)]/10 text-[var(--color-cyber-text-light)] border border-[var(--color-cyber-blue)] hover:bg-[var(--color-cyber-blue)]/20 transition-all hover:scale-105">
-                <Download size={16} /> {t.downloadCV}
+              <a 
+                href="/TBINI_Mustapha_Amine_CV.pdf" 
+                download="TBINI_Mustapha_Amine_CV.pdf" 
+                className="flex items-center gap-2 px-6 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95"
+              >
+                <Download size={16} className="text-sky-500 dark:text-sky-400" /> {t.downloadCV}
               </a>
-              <a href={`https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 rounded-full glass-panel hover:bg-white/5 transition-all hover:scale-105 hover:border-[var(--color-cyber-blue)]">
+              <a 
+                href={`https://github.com/${DATA.github}`} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="flex items-center gap-2 px-5 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95"
+              >
                 <Github size={16} /> GitHub
               </a>
-              <a href={`https://linkedin.com/in/${DATA.linkedin}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 rounded-full glass-panel hover:bg-white/5 transition-all hover:scale-105 hover:border-[var(--color-cyber-blue)]">
-                <Linkedin size={16} /> LinkedIn
+              <a 
+                href={`https://linkedin.com/in/${DATA.linkedin}`} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="flex items-center gap-2 px-5 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95"
+              >
+                <Linkedin size={16} className="text-sky-500 dark:text-sky-400" /> LinkedIn
               </a>
             </motion.div>
           </motion.div>
 
+          {/* Avatar Widget - 100% Frameless Circular Floating Portrait */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.3, type: "spring" }}
-            className="relative w-64 h-64 md:w-80 md:h-80 group"
+            transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 90 }}
+            className="relative w-64 h-64 md:w-80 md:h-80 group shrink-0 flex items-center justify-center my-6 md:my-0"
           >
-            {/* Decorative elements around image */}
-            <div className="absolute inset-0 rounded-full border border-[var(--color-cyber-blue)]/30 animate-[spin_10s_linear_infinite] group-hover:border-[var(--color-cyber-blue)]/60 transition-colors duration-500"></div>
-            <div className="absolute inset-4 rounded-full border border-dashed border-[var(--color-cyber-blue)]/20 animate-[spin_15s_linear_infinite_reverse] group-hover:border-[var(--color-cyber-blue)]/50 transition-colors duration-500"></div>
-            <div className="absolute inset-0 rounded-full bg-[var(--color-cyber-blue)]/10 blur-2xl group-hover:bg-[var(--color-cyber-blue)]/20 transition-colors duration-500"></div>
-            
-            <div className="absolute inset-8 rounded-full overflow-hidden border-2 border-[var(--color-cyber-border)] bg-[var(--color-cyber-card)] group-hover:border-[var(--color-cyber-blue)] transition-colors duration-500">
-              {/* Using GitHub avatar as a reliable source since github username is provided */}
+            {/* Ambient Organic Light Aura (No Box Frames) */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-500/30 via-cyan-400/20 to-indigo-500/30 blur-3xl group-hover:blur-[60px] group-hover:scale-110 transition-all duration-700 opacity-90 pointer-events-none"></div>
+
+            {/* Frameless Round Portrait Image */}
+            <div className="relative w-full h-full rounded-full overflow-hidden shadow-[0_20px_50px_rgba(14,165,233,0.25)] transition-transform duration-500 group-hover:scale-[1.03]">
               <img 
                 src={`https://github.com/${DATA.github}.png`} 
                 alt={DATA.name} 
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 onError={(e) => {
-                  // Fallback if github image fails
                   (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=Mustapha+Amine+Tbini&background=0ea5e9&color=fff&size=512";
                 }}
               />
+              {/* Subtle rim light gradient overlay */}
+              <div className="absolute inset-0 rounded-full ring-1 ring-white/20 dark:ring-white/10 pointer-events-none"></div>
             </div>
             
-            {/* Floating badges */}
-            {/* Large Badge: System & Network Administrator */}
+            {/* Floating Glass Pills around photo */}
             <motion.div 
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-6 left-1/2 -translate-x-1/2 md:top-4 md:left-auto md:-translate-x-0 md:-left-32 glass-panel px-4 py-2 md:px-5 md:py-3 rounded-full flex items-center gap-2 md:gap-3 font-mono text-xs md:text-sm text-[var(--color-cyber-text-light)] shadow-[0_0_20px_rgba(14,165,233,0.3)] z-20 whitespace-nowrap"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-4 -left-4 md:-left-8 ios-dock px-3.5 py-1.5 flex items-center gap-2 text-xs md:text-sm font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
             >
-              <Server size={18} className="text-[var(--color-cyber-blue)]" /> {t.role1}
+              <div className="p-1 rounded-full bg-sky-500/20 text-sky-400">
+                <Server size={14} />
+              </div>
+              <span>{t.role1}</span>
             </motion.div>
             
-            {/* Medium Badge: SOC L1 */}
             <motion.div 
-              animate={{ y: [0, -10, 0] }}
+              animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 glass-panel px-3 py-1.5 md:px-4 md:py-2 rounded-full flex items-center gap-2 font-mono text-[10px] md:text-xs text-[var(--color-cyber-text-light)] shadow-[0_0_15px_rgba(14,165,233,0.2)] z-20 whitespace-nowrap"
+              className="absolute top-1/2 -right-4 md:-right-8 -translate-y-1/2 ios-dock px-3 py-1.5 flex items-center gap-2 text-xs font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
             >
-              <Shield size={14} className="text-[var(--color-cyber-blue)]" /> {t.badge1}
+              <div className="p-1 rounded-full bg-indigo-500/20 text-indigo-400">
+                <Shield size={13} />
+              </div>
+              <span>{t.badge1}</span>
             </motion.div>
             
-            {/* Small Badge: Full-Stack */}
             <motion.div 
-              animate={{ y: [0, 8, 0] }}
+              animate={{ y: [0, 6, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 md:bottom-8 md:left-auto md:-translate-x-0 md:-left-8 glass-panel px-3 py-1.5 rounded-full flex items-center gap-1.5 font-mono text-[10px] text-[var(--color-cyber-text-light)] shadow-[0_0_10px_rgba(14,165,233,0.15)] z-20 whitespace-nowrap"
+              className="absolute -bottom-3 left-4 ios-dock px-3 py-1.5 flex items-center gap-2 text-xs font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
             >
-              <Code size={12} className="text-[var(--color-cyber-blue)]" /> {t.badge2}
+              <div className="p-1 rounded-full bg-cyan-500/20 text-cyan-400">
+                <Code size={13} />
+              </div>
+              <span>{t.badge2}</span>
             </motion.div>
           </motion.div>
         </section>
 
-        {/* Skills Marquee */}
-        <section className="py-12 overflow-hidden mt-20 mb-8 md:mt-32 md:mb-12">
+        {/* Skills Marquee Banner */}
+        <section className="py-8 overflow-hidden my-16 rounded-3xl ios-glass-card">
           <div className="relative flex overflow-x-hidden group">
-            <div className="animate-marquee flex gap-16 items-center px-4">
-              {Array(4).fill(SORTED_MARQUEE_SKILLS).flat().map((skill, i) => (
-                <div key={i} className="flex items-center justify-center px-8 py-4 rounded-full glass-panel hover:bg-white/5 transition-all hover:scale-105 border border-[var(--color-cyber-border)] hover:border-[var(--color-cyber-blue)] whitespace-nowrap hover:shadow-[0_0_15px_rgba(14,165,233,0.3)]">
-                  <span className="font-mono text-2xl font-medium text-[var(--color-cyber-text-light)]">{skill}</span>
-                </div>
-              ))}
+            <div className="animate-marquee flex gap-8 items-center px-4">
+              {Array(3).fill(MARQUEE_SKILLS_ORDERED).flat().map((item, i) => {
+                const logoUrl = getLogoForSkill(item.name);
+                return (
+                  <div key={i} className="flex items-center gap-3 px-5 py-2.5 rounded-full ios-glass-card hover:border-sky-500/50 whitespace-nowrap transition-all hover:scale-105 shrink-0">
+                    {logoUrl && (
+                      <span className="w-5 h-5 flex items-center justify-center p-0.5 bg-white rounded-md shrink-0 shadow-xs">
+                        <img 
+                          src={logoUrl} 
+                          alt="" 
+                          className="w-full h-full object-contain" 
+                          onError={(e) => { (e.currentTarget.parentElement as HTMLElement).style.display = 'none'; }}
+                        />
+                      </span>
+                    )}
+                    <span className="font-mono text-sm font-semibold text-[var(--color-cyber-text-light)]">
+                      {item.name}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-24">
+        <section id="about" className="py-16">
           <SectionHeading title={t.aboutMe} icon={Terminal} />
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-6 text-lg leading-relaxed">
-              <p>{t.about1}</p>
-              <p>{t.about2}</p>
-              <p>{t.about3}</p>
+          <div className="grid md:grid-cols-2 gap-10 items-start">
+            <div className="space-y-6 text-base md:text-lg leading-relaxed text-[var(--color-cyber-text)]">
+              <p className="text-[var(--color-cyber-text-light)] font-medium text-lg md:text-xl leading-relaxed">
+                {t.about1}
+              </p>
+              <p className="opacity-90">{t.about2}</p>
+              <p className="opacity-90">{t.about3}</p>
             </div>
-            <div className="glass-panel p-8 rounded-3xl space-y-6">
-              <h3 className="text-xl font-mono text-[var(--color-cyber-text-light)] mb-4 flex items-center gap-2">
-                <MapPin size={20} className="text-[var(--color-cyber-blue)]" /> {t.contactInfo}
+            
+            <div className="p-6 md:p-8 rounded-3xl bg-black/5 dark:bg-white/[0.03] space-y-6 backdrop-blur-md">
+              <h3 className="text-xl font-bold font-sans text-[var(--color-cyber-text-light)] flex items-center gap-3 pb-3 border-b border-black/10 dark:border-white/10">
+                <div className="p-2 rounded-xl bg-sky-500/20 text-sky-400">
+                  <MapPin size={20} />
+                </div>
+                <span>{t.contactInfo}</span>
               </h3>
-              <ul className="space-y-4 font-mono text-sm">
-                <li className="flex items-center gap-4">
-                  <span className="text-[var(--color-cyber-text)] w-24">{t.locationLabel}</span>
-                  <span className="text-[var(--color-cyber-text-light)]">{t.location}</span>
+              
+              <ul className="space-y-3 font-sans text-sm">
+                <li className="flex items-center justify-between py-2 border-b border-black/5 dark:border-white/5">
+                  <span className="text-[var(--color-cyber-text)] font-medium">{t.locationLabel}</span>
+                  <span className="text-[var(--color-cyber-text-light)] font-semibold">{t.location}</span>
                 </li>
-                <li className="flex items-center gap-4">
-                  <span className="text-[var(--color-cyber-text)] w-24">{t.emailLabel}</span>
-                  <a href={`mailto:${DATA.email}`} className="text-[var(--color-cyber-blue)] hover:underline">{DATA.email}</a>
+                <li className="flex items-center justify-between py-2 border-b border-black/5 dark:border-white/5">
+                  <span className="text-[var(--color-cyber-text)] font-medium">{t.emailLabel}</span>
+                  <a href={`mailto:${DATA.email}`} className="text-sky-500 dark:text-sky-400 font-semibold hover:underline">{DATA.email}</a>
                 </li>
-                <li className="flex items-center gap-4">
-                  <span className="text-[var(--color-cyber-text)] w-24">{t.phoneLabel}</span>
-                  <span className="text-[var(--color-cyber-text-light)]">{DATA.phone}</span>
+                <li className="flex items-center justify-between py-2 border-b border-black/5 dark:border-white/5">
+                  <span className="text-[var(--color-cyber-text)] font-medium">{t.phoneLabel}</span>
+                  <span className="text-[var(--color-cyber-text-light)] font-semibold">{DATA.phone}</span>
                 </li>
-                <li className="flex items-center gap-4">
-                  <span className="text-[var(--color-cyber-text)] w-24">{t.languagesLabel}</span>
-                  <span className="text-[var(--color-cyber-text-light)]">{t.languages}</span>
+                <li className="flex items-center justify-between py-2">
+                  <span className="text-[var(--color-cyber-text)] font-medium">{t.languagesLabel}</span>
+                  <span className="text-[var(--color-cyber-text-light)] font-semibold">{t.languages}</span>
                 </li>
               </ul>
             </div>
@@ -841,9 +1249,9 @@ export default function App() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="py-24">
+        <section id="experience" className="py-16">
           <SectionHeading title={t.experience} icon={Briefcase} />
-          <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-[var(--color-cyber-border)] before:to-transparent">
+          <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-sky-500/40 before:via-sky-500/20 before:to-transparent">
             {t.experienceList.map((exp, index) => (
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -852,24 +1260,26 @@ export default function App() {
                 key={index} 
                 className={`relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active`}
               >
-                <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-[var(--color-cyber-dark)] bg-[var(--color-cyber-blue)] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-tr from-sky-500 to-sky-600 text-white shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 border-2 border-[var(--color-cyber-dark)]">
                   <Briefcase size={16} />
                 </div>
                 
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] glass-panel p-8 rounded-3xl hover:border-[var(--color-cyber-blue)]/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(14,165,233,0.1)] hover:-translate-y-1">
+                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-4 md:p-6 transition-all duration-300">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
-                    <h3 className="font-bold text-[var(--color-cyber-text-light)] text-xl">{exp.role}</h3>
-                    <span className="font-mono text-xs text-[var(--color-cyber-blue)] bg-[var(--color-cyber-blue)]/10 px-3 py-1.5 rounded-full whitespace-nowrap">
+                    <h3 className="font-extrabold text-[var(--color-cyber-text-light)] text-xl">{exp.role}</h3>
+                    <span className="font-mono text-xs font-semibold text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full whitespace-nowrap self-start md:self-auto">
                       {exp.date}
                     </span>
                   </div>
-                  <div className="text-sm font-mono text-[var(--color-cyber-text)] mb-4 flex items-center gap-2">
-                    <span className="text-[var(--color-cyber-text-light)]">{exp.company}</span> • {exp.location}
+                  
+                  <div className="text-sm font-medium text-[var(--color-cyber-text)] mb-4 flex items-center gap-2">
+                    <span className="text-sky-400 font-semibold">{exp.company}</span> • {exp.location}
                   </div>
-                  <ul className="space-y-2 text-sm">
+                  
+                  <ul className="space-y-2.5 text-sm leading-relaxed">
                     {exp.points.map((point, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <ChevronRight size={16} className="text-[var(--color-cyber-blue)] shrink-0 mt-0.5" />
+                      <li key={i} className="flex items-start gap-2.5">
+                        <ChevronRight size={16} className="text-sky-400 shrink-0 mt-0.5" />
                         <span>{point}</span>
                       </li>
                     ))}
@@ -880,92 +1290,129 @@ export default function App() {
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="py-24">
+        {/* Key Projects Section */}
+        <section id="projects" className="py-16">
           <SectionHeading title={t.keyProjects} icon={Code} />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...t.projectsList].sort((a, b) => {
-              const aHasImage = !!(a as any).image;
-              const bHasImage = !!(b as any).image;
-              if (aHasImage && !bHasImage) return -1;
-              if (!aHasImage && bHasImage) return 1;
-              return 0;
-            }).map((project, index) => (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                key={index} 
-                className="glass-panel rounded-3xl p-8 flex flex-col h-full hover:-translate-y-2 transition-all duration-300 hover:border-[var(--color-cyber-blue)]/50 hover:shadow-[0_0_30px_rgba(14,165,233,0.15)] group relative overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-cyber-blue)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {(project as any).image && (
-                  <div className="relative z-10 mb-6 rounded-2xl aspect-video bg-[var(--color-cyber-dark)] border-2 border-[var(--color-cyber-blue)]/20 p-1.5 shadow-[0_0_15px_rgba(14,165,233,0.1)] group-hover:border-[var(--color-cyber-blue)]/60 group-hover:shadow-[0_0_25px_rgba(14,165,233,0.3)] transition-all duration-500">
-                    <div className="w-full h-full overflow-hidden rounded-xl relative">
-                      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-cyber-dark)]/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+          {proUiMode ? (
+            <BentoProjectsGrid 
+              projects={t.projectsList.map((p) => ({
+                title: p.title,
+                stack: p.stack,
+                description: p.description,
+                image: (p as any).image ? `/images/${(p as any).image}` : undefined,
+                githubUrl: (p as any).githubUrl || ((p as any).link?.includes('github.com') ? (p as any).link : `https://github.com/${DATA.github}`),
+                demoUrl: (p as any).demoUrl || ((p as any).link && !(p as any).link.includes('github.com') ? (p as any).link : undefined),
+                badge: (p as any).badge || (p.title.includes('ARGUS') ? 'Flagship VOC' : p.title.includes('Rja3chi') ? 'Live Incident Map' : p.title.includes('Oktopus') ? 'Custom SIEM' : undefined)
+              }))} 
+              onOpenArchModal={(title) => setArchModalProject(title)} 
+              lang={lang} 
+            />
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[...t.projectsList].sort((a, b) => {
+                const aHasImage = !!(a as any).image;
+                const bHasImage = !!(b as any).image;
+                if (aHasImage && !bHasImage) return -1;
+                if (!aHasImage && bHasImage) return 1;
+                return 0;
+              }).map((project, index) => (
+                <motion.div 
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  key={index} 
+                  className="flex flex-col h-full group p-4 rounded-3xl hover:bg-black/5 dark:hover:bg-white/[0.03] transition-all duration-300"
+                >
+                  {(project as any).image && (
+                    <div className="relative z-10 mb-5 rounded-2xl aspect-video bg-slate-950 p-1 overflow-hidden shadow-md group-hover:scale-[1.02] transition-transform duration-500">
                       <img 
                         src={`/images/${(project as any).image}`} 
                         alt={project.title} 
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        className="w-full h-full object-cover rounded-xl"
                       />
                     </div>
-                  </div>
-                )}
+                  )}
 
-                <div className="relative z-10 flex justify-between items-start mb-4">
-                  <div className="p-3 rounded-2xl bg-[var(--color-cyber-border)] text-[var(--color-cyber-text-light)] group-hover:bg-[var(--color-cyber-blue)] group-hover:text-white transition-colors">
-                    <Terminal size={20} />
+                  <div className="relative z-10 flex justify-between items-start mb-3">
+                    <div className="p-2.5 rounded-xl bg-sky-500/15 text-sky-400">
+                      <Terminal size={18} />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {(project as any).githubUrl && (
+                        <a 
+                          href={(project as any).githubUrl} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="p-1.5 rounded-lg text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors"
+                          title="View GitHub Repository"
+                        >
+                          <Github size={18} />
+                        </a>
+                      )}
+                      {(project as any).demoUrl && (
+                        <a 
+                          href={(project as any).demoUrl} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="px-2.5 py-1 rounded-lg bg-sky-500 text-white hover:bg-sky-600 transition flex items-center gap-1 text-xs font-semibold shadow-xs"
+                          title="View Live Application"
+                        >
+                          <ExternalLink size={13} /> Live
+                        </a>
+                      )}
+                      {!(project as any).githubUrl && !(project as any).demoUrl && (
+                        <a 
+                          href={(project as any).link || `https://github.com/${DATA.github}`} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="p-2 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors"
+                        >
+                          <ExternalLink size={18} />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                  <a href={(project as any).link || `https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" className="text-[var(--color-cyber-text)] hover:text-[var(--color-cyber-text-light)] transition-colors">
-                    <ExternalLink size={20} />
-                  </a>
-                </div>
-                <h3 className="text-xl font-bold text-[var(--color-cyber-text-light)] mb-3">{project.title}</h3>
-                <p className="text-sm mb-6 flex-grow leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.stack.map((tech, i) => (
-                    <span key={i} className="font-mono text-xs px-3 py-1.5 rounded-full bg-[var(--color-cyber-border)]/50 text-[var(--color-cyber-text-light)]">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  
+                  <h3 className="text-xl font-bold text-[var(--color-cyber-text-light)] mb-2 group-hover:text-sky-400 transition-colors">{project.title}</h3>
+                  <p className="text-sm mb-5 flex-grow leading-relaxed opacity-90">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 mt-auto pt-2">
+                    {project.stack.map((tech, i) => (
+                      <SkillTag key={i} skill={tech} />
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="py-24">
+        {/* Technical Arsenal Section */}
+        <section id="skills" className="py-16">
           <SectionHeading title={t.techArsenal} icon={Server} />
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-10">
             {Object.entries(DATA.skills).map(([category, skills], index) => (
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 key={category} 
-                className="glass-panel p-8 rounded-3xl hover:border-[var(--color-cyber-blue)]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(14,165,233,0.1)] group"
+                className="space-y-4"
               >
-                <h3 className="text-xl font-mono text-[var(--color-cyber-text-light)] mb-6 flex items-center gap-2 group-hover:text-[var(--color-cyber-blue)] transition-colors">
-                  <span className="text-[var(--color-cyber-blue)]">#</span> {t.skillsCategories[category as keyof typeof t.skillsCategories] || category}
+                <h3 className="text-lg font-bold font-sans text-[var(--color-cyber-text-light)] flex items-center gap-2">
+                  <span className="text-sky-400 font-mono">#</span> {t.skillsCategories[category as keyof typeof t.skillsCategories] || category}
                 </h3>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2">
                   {[...skills].sort((a, b) => {
                     const scoreA = STRONG_SKILLS.includes(a) ? 2 : (SIMPLE_SKILLS.includes(a) ? 0 : 1);
                     const scoreB = STRONG_SKILLS.includes(b) ? 2 : (SIMPLE_SKILLS.includes(b) ? 0 : 1);
                     return scoreB - scoreA;
                   }).map((skill, i) => (
-                    <span 
-                      key={i} 
-                      className="px-4 py-2 rounded-full border border-[var(--color-cyber-border)] bg-[var(--color-cyber-dark)]/50 text-sm hover:border-[var(--color-cyber-blue)] hover:text-[var(--color-cyber-text-light)] hover:bg-[var(--color-cyber-blue)]/10 transition-all duration-300 cursor-default hover:scale-105"
-                    >
-                      {skill}
-                    </span>
+                    <SkillTag key={i} skill={skill} />
                   ))}
                 </div>
               </motion.div>
@@ -973,17 +1420,17 @@ export default function App() {
           </div>
         </section>
 
-        {/* Education & Certifications */}
-        <section className="py-24">
-          <div className="grid md:grid-cols-2 gap-12">
+        {/* Education & Certifications Section */}
+        <section id="education" className="py-16">
+          <div className="grid md:grid-cols-2 gap-10">
             <div>
               <SectionHeading title={t.education} icon={GraduationCap} />
               <div className="space-y-6">
                 {t.educationList.map((edu, index) => (
-                  <div key={index} className="glass-panel p-8 rounded-3xl border-l-4 border-l-[var(--color-cyber-blue)] hover:translate-x-2 transition-all duration-300 hover:shadow-[0_0_20px_rgba(14,165,233,0.1)]">
+                  <div key={index} className="pl-4 border-l-2 border-sky-500 py-1 space-y-1">
                     <h3 className="font-bold text-[var(--color-cyber-text-light)] text-lg">{edu.degree}</h3>
-                    <div className="text-[var(--color-cyber-blue)] font-mono text-sm my-2">{edu.school}</div>
-                    <div className="text-sm font-mono">{edu.date}</div>
+                    <div className="text-sky-400 font-semibold text-sm">{edu.school}</div>
+                    <div className="text-xs font-mono opacity-70">{edu.date}</div>
                   </div>
                 ))}
               </div>
@@ -991,57 +1438,73 @@ export default function App() {
             
             <div>
               <SectionHeading title={t.certifications} icon={Award} />
-              <div className="glass-panel p-8 rounded-3xl hover:border-[var(--color-cyber-blue)]/30 transition-all duration-300 hover:shadow-[0_0_20px_rgba(14,165,233,0.1)]">
-                <ul className="space-y-4">
-                  {t.certificationsList.map((cert, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <Award size={18} className="text-[var(--color-cyber-blue)] shrink-0 mt-0.5" />
-                      <span className="text-sm text-[var(--color-cyber-text-light)]">{cert}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="space-y-3">
+                {t.certificationsList.map((cert, index) => (
+                  <li key={index} className="flex items-center gap-3 py-2 border-b border-black/5 dark:border-white/5">
+                    <div className="p-1.5 rounded-lg bg-sky-500/15 text-sky-400 shrink-0">
+                      <Award size={16} />
+                    </div>
+                    <span className="text-sm font-medium text-[var(--color-cyber-text-light)]">{cert}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
 
-        {/* Contact CTA */}
-        <section id="contact" className="py-24 text-center max-w-2xl mx-auto">
-          <div className="font-mono text-[var(--color-cyber-blue)] mb-4">{t.whatsNext}</div>
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-cyber-text-light)] mb-6">{t.getInTouch}</h2>
-          <p className="text-lg mb-10 leading-relaxed">
-            {t.contactText}
-          </p>
-          <a 
-            href={`mailto:${DATA.email}`}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-[var(--color-cyber-blue)] text-[var(--color-cyber-blue)] hover:bg-[var(--color-cyber-blue)] hover:text-white transition-all duration-300 font-mono text-lg hover:shadow-[0_0_30px_rgba(14,165,233,0.4)] hover:scale-105"
-          >
-            {t.sayHello} <Mail size={20} />
-          </a>
+        {/* Contact CTA Section */}
+        <section id="contact" className="py-20 text-center max-w-2xl mx-auto">
+          <div className="relative py-12 px-6 rounded-3xl bg-gradient-to-b from-sky-500/10 via-transparent to-transparent border border-sky-500/20 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full ios-badge text-sky-400 font-mono text-xs font-semibold mb-4">
+              <span>{t.whatsNext}</span>
+            </div>
+            
+            <h2 className="text-3xl md:text-5xl font-extrabold font-display text-[var(--color-cyber-text-light)] mb-6 tracking-tight">
+              {t.getInTouch}
+            </h2>
+            
+            <p className="text-base md:text-lg mb-8 leading-relaxed text-[var(--color-cyber-text)] max-w-xl mx-auto">
+              {t.contactText}
+            </p>
+            
+            <a 
+              href={`mailto:${DATA.email}`}
+              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold text-lg hover:shadow-[0_10px_30px_rgba(14,165,233,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
+            >
+              <span>{t.sayHello}</span> <Mail size={20} />
+            </a>
+          </div>
         </section>
 
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[var(--color-cyber-border)] py-8 text-center font-mono text-sm">
-        <div className="flex justify-center gap-6 mb-4">
-          <a href={`https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" className="text-[var(--color-cyber-text)] hover:text-[var(--color-cyber-blue)] transition-colors">
-            <Github size={20} />
+      <footer className="border-t border-white/10 dark:border-white/10 py-10 text-center font-sans text-sm bg-black/20 backdrop-blur-md">
+        <div className="flex justify-center gap-4 mb-4">
+          <a href={`https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" className="ios-pill p-3 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors">
+            <Github size={18} />
           </a>
-          <a href={`https://linkedin.com/in/${DATA.linkedin}`} target="_blank" rel="noreferrer" className="text-[var(--color-cyber-text)] hover:text-[var(--color-cyber-blue)] transition-colors">
-            <Linkedin size={20} />
+          <a href={`https://linkedin.com/in/${DATA.linkedin}`} target="_blank" rel="noreferrer" className="ios-pill p-3 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors">
+            <Linkedin size={18} />
           </a>
-          <a href={`mailto:${DATA.email}`} className="text-[var(--color-cyber-text)] hover:text-[var(--color-cyber-blue)] transition-colors">
-            <Mail size={20} />
+          <a href={`mailto:${DATA.email}`} className="ios-pill p-3 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors">
+            <Mail size={18} />
           </a>
         </div>
-        <p>
-          {t.designedBy} <span className="text-[var(--color-cyber-text-light)]">{DATA.name}</span>
+        <p className="font-medium">
+          {t.designedBy} <span className="text-[var(--color-cyber-text-light)] font-normal"><strong className="font-extrabold text-sky-400">TBINI</strong> Mustapha Amin</span>
         </p>
-        <p className="text-xs mt-2 opacity-50">
+        <p className="text-xs mt-1.5 opacity-60">
           © {new Date().getFullYear()} {t.allRights}
         </p>
       </footer>
+
+      {/* Architecture Modals */}
+      <ArchitectureModal 
+        projectTitle={archModalProject} 
+        onClose={() => setArchModalProject(null)} 
+      />
     </div>
   );
 }
+
