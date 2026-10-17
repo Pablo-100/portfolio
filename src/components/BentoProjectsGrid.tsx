@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Github, Shield, Cpu, Layers, Activity, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, Shield, Cpu, Layers, Activity, ArrowUpRight, Sparkles, FileCheck, Bot } from 'lucide-react';
 import { SpotlightCard } from './SpotlightCard';
 
-interface Project {
+export interface Project {
   title: string;
   stack: string[];
   description: string;
   image?: string;
   demoUrl?: string;
   githubUrl?: string;
+  link?: string;
   badge?: string;
-  category?: 'soc' | 'net' | 'dev';
+  category?: 'soc' | 'net' | 'dev' | 'audit' | 'mcp';
   featured?: boolean;
 }
 
@@ -22,15 +23,30 @@ interface BentoProjectsGridProps {
 }
 
 export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, onOpenArchModal, lang }) => {
-  const [activeCategory, setActiveCategory] = useState<'all' | 'soc' | 'net' | 'dev'>('all');
+  const [activeCategory, setActiveCategory] = useState<'all' | 'soc' | 'audit' | 'mcp' | 'net' | 'dev'>('all');
 
   // Categorize projects intelligently
   const enrichedProjects = projects.map((p) => {
-    let category: 'soc' | 'net' | 'dev' = 'dev';
+    let category: 'soc' | 'net' | 'dev' | 'audit' | 'mcp' = p.category || 'dev';
     const titleLower = p.title.toLowerCase();
     const descLower = p.description.toLowerCase();
 
-    if (
+    if (p.category) {
+      category = p.category;
+    } else if (
+      titleLower.includes('iso27001') ||
+      titleLower.includes('iso 27001') ||
+      titleLower.includes('smsi') ||
+      titleLower.includes('audit')
+    ) {
+      category = 'audit';
+    } else if (
+      titleLower.includes('mcp') ||
+      descLower.includes('model context protocol') ||
+      titleLower.includes('octupus-mcp')
+    ) {
+      category = 'mcp';
+    } else if (
       titleLower.includes('argus') ||
       titleLower.includes('oktopus') ||
       titleLower.includes('voc') ||
@@ -57,7 +73,12 @@ export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, 
     const demoUrl = p.demoUrl || (p.link && !p.link.includes('github.com') ? p.link : undefined);
 
     const isFeatured =
-      titleLower.includes('argus') || titleLower.includes('rja3chi') || titleLower.includes('oktopus') || titleLower.includes('octupus');
+      titleLower.includes('argus') ||
+      titleLower.includes('rja3chi') ||
+      titleLower.includes('oktopus') ||
+      titleLower.includes('octupus') ||
+      titleLower.includes('iso27001') ||
+      titleLower.includes('mcp');
 
     return {
       ...p,
@@ -75,6 +96,8 @@ export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, 
   const categories = [
     { id: 'all', label: lang === 'fr' ? 'Tous les Projets' : 'All Projects' },
     { id: 'soc', label: lang === 'fr' ? 'Sécurité & SOC' : 'Security & SOC' },
+    { id: 'audit', label: lang === 'fr' ? 'Audit & ISO 27001' : 'Audit & ISO 27001' },
+    { id: 'mcp', label: lang === 'fr' ? 'MCP & Agents IA' : 'MCP & AI Agents' },
     { id: 'net', label: lang === 'fr' ? 'Systèmes & Réseaux' : 'Systems & Networks' },
     { id: 'dev', label: lang === 'fr' ? 'Développement Full-Stack' : 'Full-Stack Apps' }
   ];
@@ -94,6 +117,8 @@ export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, 
             }`}
           >
             {cat.id === 'soc' && <Shield size={14} />}
+            {cat.id === 'audit' && <FileCheck size={14} />}
+            {cat.id === 'mcp' && <Bot size={14} />}
             {cat.id === 'net' && <Cpu size={14} />}
             {cat.id === 'dev' && <Layers size={14} />}
             {cat.label}
@@ -105,7 +130,15 @@ export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <AnimatePresence mode="popLayout">
           {filtered.map((project, index) => {
-            const isSOC = project.category === 'soc';
+            const hasArch = Boolean(
+              project.githubUrl || 
+              project.link || 
+              project.category === 'soc' || 
+              project.category === 'audit' || 
+              project.category === 'mcp' || 
+              project.category === 'dev' || 
+              project.category === 'net'
+            );
 
             return (
               <motion.div
@@ -128,7 +161,11 @@ export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, 
                           </span>
                         )}
                         <span className="px-2 py-0.5 rounded text-[11px] font-mono text-[var(--color-cyber-text)] bg-sky-500/10 border border-sky-500/20">
-                          {project.category === 'soc'
+                          {project.category === 'audit'
+                            ? 'Audit & ISO 27001'
+                            : project.category === 'mcp'
+                            ? 'MCP & AI Protocol'
+                            : project.category === 'soc'
                             ? 'SOC & Threat Intel'
                             : project.category === 'net'
                             ? 'Systems & Networks'
@@ -138,11 +175,14 @@ export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, 
 
                       {/* Action Triggers */}
                       <div className="flex items-center gap-2">
-                        {isSOC && (
+                        {hasArch && (
                           <button
-                            onClick={() => onOpenArchModal(project.title)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onOpenArchModal(project.title);
+                            }}
                             className="p-1.5 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-600 dark:text-sky-400 text-xs font-mono hover:bg-sky-500 hover:text-white transition flex items-center gap-1 font-semibold"
-                            title="View System Architecture Diagram"
+                            title={lang === 'fr' ? "Voir l'architecture et le flux de données" : "View System Architecture Diagram"}
                           >
                             <Activity size={14} /> Arch
                           </button>
@@ -152,8 +192,9 @@ export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, 
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
                             className="p-1.5 rounded-lg text-[var(--color-cyber-text)] hover:text-sky-500 transition hover:bg-sky-500/10"
-                            title="View GitHub Repository"
+                            title={lang === 'fr' ? 'Voir le dépôt GitHub' : 'View GitHub Repository'}
                           >
                             <Github size={16} />
                           </a>
@@ -163,8 +204,9 @@ export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, 
                             href={project.demoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
                             className="px-2.5 py-1 rounded-lg bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold transition flex items-center gap-1 shadow-xs hover:scale-105 active:scale-95"
-                            title="View Live Application"
+                            title={lang === 'fr' ? "Voir l'application en direct" : 'View Live Application'}
                           >
                             <ExternalLink size={13} /> Live
                           </a>
@@ -172,9 +214,20 @@ export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, 
                       </div>
                     </div>
 
-                    {/* Image Preview if provided */}
+                    {/* Image Preview if provided - Clicking opens GitHub repo */}
                     {project.image && (
-                      <div className="relative mb-5 rounded-xl overflow-hidden border border-[var(--color-cyber-border)] bg-slate-950/60 max-h-56 group-hover:border-sky-500/40 transition">
+                      <div
+                        onClick={(e) => {
+                          if (project.githubUrl) {
+                            e.stopPropagation();
+                            window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
+                          }
+                        }}
+                        className={`relative mb-5 rounded-xl overflow-hidden border border-[var(--color-cyber-border)] bg-slate-950/60 max-h-56 group-hover:border-sky-500/40 transition ${
+                          project.githubUrl ? 'cursor-pointer' : ''
+                        }`}
+                        title={project.githubUrl ? (lang === 'fr' ? 'Ouvrir le dépôt GitHub' : 'Open GitHub Repository') : undefined}
+                      >
                         <img
                           src={project.image}
                           alt={project.title}
@@ -182,13 +235,36 @@ export const BentoProjectsGrid: React.FC<BentoProjectsGridProps> = ({ projects, 
                           loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80" />
+                        {project.githubUrl && (
+                          <div className="absolute top-2.5 right-2.5 px-2 py-1 rounded-lg bg-slate-900/80 text-white/90 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-xs">
+                            <Github size={13} />
+                            <span className="text-[11px] font-mono">GitHub</span>
+                          </div>
+                        )}
                       </div>
                     )}
 
-                    {/* Title & Description */}
-                    <h3 className="text-xl font-bold font-display text-[var(--color-cyber-text-light)] group-hover:text-sky-500 transition-colors mb-2 flex items-center gap-2">
-                      {project.title}
-                    </h3>
+                    {/* Title - Clicking opens GitHub repo */}
+                    {project.githubUrl ? (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/title inline-flex items-center gap-1.5 mb-2 cursor-pointer"
+                        title={lang === 'fr' ? 'Ouvrir le dépôt GitHub' : 'Open GitHub Repository'}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <h3 className="text-xl font-bold font-display text-[var(--color-cyber-text-light)] group-hover/title:text-sky-500 transition-colors flex items-center gap-1.5">
+                          {project.title}
+                          <ArrowUpRight size={17} className="text-sky-500 opacity-70 group-hover/title:opacity-100 group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all shrink-0" />
+                        </h3>
+                      </a>
+                    ) : (
+                      <h3 className="text-xl font-bold font-display text-[var(--color-cyber-text-light)] group-hover:text-sky-500 transition-colors mb-2 flex items-center gap-2">
+                        {project.title}
+                      </h3>
+                    )}
+
                     <p className="text-sm text-[var(--color-cyber-text)] leading-relaxed mb-6">
                       {project.description}
                     </p>

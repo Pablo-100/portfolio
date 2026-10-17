@@ -4,7 +4,7 @@ import {
   Github, Linkedin, Mail, Phone, MapPin, 
   Terminal, Shield, Server, Code, Award, 
   Briefcase, GraduationCap, ChevronRight, ExternalLink,
-  Menu, X, Download, Sun, Moon, Globe, Sparkles, Activity, Command
+  Menu, X, Download, Sun, Moon, Globe, Sparkles, Activity, Command, ArrowUpRight
 } from 'lucide-react';
 import { CyberHeroCanvas } from './components/CyberHeroCanvas';
 import { ArchitectureModal } from './components/ArchitectureModal';
@@ -47,6 +47,18 @@ const DATA = {
     "Services": ["Apache", "FTP", "DHCP", "DNS", "Samba", "NFS", "Group Policy", "WebSocket", "Vite", "Git"]
   },
   experience: [
+    {
+      company: "Gérance Informatique",
+      location: "Tunis, Tunisia",
+      role: "ARGUS VOC – Unified Vulnerabilities & Threat Intel Platform",
+      date: "Jun 2026 – Aug 2026",
+      points: [
+        "Architected and deployed the unified ARGUS VOC platform combining Risk-Based Vulnerability Management (RBVM) and Threat Intelligence",
+        "Automated multi-source ingestion and correlation (NVD, CISA KEV, EPSS, Vulners) utilizing Celery asynchronous queues and Elasticsearch indexing",
+        "Integrated and correlated alerts with SIEM/SOC infrastructure (Wazuh, ELK) for dynamic incident prioritization and real-time alerts",
+        "Implemented interactive compliance dashboards, contextual risk scoring engines, and attack path graphing"
+      ]
+    },
     {
       company: "TDS",
       location: "Tunis, Tunisia",
@@ -418,6 +430,18 @@ const TRANSLATIONS = {
     },
     experienceList: [
       {
+        company: "Gérance Informatique",
+        location: "Tunis, Tunisia",
+        role: "ARGUS VOC – Unified Vulnerabilities & Threat Intel Platform",
+        date: "Jun 2026 – Aug 2026",
+        points: [
+          "Architected and deployed the unified ARGUS VOC platform combining Risk-Based Vulnerability Management (RBVM) and Threat Intelligence",
+          "Automated multi-source ingestion and correlation (NVD, CISA KEV, EPSS, Vulners) utilizing Celery asynchronous queues and Elasticsearch indexing",
+          "Integrated and correlated alerts with SIEM/SOC infrastructure (Wazuh, ELK) for dynamic incident prioritization and real-time alerts",
+          "Implemented interactive compliance dashboards, contextual risk scoring engines, and attack path graphing"
+        ]
+      },
+      {
         company: "TDS",
         location: "Tunis, Tunisia",
         role: "VOC – Vulnerability Intelligence Dashboard",
@@ -466,99 +490,140 @@ const TRANSLATIONS = {
       {
         title: "OCTUPUS VOC – Vulnerability Operations Center",
         image: "oktopus-voc.png",
-        badge: "VOC Flagship",
-        stack: ["Next.js", "TypeScript", "Tailwind CSS", "NVD API", "EPSS", "CISA KEV", "Vercel"],
-        description: "A Vulnerability Operations Center (RBVM · VOC) that turns CVE chaos into decisions: prioritization by real-world risk (CVSS · EPSS · CISA KEV), internet-exposure intelligence, 0-day tracker, and SOC alert workflows.",
+        badge: "RBVM · EASM Flagship",
+        stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Neon PostgreSQL", "Better Auth", "Bun", "NVD API", "CISA KEV", "EPSS"],
+        description: "Enterprise Vulnerability Operations Center (RBVM · EASM) ranking CVEs and 0-days by real-world exploitation risk. Correlates external attack surfaces across 6 exposure providers with automated Telegram alerting and SOC triage workflows.",
         demoUrl: "https://oktopus-voc.vercel.app",
         githubUrl: "https://github.com/Pablo-100/Oktopus-VOC"
       },
       {
         title: "ARGUS VOC – Unified Vulnerability & Threat Platform",
         image: "voc.png",
-        stack: ["FastAPI", "Celery", "Elasticsearch", "Nmap", "OpenVAS", "Docker", "Redis"],
-        description: "Unified enterprise vulnerability management & threat intelligence platform with automated Nmap/OpenVAS scanning, Celery task queue, Elasticsearch/Kibana indexing, SLA routing, and attack graphs.",
-        link: "https://github.com/Pablo-100/ARGUS_VOC"
+        badge: "Orchestrated Scanning",
+        stack: ["FastAPI", "Celery", "Elasticsearch", "Redis", "Nmap", "OpenVAS", "Docker", "Python 3.11"],
+        description: "Unified enterprise vulnerability management & threat intelligence platform with automated active Nmap/OpenVAS scanners, asynchronous Celery task queues, Elasticsearch indexing, and dynamic SLA routing.",
+        link: "https://github.com/Pablo-100/ARGUS_VOC",
+        githubUrl: "https://github.com/Pablo-100/ARGUS_VOC"
+      },
+      {
+        title: "Audit ISO 27001 – SMSI & SIEM Compliance",
+        badge: "ISO/IEC 27001:2022",
+        category: "audit",
+        stack: ["ISO 27001", "SMSI", "Wazuh SIEM", "OpenSearch", "Ubuntu Agent", "Windows Agent", "NTP Sync", "CIS Benchmark"],
+        description: "Full ISMS / SMSI audit laboratory implementing ISO/IEC 27001:2022 logging (A.8.15), monitoring (A.8.16), and clock sync (A.8.17). Features custom Wazuh correlation rules (100010-100013) and simulated brute force / FIM proofs.",
+        githubUrl: "https://github.com/Pablo-100/Audit-ISO27001-SMSI-SIEM"
+      },
+      {
+        title: "OCTUPUS-MCP – Threat Intelligence Protocol Server",
+        badge: "Model Context Protocol",
+        category: "mcp",
+        stack: ["Model Context Protocol", "FastMCP", "Python 3.11+", "Asyncio", "Claude Desktop", "24 Threat Feeds", "938 Tests"],
+        description: "MCP Threat Intelligence server enabling Claude Desktop and AI agents to analyze IOCs (IP, domain, URL, hash, CVE) via stdio without VMs or containers. Integrates 24 connectors across 5 tiers with offline fallback.",
+        githubUrl: "https://github.com/Pablo-100/OCTUPUS-MCP"
       },
       {
         title: "Rja3chi – Outage Tracker & Incident Reports",
         image: "rja3chi.png",
-        stack: ["React", "Node.js", "Express", "Tailwind CSS", "Tunisia Map"],
-        description: "Crowdsourced real-time incident reporting platform for electricity, water, and fire outages across Tunisia. Features citizen verification, anti-fake security engine, location feeds, and live resolution analytics.",
+        badge: "Crowdsourced Grid Alert",
+        stack: ["React 19", "Next.js", "TypeScript", "Leaflet / OSM", "Tailwind CSS", "Anti-Fraud dev-tn-*", "SHA-256 IP Hash"],
+        description: "Crowdsourced incident platform tracking electricity (Dhaw), water (Mee), and fire (7ri9a) outages across all 24 Tunisian governorates. Includes hardware device fingerprinting, community upvote consensus, and live heatmaps.",
         githubUrl: "https://github.com/Pablo-100/Rja3chi",
         demoUrl: "https://rja3chi.vercel.app"
       },
       {
         title: "Oktopus SOC – Custom SIEM / IDS / IPS",
         image: "octupus-soc.png",
-        stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
-        description: "Built a full Security Operations Center from scratch covering log collection, detection, prevention, geo-IP, and MITRE ATT&CK mapping. Implemented 36+ IDS detection rules and multi-OS agents."
+        badge: "Built From Scratch",
+        category: "soc",
+        stack: ["Python 3.8+", "Raw Sockets", "Scapy", "iptables / netsh", "SQLite3", "Canvas World Map", "Android Termux"],
+        description: "Full Security Operations Center built completely from scratch with zero external SIEM frameworks. Features 36+ IDS detection rules, automated IPS packet dropping, Geo-IP interactive world map, and MITRE ATT&CK mapping.",
+        githubUrl: "https://github.com/Pablo-100/Oktopus-SOC"
       },
       {
         title: "OCTUPUS Education – RHCSA Platform",
         image: "octupus-education.png",
-        stack: ["React 19", "TypeScript", "Node.js", "Express", "tRPC", "PostgreSQL", "Tailwind"],
-        description: "Comprehensive RHCSA certification platform with 12 chapters, 18 labs, and AI-powered assistant. Implemented type-safe full-stack API with JWT and OAuth2.",
-        githubUrl: "https://github.com/Pablo-100",
+        badge: "Linux Lab Simulator",
+        category: "dev",
+        stack: ["React 19.2", "TypeScript 5.9", "Node.js 22", "xterm.js", "Neon PostgreSQL", "Docker Containers", "Tailwind CSS"],
+        description: "Hands-on Red Hat Certified System Administrator (RHCSA) training platform with 12 chapters, 18 labs, and mock exams taken directly in a real in-browser Linux terminal with automated OS state grading.",
+        githubUrl: "https://github.com/Pablo-100/OCTUPUS-Education",
         demoUrl: "https://octupus-education.onrender.com"
       },
       {
         title: "Smart Invest Summit – B2B Matchmaking",
         image: "smart-invest.png",
-        stack: ["Laravel 12", "PHP 8.2+", "Tailwind CSS", "Alpine.js", "MySQL 8"],
-        description: "B2B event platform connecting investors and startups with registration, admin validation, matchmaking, private messaging, and meeting scheduling."
+        badge: "B2B Matchmaking CRM",
+        category: "dev",
+        stack: ["Laravel 12", "PHP 8.2+", "Alpine.js 3", "Tailwind CSS 3", "MySQL 8", "Vite 5", "PHPUnit"],
+        description: "B2B event matchmaking web platform connecting investors and startups. Features entity onboarding KYC, administrative vetting workflow, algorithmic matchmaking, private messaging, and meeting calendar scheduler.",
+        githubUrl: "https://github.com/Pablo-100/Smart-Invest-Summit"
       },
       {
         title: "Delivery Platform – Logistics System",
         image: "delivery-pro.png",
-        stack: ["Laravel 11", "Livewire 3", "Tailwind CSS", "MySQL 8", "APIs"],
-        description: "Multi-role delivery management platform with multi-depot architecture. Implemented parcel lifecycle tracking, QR codes, GPS tracking, and SMS notifications."
+        badge: "Logistics & Fleet Ops",
+        category: "dev",
+        stack: ["Laravel 11.x", "Livewire 3.x", "Tailwind CSS", "MySQL 8.x", "SMS Gateway", "QR Barcodes"],
+        description: "Full-featured logistics and delivery management platform with multi-depot architecture. Manages parcel lifecycle states, courier dispatching, truck fleet tracking, QR code verification, and customer SMS OTP alerts.",
+        githubUrl: "https://github.com/Pablo-100/delivery-platform"
       },
       {
         title: "Network Intrusion Detection System",
         image: "nids.png",
-        stack: ["Python", "Scapy", "scikit-learn", "Flask"],
-        description: "Hybrid NIDS for real-time traffic analysis with signature-based and anomaly-based detection (Isolation Forest). Built Flask REST API and monitoring dashboard."
+        badge: "Hybrid ML NIDS",
+        category: "soc",
+        stack: ["Python", "Scapy", "scikit-learn", "Isolation Forest", "Flask API", "HTML5 Canvas"],
+        description: "Hybrid real-time NIDS combining signature-based rules with machine learning anomaly detection (Isolation Forest). Detects SYN floods, port scans, and protocol anomalies with live web dashboard.",
+        githubUrl: "https://github.com/Pablo-100/Python_NIDS_Project"
       },
       {
         title: "Full-Stack E-commerce Platform",
         image: "synf-project.png",
-        stack: ["Symfony 7", "PHP 8", "Doctrine ORM", "Docker"],
-        description: "Secure full-stack e-commerce web application with MVC architecture, REST-like controllers, OAuth2, RBAC, and Docker deployment."
+        category: "dev",
+        stack: ["Symfony 7", "PHP 8", "Doctrine ORM", "Docker", "MySQL", "Tailwind CSS"],
+        description: "Secure full-stack e-commerce web application engineered with Symfony 7 MVC architecture, REST controllers, OAuth2, RBAC, and containerized Docker environment.",
+        githubUrl: "https://github.com/Pablo-100/synf_project"
       },
       {
         title: "Windows Server & AD Infrastructure (Academic)",
-        stack: ["Windows Server", "Active Directory", "Group Policy", "DHCP"],
+        stack: ["Windows Server", "Active Directory", "Group Policy", "DHCP", "Firewall", "DNS"],
         description: "Built enterprise Windows Server environment with Active Directory and Group Policy. Managed users, groups, and access control policies. Configured DHCP, firewall rules, audit policies, and backup system."
       },
       {
         title: "Enterprise Network Architecture",
-        stack: ["Cisco", "Huawei", "eNSP", "Ubuntu Server"],
+        stack: ["Cisco", "Huawei", "eNSP", "Ubuntu Server", "VLANs", "ACLs", "Eth-Trunk"],
         description: "Designed multi-site network with Layer 3 switches, VLAN segmentation, and ACLs. Configured Eth-Trunk and high-availability routes for critical infrastructure."
       },
       {
         title: "VoIP System Deployment (Academic)",
-        stack: ["Cisco CUCM", "VoIP", "VLANs", "QoS"],
+        stack: ["Cisco CUCM", "VoIP", "VLANs", "QoS", "SIP", "IP Phones"],
         description: "Deployed VoIP solution using Cisco CUCM for 100+ users. Configured voice VLANs, DHCP for IP phones, and QoS policies. Reduced communication cost by 60% versus traditional PSTN."
       },
       {
         title: "Full-Stack Task Management Application",
         image: "task-management-sys.png",
-        stack: ["PHP 7.4", "MySQL 5.7", "JS", "HTML5", "CSS3", "Apache XAMPP"],
-        description: "Developed secure web app for internal team task tracking. Implemented role-based authentication with admin/user separation."
+        category: "dev",
+        stack: ["PHP 7.4", "MySQL 5.7", "JavaScript", "HTML5", "CSS3", "Apache XAMPP"],
+        description: "Secure internal task tracking platform featuring user authentication, role-based project assignments, deadline monitors, and status update auditing.",
+        githubUrl: "https://github.com/Pablo-100/task_manegemnt_sys"
       },
       {
         title: "Plane Management System",
         image: "plane-management-sys.png",
-        stack: ["Java", "OOP", "CLI", "Design Patterns"],
+        category: "dev",
+        stack: ["Java", "OOP", "CLI", "Design Patterns", "Singleton", "Factory"],
         description: "Java command-line (CLI) application for comprehensive management of planes, pilots, and passengers with an interactive interface. Implemented design patterns (Singleton, Factory, MVC).",
-        link: "https://github.com/Pablo-100/Plane_Management_Sys"
+        link: "https://github.com/Pablo-100/Plane_Management_Sys",
+        githubUrl: "https://github.com/Pablo-100/Plane_Management_Sys"
       },
       {
         title: "LunaChat - Chatbot",
         image: "luna-chat-bot.png",
-        stack: ["Python", "Gemini API", "AI", "Chatbot"],
-        description: "Intelligent conversational chatbot powered by the Gemini API. Interactive user interface for real-time conversations.",
-        link: "https://github.com/Pablo-100/LunaChat---Chatbot"
+        category: "mcp",
+        stack: ["Python", "Gemini API", "FastAPI", "Chatbot UI"],
+        description: "Intelligent conversational chatbot powered by Google Gemini API. Features contextual dialog flow, prompt engineering, and interactive responsive UI.",
+        link: "https://github.com/Pablo-100/LunaChat---Chatbot",
+        githubUrl: "https://github.com/Pablo-100/LunaChat---Chatbot"
       }
     ],
     educationList: [
@@ -629,6 +694,18 @@ const TRANSLATIONS = {
     },
     experienceList: [
       {
+        company: "Gérance Informatique",
+        location: "Tunis, Tunisie",
+        role: "ARGUS VOC – Plateforme Unifiée de Vulnérabilités & Threat Intel",
+        date: "Juin 2026 – Août 2026",
+        points: [
+          "Conception et déploiement de la plateforme unifiée ARGUS VOC intégrant la gestion des vulnérabilités basée sur le risque (RBVM) et la Threat Intelligence",
+          "Automatisation de l'ingestion et de la corrélation multi-sources (NVD, CISA KEV, EPSS, Vulners) avec file Celery et indexation Elasticsearch",
+          "Intégration et corrélation des alertes avec l'infrastructure SIEM/SOC (Wazuh, ELK) pour la priorisation dynamique des incidents et alertes en temps réel",
+          "Mise en place de tableaux de bord interactifs de conformité, calcul automatique de scores de risque contextualisés et cartographie des vecteurs d'attaque"
+        ]
+      },
+      {
         company: "TDS",
         location: "Tunis, Tunisie",
         role: "VOC – Tableau de bord de renseignement sur les vulnérabilités",
@@ -677,99 +754,140 @@ const TRANSLATIONS = {
       {
         title: "OCTUPUS VOC – Centre d'Opérations de Vulnérabilités",
         image: "oktopus-voc.png",
-        badge: "VOC Flagship",
-        stack: ["Next.js", "TypeScript", "Tailwind CSS", "NVD API", "EPSS", "CISA KEV", "Vercel"],
-        description: "Centre d'Opérations de Vulnérabilités (RBVM · VOC) transformant le chaos des CVE en décisions : priorisation par risque réel (CVSS · EPSS · CISA KEV), veille 0-day, renseignement sur l'exposition Internet et workflows d'alertes SOC.",
+        badge: "RBVM · EASM Flagship",
+        stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Neon PostgreSQL", "Better Auth", "Bun", "NVD API", "CISA KEV", "EPSS"],
+        description: "Centre d'Opérations de Vulnérabilités d'entreprise (RBVM · EASM) classant les CVEs et 0-days selon le risque réel d'exploitation. Corrèle la surface d'attaque externe via 6 fournisseurs avec alertes Telegram automatisées et workflows SOC.",
         demoUrl: "https://oktopus-voc.vercel.app",
         githubUrl: "https://github.com/Pablo-100/Oktopus-VOC"
       },
       {
         title: "ARGUS VOC – Plateforme Unifiée de Vulnérabilités & Threat Intel",
         image: "voc.png",
-        stack: ["FastAPI", "Celery", "Elasticsearch", "Nmap", "OpenVAS", "Docker", "Redis"],
-        description: "Plateforme d'entreprise unifiée de gestion des vulnérabilités et de renseignement sur les menaces avec scans automatisés Nmap/OpenVAS, file Celery, indexation Elasticsearch/Kibana, routage SLA et graphes d'attaque.",
-        link: "https://github.com/Pablo-100/ARGUS_VOC"
+        badge: "Scan Orchestré",
+        stack: ["FastAPI", "Celery", "Elasticsearch", "Redis", "Nmap", "OpenVAS", "Docker", "Python 3.11"],
+        description: "Plateforme d'entreprise unifiée de gestion des vulnérabilités et de renseignement sur les menaces avec scans automatisés Nmap/OpenVAS, file Celery distribuée, indexation Elasticsearch et routage SLA dynamique.",
+        link: "https://github.com/Pablo-100/ARGUS_VOC",
+        githubUrl: "https://github.com/Pablo-100/ARGUS_VOC"
+      },
+      {
+        title: "Audit ISO 27001 – SMSI & Conformité SIEM",
+        badge: "ISO/IEC 27001:2022",
+        category: "audit",
+        stack: ["ISO 27001", "SMSI", "Wazuh SIEM", "OpenSearch", "Ubuntu Agent", "Windows Agent", "NTP Sync", "CIS Benchmark"],
+        description: "Laboratoire complet d'audit SMSI mettant en œuvre les exigences de journalisation (A.8.15), surveillance (A.8.16) et synchronisation d'horloge (A.8.17) de l'ISO 27001:2022. Règles Wazuh personnalisées (100010-100013) et preuves d'audit simulées.",
+        githubUrl: "https://github.com/Pablo-100/Audit-ISO27001-SMSI-SIEM"
+      },
+      {
+        title: "OCTUPUS-MCP – Protocole d'Outils & Cyber Threat Intel",
+        badge: "Model Context Protocol",
+        category: "mcp",
+        stack: ["Model Context Protocol", "FastMCP", "Python 3.11+", "Asyncio", "Claude Desktop", "24 Flux Intel", "938 Tests"],
+        description: "Serveur MCP de Threat Intelligence permettant à Claude Desktop et aux agents IA d'analyser les IOCs (IP, domaine, URL, hash, CVE) via stdio sans conteneur ni machine virtuelle. Intègre 24 connecteurs sur 5 niveaux et mode hors ligne.",
+        githubUrl: "https://github.com/Pablo-100/OCTUPUS-MCP"
       },
       {
         title: "Rja3chi – Suivi Collaboratif des Pannes & Incidents",
         image: "rja3chi.png",
-        stack: ["React", "Node.js", "Express", "Tailwind CSS", "Tunisia Map"],
-        description: "Plateforme collaborative de signalement d'incidents en temps réel (électricité, eau, incendie) en Tunisie. Intègre la vérification citoyenne, la sécurité anti-fake, la géolocalisation et des statistiques en temps réel.",
+        badge: "Alerte Réseau Citoyenne",
+        stack: ["React 19", "Next.js", "TypeScript", "Leaflet / OSM", "Tailwind CSS", "Anti-Fraude dev-tn-*", "SHA-256 IP Hash"],
+        description: "Plateforme collaborative de signalement des pannes d'électricité (Dhaw), d'eau (Mee) et d'incendies (7ri9a) couvrant les 24 gouvernorats tunisiens. Empreinte matérielle anti-fake, consensus communautaire et cartes de chaleur en temps réel.",
         githubUrl: "https://github.com/Pablo-100/Rja3chi",
         demoUrl: "https://rja3chi.vercel.app"
       },
       {
         title: "Oktopus SOC – SIEM / IDS / IPS Personnalisé",
         image: "octupus-soc.png",
-        stack: ["Python 3.8+", "WebSocket", "SQLite", "iptables", "netsh"],
-        description: "Création d'un centre des opérations de sécurité (SOC) complet à partir de zéro, couvrant la collecte de journaux, la détection, la prévention, la géo-IP et le mappage MITRE ATT&CK. Mise en œuvre de plus de 36 règles de détection IDS et d'agents multi-OS."
+        badge: "Conçu From Scratch",
+        category: "soc",
+        stack: ["Python 3.8+", "Raw Sockets", "Scapy", "iptables / netsh", "SQLite3", "Canvas World Map", "Android Termux"],
+        description: "Centre des opérations de sécurité (SOC) complet conçu entièrement à partir de zéro, sans aucun framework tiers. 36+ règles IDS personnalisées, blocage IPS automatique, carte mondiale Geo-IP dynamique et matrice MITRE ATT&CK.",
+        githubUrl: "https://github.com/Pablo-100/Oktopus-SOC"
       },
       {
         title: "OCTUPUS Education – Plateforme RHCSA",
         image: "octupus-education.png",
-        stack: ["React 19", "TypeScript", "Node.js", "Express", "tRPC", "PostgreSQL", "Tailwind"],
-        description: "Plateforme complète de certification RHCSA avec 12 chapitres, 18 laboratoires et un assistant alimenté par l'IA. Mise en œuvre d'une API full-stack typée avec JWT et OAuth2.",
-        githubUrl: "https://github.com/Pablo-100",
+        badge: "Simulateur Lab Linux",
+        category: "dev",
+        stack: ["React 19.2", "TypeScript 5.9", "Node.js 22", "xterm.js", "Neon PostgreSQL", "Conteneurs Docker", "Tailwind CSS"],
+        description: "Plateforme d'apprentissage pratique pour la certification RHCSA : 12 chapitres, 18 laboratoires et examens blancs passés dans un terminal Linux réel en ligne avec notation automatique de l'état système.",
+        githubUrl: "https://github.com/Pablo-100/OCTUPUS-Education",
         demoUrl: "https://octupus-education.onrender.com"
       },
       {
         title: "Smart Invest Summit – Mise en relation B2B",
         image: "smart-invest.png",
-        stack: ["Laravel 12", "PHP 8.2+", "Tailwind CSS", "Alpine.js", "MySQL 8"],
-        description: "Plateforme d'événements B2B connectant investisseurs et startups avec inscription, validation par l'administrateur, mise en relation, messagerie privée et planification de réunions."
+        badge: "CRM Matchmaking B2B",
+        category: "dev",
+        stack: ["Laravel 12", "PHP 8.2+", "Alpine.js 3", "Tailwind CSS 3", "MySQL 8", "Vite 5", "PHPUnit"],
+        description: "Plateforme web événementielle B2B connectant investisseurs et startups : onboarding KYC, validation admin, algorithme de mise en relation qualifiée, messagerie privée chiffrée et planificateur de réunions sans collision.",
+        githubUrl: "https://github.com/Pablo-100/Smart-Invest-Summit"
       },
       {
         title: "Plateforme de Livraison – Système Logistique",
         image: "delivery-pro.png",
-        stack: ["Laravel 11", "Livewire 3", "Tailwind CSS", "MySQL 8", "APIs"],
-        description: "Plateforme de gestion de livraison multi-rôles avec architecture multi-dépôts. Mise en œuvre du suivi du cycle de vie des colis, des codes QR, du suivi GPS et des notifications SMS."
+        badge: "Logistique & Flottes",
+        category: "dev",
+        stack: ["Laravel 11.x", "Livewire 3.x", "Tailwind CSS", "MySQL 8.x", "Passerelle SMS", "Codes QR"],
+        description: "Plateforme complète de gestion de livraison et de logistique multi-dépôts. Gestion du cycle de vie des colis, répartition des coursiers, télémétrie des camions, vérification QR code et notifications SMS OTP.",
+        githubUrl: "https://github.com/Pablo-100/delivery-platform"
       },
       {
         title: "Système de Détection d'Intrusion Réseau",
         image: "nids.png",
-        stack: ["Python", "Scapy", "scikit-learn", "Flask"],
-        description: "NIDS hybride pour l'analyse du trafic en temps réel avec détection basée sur les signatures et les anomalies (Isolation Forest). Création d'une API REST Flask et d'un tableau de bord de surveillance."
+        badge: "NIDS Hybride ML",
+        category: "soc",
+        stack: ["Python", "Scapy", "scikit-learn", "Isolation Forest", "API Flask", "HTML5 Canvas"],
+        description: "NIDS hybride en temps réel combinant détection par signatures et détection d'anomalies par apprentissage automatique (Isolation Forest). Détecte les scans de ports, inondations SYN et anomalies avec dashboard web.",
+        githubUrl: "https://github.com/Pablo-100/Python_NIDS_Project"
       },
       {
         title: "Plateforme E-commerce Full-Stack",
         image: "synf-project.png",
-        stack: ["Symfony 7", "PHP 8", "Doctrine ORM", "Docker"],
-        description: "Application web e-commerce full-stack sécurisée avec architecture MVC, contrôleurs de type REST, OAuth2, RBAC et déploiement Docker."
+        category: "dev",
+        stack: ["Symfony 7", "PHP 8", "Doctrine ORM", "Docker", "MySQL", "Tailwind CSS"],
+        description: "Application web e-commerce full-stack sécurisée conçue avec l'architecture MVC de Symfony 7, contrôleurs REST, gestion fine des accès (RBAC) et conteneurisation Docker.",
+        githubUrl: "https://github.com/Pablo-100/synf_project"
       },
       {
         title: "Infrastructure Windows Server & AD (Académique)",
-        stack: ["Windows Server", "Active Directory", "Group Policy", "DHCP"],
-        description: "Création d'un environnement d'entreprise Windows Server avec Active Directory et stratégie de groupe. Gestion des utilisateurs, des groupes et des politiques de contrôle d'accès. Configuration du DHCP, des règles de pare-feu, des politiques d'audit et du système de sauvegarde."
+        stack: ["Windows Server", "Active Directory", "Stratégie de Groupe", "DHCP", "Pare-feu", "DNS"],
+        description: "Création d'un environnement d'entreprise Windows Server avec Active Directory et stratégie de groupe. Gestion des utilisateurs, des groupes et des politiques de contrôle d'accès. Configuration du DHCP, pare-feu, politiques d'audit et sauvegardes."
       },
       {
         title: "Architecture Réseau d'Entreprise",
-        stack: ["Cisco", "Huawei", "eNSP", "Ubuntu Server"],
+        stack: ["Cisco", "Huawei", "eNSP", "Ubuntu Server", "VLANs", "ACLs", "Eth-Trunk"],
         description: "Conception d'un réseau multi-sites avec commutateurs de couche 3, segmentation VLAN et ACL. Configuration de l'Eth-Trunk et de routes à haute disponibilité pour l'infrastructure critique."
       },
       {
         title: "Déploiement de Système VoIP (Académique)",
-        stack: ["Cisco CUCM", "VoIP", "VLANs", "QoS"],
+        stack: ["Cisco CUCM", "VoIP", "VLANs", "QoS", "SIP", "Téléphones IP"],
         description: "Déploiement d'une solution VoIP utilisant Cisco CUCM pour plus de 100 utilisateurs. Configuration de VLAN vocaux, DHCP pour téléphones IP et politiques QoS. Réduction des coûts de communication de 60 % par rapport au RTPC traditionnel."
       },
       {
         title: "Application de Gestion de Tâches Full-Stack",
         image: "task-management-sys.png",
-        stack: ["PHP 7.4", "MySQL 5.7", "JS", "HTML5", "CSS3", "Apache XAMPP"],
-        description: "Développement d'une application web sécurisée pour le suivi des tâches de l'équipe interne. Mise en œuvre d'une authentification basée sur les rôles avec séparation administrateur/utilisateur."
+        category: "dev",
+        stack: ["PHP 7.4", "MySQL 5.7", "JavaScript", "HTML5", "CSS3", "Apache XAMPP"],
+        description: "Développement d'une application web sécurisée pour le suivi des tâches d'équipe interne. Mise en œuvre d'une authentification basée sur les rôles avec séparation administrateur/utilisateur et audit des statuts.",
+        githubUrl: "https://github.com/Pablo-100/task_manegemnt_sys"
       },
       {
         title: "Système de Gestion d'Avions",
         image: "plane-management-sys.png",
-        stack: ["Java", "OOP", "CLI", "Design Patterns"],
-        description: "Application Java en ligne de commande (CLI) pour la gestion complète des avions, pilotes et passagers avec une interface interactive. Implémentation de design patterns (Singleton, Factory, MVC).",
-        link: "https://github.com/Pablo-100/Plane_Management_Sys"
+        category: "dev",
+        stack: ["Java", "POO", "CLI", "Design Patterns", "Singleton", "Factory"],
+        description: "Application Java en ligne de commande (CLI) pour la gestion complète des avions, pilotes et passagers avec une interface interactive. Implémentation des patrons de conception Singleton, Factory et MVC.",
+        link: "https://github.com/Pablo-100/Plane_Management_Sys",
+        githubUrl: "https://github.com/Pablo-100/Plane_Management_Sys"
       },
       {
         title: "LunaChat - Chatbot",
         image: "luna-chat-bot.png",
-        stack: ["Python", "Gemini API", "AI", "Chatbot"],
-        description: "Chatbot conversationnel intelligent alimenté par l'API Gemini. Interface utilisateur interactive pour des conversations en temps réel.",
-        link: "https://github.com/Pablo-100/LunaChat---Chatbot"
+        category: "mcp",
+        stack: ["Python", "API Gemini", "FastAPI", "Interface Chatbot"],
+        description: "Chatbot conversationnel intelligent alimenté par l'API Google Gemini. Interface utilisateur interactive pour des conversations en langage naturel en temps réel avec mémoire contextuelle.",
+        link: "https://github.com/Pablo-100/LunaChat---Chatbot",
+        githubUrl: "https://github.com/Pablo-100/LunaChat---Chatbot"
       }
     ],
     educationList: [
@@ -1302,7 +1420,8 @@ export default function App() {
                 image: (p as any).image ? `/images/${(p as any).image}` : undefined,
                 githubUrl: (p as any).githubUrl || ((p as any).link?.includes('github.com') ? (p as any).link : `https://github.com/${DATA.github}`),
                 demoUrl: (p as any).demoUrl || ((p as any).link && !(p as any).link.includes('github.com') ? (p as any).link : undefined),
-                badge: (p as any).badge || (p.title.includes('ARGUS') ? 'Flagship VOC' : p.title.includes('Rja3chi') ? 'Live Incident Map' : p.title.includes('Oktopus') ? 'Custom SIEM' : undefined)
+                badge: (p as any).badge || (p.title.includes('ARGUS') ? 'Flagship VOC' : p.title.includes('Rja3chi') ? 'Live Incident Map' : p.title.includes('Oktopus') ? 'Custom SIEM' : undefined),
+                category: (p as any).category
               }))} 
               onOpenArchModal={(title) => setArchModalProject(title)} 
               lang={lang} 
@@ -1315,69 +1434,104 @@ export default function App() {
                 if (aHasImage && !bHasImage) return -1;
                 if (!aHasImage && bHasImage) return 1;
                 return 0;
-              }).map((project, index) => (
-                <motion.div 
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  key={index} 
-                  className="flex flex-col h-full group p-4 rounded-3xl hover:bg-black/5 dark:hover:bg-white/[0.03] transition-all duration-300"
-                >
-                  {(project as any).image && (
-                    <div className="relative z-10 mb-5 rounded-2xl aspect-video bg-slate-950 p-1 overflow-hidden shadow-md group-hover:scale-[1.02] transition-transform duration-500">
-                      <img 
-                        src={`/images/${(project as any).image}`} 
-                        alt={project.title} 
-                        className="w-full h-full object-cover rounded-xl"
-                      />
-                    </div>
-                  )}
+              }).map((project, index) => {
+                const projectGhUrl = (project as any).githubUrl || ((project as any).link?.includes('github.com') ? (project as any).link : `https://github.com/${DATA.github}`);
 
-                  <div className="relative z-10 flex justify-between items-start mb-3">
-                    <div className="p-2.5 rounded-xl bg-sky-500/15 text-sky-400">
-                      <Terminal size={18} />
+                return (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    key={index} 
+                    className="flex flex-col h-full group p-4 rounded-3xl hover:bg-black/5 dark:hover:bg-white/[0.03] transition-all duration-300"
+                  >
+                    {(project as any).image && (
+                      <a
+                        href={projectGhUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="relative z-10 mb-5 rounded-2xl aspect-video bg-slate-950 p-1 overflow-hidden shadow-md group-hover:scale-[1.02] transition-transform duration-500 block cursor-pointer"
+                        title={lang === 'fr' ? 'Ouvrir le dépôt GitHub' : 'Open GitHub Repository'}
+                      >
+                        <img 
+                          src={`/images/${(project as any).image}`} 
+                          alt={project.title} 
+                          className="w-full h-full object-cover rounded-xl"
+                        />
+                      </a>
+                    )}
+
+                    <div className="relative z-10 flex justify-between items-start mb-3">
+                      <div className="p-2.5 rounded-xl bg-sky-500/15 text-sky-400">
+                        <Terminal size={18} />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setArchModalProject(project.title);
+                          }}
+                          className="p-1.5 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-mono hover:bg-sky-500 hover:text-white transition flex items-center gap-1 font-semibold"
+                          title={lang === 'fr' ? "Voir l'architecture et le flux de données" : "View System Architecture Diagram"}
+                        >
+                          <Activity size={14} /> Arch
+                        </button>
+                        {projectGhUrl && (
+                          <a 
+                            href={projectGhUrl} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className="p-1.5 rounded-lg text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors"
+                            title={lang === 'fr' ? 'Voir le dépôt GitHub' : 'View GitHub Repository'}
+                          >
+                            <Github size={18} />
+                          </a>
+                        )}
+                        {(project as any).demoUrl && (
+                          <a 
+                            href={(project as any).demoUrl} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className="px-2.5 py-1 rounded-lg bg-sky-500 text-white hover:bg-sky-600 transition flex items-center gap-1 text-xs font-semibold shadow-xs"
+                            title={lang === 'fr' ? "Voir l'application en direct" : 'View Live Application'}
+                          >
+                            <ExternalLink size={13} /> Live
+                          </a>
+                        )}
+                        {!projectGhUrl && !(project as any).demoUrl && (
+                          <a 
+                            href={(project as any).link || `https://github.com/${DATA.github}`} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className="p-2 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors"
+                          >
+                            <ExternalLink size={18} />
+                          </a>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      {(project as any).githubUrl && (
-                        <a 
-                          href={(project as any).githubUrl} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className="p-1.5 rounded-lg text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors"
-                          title="View GitHub Repository"
-                        >
-                          <Github size={18} />
-                        </a>
-                      )}
-                      {(project as any).demoUrl && (
-                        <a 
-                          href={(project as any).demoUrl} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className="px-2.5 py-1 rounded-lg bg-sky-500 text-white hover:bg-sky-600 transition flex items-center gap-1 text-xs font-semibold shadow-xs"
-                          title="View Live Application"
-                        >
-                          <ExternalLink size={13} /> Live
-                        </a>
-                      )}
-                      {!(project as any).githubUrl && !(project as any).demoUrl && (
-                        <a 
-                          href={(project as any).link || `https://github.com/${DATA.github}`} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          className="p-2 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors"
-                        >
-                          <ExternalLink size={18} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-[var(--color-cyber-text-light)] mb-2 group-hover:text-sky-400 transition-colors">{project.title}</h3>
-                  <p className="text-sm mb-5 flex-grow leading-relaxed opacity-90">
-                    {project.description}
-                  </p>
+                    
+                    {projectGhUrl ? (
+                      <a
+                        href={projectGhUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group/t inline-block mb-2 cursor-pointer"
+                        title={lang === 'fr' ? 'Ouvrir le dépôt GitHub' : 'Open GitHub Repository'}
+                      >
+                        <h3 className="text-xl font-bold text-[var(--color-cyber-text-light)] group-hover/t:text-sky-400 group-hover:text-sky-400 transition-colors flex items-center gap-1.5">
+                          {project.title}
+                          <ArrowUpRight size={17} className="opacity-0 -translate-x-1 group-hover/t:opacity-100 group-hover/t:translate-x-0 transition-all text-sky-400" />
+                        </h3>
+                      </a>
+                    ) : (
+                      <h3 className="text-xl font-bold text-[var(--color-cyber-text-light)] mb-2 group-hover:text-sky-400 transition-colors">{project.title}</h3>
+                    )}
+
+                    <p className="text-sm mb-5 flex-grow leading-relaxed opacity-90">
+                      {project.description}
+                    </p>
                   
                   <div className="flex flex-wrap gap-2 mt-auto pt-2">
                     {project.stack.map((tech, i) => (
@@ -1385,7 +1539,8 @@ export default function App() {
                     ))}
                   </div>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
           )}
         </section>
@@ -1503,6 +1658,7 @@ export default function App() {
       <ArchitectureModal 
         projectTitle={archModalProject} 
         onClose={() => setArchModalProject(null)} 
+        lang={lang}
       />
     </div>
   );
