@@ -4,7 +4,8 @@ import {
   Github, Linkedin, Mail, Phone, MapPin, 
   Terminal, Shield, Server, Code, Award, 
   Briefcase, GraduationCap, ChevronRight, ExternalLink,
-  Menu, X, Download, Sun, Moon, Globe, Sparkles, Activity, Command, ArrowUpRight
+  Menu, X, Download, Sun, Moon, Globe, Sparkles, Activity, Command, ArrowUpRight,
+  Users, Flag, CheckCircle2
 } from 'lucide-react';
 import { CyberHeroCanvas } from './components/CyberHeroCanvas';
 import { ArchitectureModal } from './components/ArchitectureModal';
@@ -28,7 +29,7 @@ const useMousePosition = () => {
 
 // Data
 const DATA = {
-  name: "TBINI Mustapha Amin",
+  name: "TBINI Mustapha Amine",
   role: "Administrateur Systèmes et Réseaux & Analyste SOC L1 & Développeur Full-Stack Passionné",
   location: "Tunis – Tunisia",
   phone: "+216 46-345-226",
@@ -67,8 +68,9 @@ const DATA = {
       points: [
         "Developed a real-time CVE dashboard collecting, filtering, and displaying new vulnerability entries with automatic updates every minute",
         "Integrated multi-source threat intelligence from NVD and Vulners APIs, merging and deduplicating data",
-        "Implemented Telegram alerting for critical and high severity vulnerabilities",
-        "Designed interactive visualizations using Chart.js, Bootstrap, and DataTables"
+        "Implemented Telegram alerting for critical and high severity vulnerabilities with duplicate suppression",
+        "Designed interactive visualizations using Chart.js, Bootstrap, and DataTables for sorting and analysis",
+        "Added CSV export functionality and emphasized performance optimizations (lazy loading, caching) and robust error handling"
       ]
     },
     {
@@ -79,8 +81,9 @@ const DATA = {
       points: [
         "Deployed SIEM solution using ELK Stack for 50+ endpoints, improving incident visibility by 40%",
         "Configured Logstash pipelines and Kibana dashboards for real-time monitoring",
-        "Installed multi-platform agents for centralized log collection",
-        "Performed penetration tests and vulnerability scans with Kali Linux, discovering 12+ critical issues"
+        "Installed multi-platform agents (Windows 7/10, Rocky Linux) for centralized log collection",
+        "Performed penetration tests and vulnerability scans with Kali Linux, discovering 12+ critical issues",
+        "Managed Ubuntu server hosting the SIEM system"
       ]
     },
     {
@@ -90,7 +93,8 @@ const DATA = {
       date: "Jan 2023 – Feb 2023",
       points: [
         "Configured xDSL and IP-MSAN services for over 300 clients with <5% downtime",
-        "Deployed and tested fiber optic connections with signal quality >98%"
+        "Deployed and tested fiber optic connections with signal quality >98%",
+        "Troubleshot last-mile issues in residential and business broadband setups"
       ]
     },
     {
@@ -100,9 +104,25 @@ const DATA = {
       date: "Jan 2022 – Feb 2022",
       points: [
         "Installed and configured 20+ Cisco routers and switches in real environments",
-        "Structured cabling and patch panel deployment across 3 company sites"
+        "Structured cabling and patch panel deployment across 3 company sites",
+        "Assisted in configuring VLANs and routing protocols (static + RIP)"
       ]
     }
+  ],
+  community: {
+    role: "Securinets TEK-UP Member",
+    period: "2024 – 2025",
+    points: [
+      "Participate in Capture the Flag (CTF) competitions and cybersecurity challenges",
+      "Engage in red team and blue team security exercises and penetration testing workshops",
+      "Contribute to SOC simulation workshops and incident response training",
+      "Develop advanced cybersecurity skills through hands-on practical exercises"
+    ]
+  },
+  professionalDevelopment: [
+    { title: "Team Leadership & Communication", org: "Securinets Club" },
+    { title: "Root Cause & Incident Analysis", org: "SOC & Infrastructure" },
+    { title: "Project Management: Planning, Resource Allocation, QA", org: "Agile & Delivery" }
   ],
   projects: [
     {
@@ -403,6 +423,7 @@ const TRANSLATIONS = {
     designedBy: "Designed & Built by",
     allRights: "All rights reserved.",
     role1: "System & Network Administrator",
+    avatarRoleBadge: "SysAdmin & Network Admin",
     role2: "SOC Analyst L1",
     role3: "Passionate Full-Stack Developer",
     badge1: "SOC L1",
@@ -417,7 +438,25 @@ const TRANSLATIONS = {
     phoneLabel: "Phone:",
     contactInfo: "Contact Info",
     languagesLabel: "Languages:",
-    languages: "Arabic, French, English",
+    languages: "Arabic (Native), French (Intermediate), English (Intermediate)",
+    communityTitle: "Community & CTF Involvement",
+    profDevTitle: "Professional Development",
+    communityData: {
+      role: "Securinets TEK-UP Member",
+      club: "Securinets Club (Cybersecurity Club)",
+      period: "2024 – 2025",
+      points: [
+        "Participate in Capture the Flag (CTF) competitions and cybersecurity challenges",
+        "Engage in red team and blue team security exercises and penetration testing workshops",
+        "Contribute to SOC simulation workshops and incident response training",
+        "Develop advanced cybersecurity skills through hands-on practical exercises"
+      ]
+    },
+    profDevList: [
+      { title: "Team Leadership & Communication", org: "Securinets Club" },
+      { title: "Root Cause & Incident Analysis", org: "SOC Operations & Threat Response" },
+      { title: "Project Management: Planning, Resource Allocation, QA", org: "Agile Software & Infrastructure Delivery" }
+    ],
     skillsCategories: {
       "Networking": "Networking",
       "Security": "Security",
@@ -448,9 +487,10 @@ const TRANSLATIONS = {
         date: "Jul 2025 – Sep 2025",
         points: [
           "Developed a real-time CVE dashboard collecting, filtering, and displaying new vulnerability entries with automatic updates every minute",
-          "Integrated multi-source threat intelligence from NVD and Vulners APIs, merging and deduplicating data",
-          "Implemented Telegram alerting for critical and high severity vulnerabilities",
-          "Designed interactive visualizations using Chart.js, Bootstrap, and DataTables"
+          "Integrated multi-source threat intelligence from NVD and Vulners APIs, merging and deduplicating data to provide a unified vulnerability view",
+          "Implemented Telegram alerting for critical and high severity vulnerabilities with formatted messages and duplicate suppression logic",
+          "Designed interactive visualizations using Chart.js, Bootstrap, and DataTables for filtering, sorting, and data manipulation",
+          "Added CSV export functionality and emphasized performance optimizations (lazy loading, caching) and robust error handling"
         ]
       },
       {
@@ -461,8 +501,9 @@ const TRANSLATIONS = {
         points: [
           "Deployed SIEM solution using ELK Stack for 50+ endpoints, improving incident visibility by 40%",
           "Configured Logstash pipelines and Kibana dashboards for real-time monitoring",
-          "Installed multi-platform agents for centralized log collection",
-          "Performed penetration tests and vulnerability scans with Kali Linux, discovering 12+ critical issues"
+          "Installed multi-platform agents (Windows 7/10, Rocky Linux) for centralized log collection",
+          "Performed penetration tests and vulnerability scans with Kali Linux, discovering 12+ critical issues",
+          "Managed Ubuntu server hosting the SIEM system"
         ]
       },
       {
@@ -472,7 +513,8 @@ const TRANSLATIONS = {
         date: "Jan 2023 – Feb 2023",
         points: [
           "Configured xDSL and IP-MSAN services for over 300 clients with <5% downtime",
-          "Deployed and tested fiber optic connections with signal quality >98%"
+          "Deployed and tested fiber optic connections with signal quality >98%",
+          "Troubleshot last-mile issues in residential and business broadband setups"
         ]
       },
       {
@@ -482,7 +524,8 @@ const TRANSLATIONS = {
         date: "Jan 2022 – Feb 2022",
         points: [
           "Installed and configured 20+ Cisco routers and switches in real environments",
-          "Structured cabling and patch panel deployment across 3 company sites"
+          "Structured cabling and patch panel deployment across 3 company sites",
+          "Assisted in configuring VLANs and routing protocols (static + RIP)"
         ]
       }
     ],
@@ -628,12 +671,12 @@ const TRANSLATIONS = {
     ],
     educationList: [
       {
-        school: "TEK-UP University",
+        school: "TEK-UP University (Tunisia)",
         degree: "Engineer's Degree, Computer Systems & Network Security",
         date: "2024 – Present"
       },
       {
-        school: "Higher Institute of Technological Studies",
+        school: "Higher Institute of Technological Studies, Rades (ISET Radès)",
         degree: "Bachelor's Degree, Computer Networks and Services",
         date: "Graduated 2024"
       }
@@ -667,6 +710,7 @@ const TRANSLATIONS = {
     designedBy: "Conçu & Développé par",
     allRights: "Tous droits réservés.",
     role1: "Administrateur Systèmes et Réseaux",
+    avatarRoleBadge: "Admin Systèmes & Réseaux",
     role2: "Analyste SOC L1",
     role3: "Développeur Full-Stack Passionné",
     badge1: "SOC L1",
@@ -681,7 +725,25 @@ const TRANSLATIONS = {
     phoneLabel: "Tél :",
     contactInfo: "Coordonnées",
     languagesLabel: "Langues :",
-    languages: "Arabe, Français, Anglais",
+    languages: "Arabe (Langue Maternelle), Français (Intermédiaire), Anglais (Intermédiaire)",
+    communityTitle: "Vie Associative & Compétitions CTF",
+    profDevTitle: "Développement Professionnel",
+    communityData: {
+      role: "Membre Actif Securinets TEK-UP",
+      club: "Club Securinets TEK-UP (Cybersécurité)",
+      period: "2024 – 2025",
+      points: [
+        "Participation active aux compétitions Capture the Flag (CTF) et challenges cybersécurité",
+        "Entraînement aux exercices offensifs (Red Team) et défensifs (Blue Team) et ateliers de tests d'intrusion",
+        "Contribution aux simulations SOC en direct et entraînements à la réponse aux incidents",
+        "Développement de compétences avancées en cybersécurité via des exercices pratiques intensifs"
+      ]
+    },
+    profDevList: [
+      { title: "Leadership d'équipe & Communication", org: "Club Securinets" },
+      { title: "Analyse de causes racines & Réponse aux incidents", org: "Opérations SOC & Infrastructures" },
+      { title: "Gestion de projet : Planification, Allocation de ressources, QA", org: "Méthodologie Agile & Livraison" }
+    ],
     skillsCategories: {
       "Networking": "Réseaux",
       "Security": "Sécurité",
@@ -712,9 +774,10 @@ const TRANSLATIONS = {
         date: "Juil 2025 – Sep 2025",
         points: [
           "Développement d'un tableau de bord CVE en temps réel collectant, filtrant et affichant de nouvelles entrées de vulnérabilité avec des mises à jour automatiques chaque minute",
-          "Intégration de renseignements sur les menaces multi-sources à partir des API NVD et Vulners, fusion et déduplication des données",
-          "Mise en œuvre d'alertes Telegram pour les vulnérabilités de gravité critique et élevée",
-          "Conception de visualisations interactives utilisant Chart.js, Bootstrap et DataTables"
+          "Intégration de renseignements sur les menaces multi-sources à partir des API NVD et Vulners, fusion et déduplication des données pour une vision unifiée",
+          "Mise en œuvre d'alertes Telegram pour les vulnérabilités de gravité critique et élevée avec formatage des messages et suppression des doublons",
+          "Conception de visualisations interactives utilisant Chart.js, Bootstrap et DataTables pour le filtrage, le tri et la manipulation des données",
+          "Ajout de fonctionnalités d'export CSV et optimisation des performances (lazy loading, mise en cache et gestion robuste des erreurs)"
         ]
       },
       {
@@ -725,8 +788,9 @@ const TRANSLATIONS = {
         points: [
           "Déploiement d'une solution SIEM utilisant la pile ELK pour plus de 50 points finaux, améliorant la visibilité des incidents de 40 %",
           "Configuration des pipelines Logstash et des tableaux de bord Kibana pour une surveillance en temps réel",
-          "Installation d'agents multiplateformes pour la collecte centralisée des journaux",
-          "Réalisation de tests d'intrusion et d'analyses de vulnérabilité avec Kali Linux, découvrant plus de 12 problèmes critiques"
+          "Installation d'agents multiplateformes (Windows 7/10, Rocky Linux) pour la collecte centralisée des journaux",
+          "Réalisation de tests d'intrusion et d'analyses de vulnérabilité avec Kali Linux, découvrant plus de 12 problèmes critiques",
+          "Gestion et administration du serveur Ubuntu hébergeant le système SIEM centralisé"
         ]
       },
       {
@@ -736,7 +800,8 @@ const TRANSLATIONS = {
         date: "Jan 2023 – Fév 2023",
         points: [
           "Configuration des services xDSL et IP-MSAN pour plus de 300 clients avec <5 % de temps d'arrêt",
-          "Déploiement et test de connexions en fibre optique avec une qualité de signal >98 %"
+          "Déploiement et test de connexions en fibre optique avec une qualité de signal >98 %",
+          "Dépannage et résolution des incidents de dernier kilomètre pour les installations haut débit résidentielles et professionnelles"
         ]
       },
       {
@@ -746,7 +811,8 @@ const TRANSLATIONS = {
         date: "Jan 2022 – Fév 2022",
         points: [
           "Installation et configuration de plus de 20 routeurs et commutateurs Cisco dans des environnements réels",
-          "Câblage structuré et déploiement de panneaux de brassage sur 3 sites de l'entreprise"
+          "Câblage structuré et déploiement de panneaux de brassage sur 3 sites de l'entreprise",
+          "Assistance à la configuration des VLANs et des protocoles de routage (statique + RIP)"
         ]
       }
     ],
@@ -892,12 +958,12 @@ const TRANSLATIONS = {
     ],
     educationList: [
       {
-        school: "Université TEK-UP",
+        school: "Université TEK-UP (Tunisie)",
         degree: "Diplôme d'Ingénieur, Systèmes Informatiques et Sécurité des Réseaux",
         date: "2024 – Présent"
       },
       {
-        school: "Institut Supérieur des Études Technologiques",
+        school: "Institut Supérieur des Études Technologiques de Radès (ISET Radès)",
         degree: "Licence, Réseaux Informatiques et Services",
         date: "Diplômé en 2024"
       }
@@ -1163,7 +1229,7 @@ export default function App() {
       <main className="relative z-10 max-w-7xl mx-auto px-6 pt-36 pb-24">
         
         {/* Hero Section - Frameless & Unboxed */}
-        <section className="relative min-h-[75vh] flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-16 mb-16 overflow-hidden">
+        <section className="relative min-h-[75vh] flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-16 mb-16">
           {proUiMode && <CyberHeroCanvas interactive={true} />}
           
           <motion.div 
@@ -1185,7 +1251,7 @@ export default function App() {
             </motion.div>
 
             <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-4xl sm:text-5xl md:text-6xl font-normal font-display text-[var(--color-cyber-text-light)] tracking-tight leading-[1.1]">
-              <span className="font-extrabold text-sky-500 dark:text-sky-400 drop-shadow-sm">TBINI</span> Mustapha Amin
+              <span className="font-extrabold text-sky-500 dark:text-sky-400 drop-shadow-sm">TBINI</span> Mustapha Amine
             </motion.h1>
 
             <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-2xl md:text-3xl font-semibold text-[var(--color-cyber-text)] tracking-tight leading-snug">
@@ -1211,9 +1277,11 @@ export default function App() {
                 <Mail size={16} /> {t.getInTouch}
               </a>
               <a 
-                href="/TBINI_Mustapha_Amine_CV.pdf" 
+                href="/TBINI_Mustapha_Amin_CV_Final.docx.pdf" 
                 download="TBINI_Mustapha_Amine_CV.pdf" 
-                className="flex items-center gap-2 px-6 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 px-6 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95 shadow-sm"
               >
                 <Download size={16} className="text-sky-500 dark:text-sky-400" /> {t.downloadCV}
               </a>
@@ -1260,22 +1328,22 @@ export default function App() {
               <div className="absolute inset-0 rounded-full ring-1 ring-white/20 dark:ring-white/10 pointer-events-none"></div>
             </div>
             
-            {/* Floating Glass Pills around photo */}
+            {/* Floating Glass Pills around photo - positioned safely so they never clip */}
             <motion.div 
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -left-4 md:-left-8 ios-dock px-3.5 py-1.5 flex items-center gap-2 text-xs md:text-sm font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
+              className="absolute -top-3 left-0 sm:-left-3 md:-left-5 ios-dock px-3.5 py-1.5 flex items-center gap-2 text-xs md:text-sm font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
             >
               <div className="p-1 rounded-full bg-sky-500/20 text-sky-400">
                 <Server size={14} />
               </div>
-              <span>{t.role1}</span>
+              <span>{t.avatarRoleBadge}</span>
             </motion.div>
             
             <motion.div 
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute top-1/2 -right-4 md:-right-8 -translate-y-1/2 ios-dock px-3 py-1.5 flex items-center gap-2 text-xs font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
+              className="absolute top-1/2 -right-2 sm:-right-4 md:-right-6 -translate-y-1/2 ios-dock px-3 py-1.5 flex items-center gap-2 text-xs font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
             >
               <div className="p-1 rounded-full bg-indigo-500/20 text-indigo-400">
                 <Shield size={13} />
@@ -1286,7 +1354,7 @@ export default function App() {
             <motion.div 
               animate={{ y: [0, 6, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-3 left-4 ios-dock px-3 py-1.5 flex items-center gap-2 text-xs font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
+              className="absolute -bottom-3 left-2 sm:left-4 ios-dock px-3 py-1.5 flex items-center gap-2 text-xs font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
             >
               <div className="p-1 rounded-full bg-cyan-500/20 text-cyan-400">
                 <Code size={13} />
@@ -1575,8 +1643,9 @@ export default function App() {
           </div>
         </section>
 
-        {/* Education & Certifications Section */}
-        <section id="education" className="py-16">
+        {/* Education, Certifications & Achievements Section */}
+        <section id="education" className="py-16 space-y-12">
+          {/* Row 1: Education & Certifications */}
           <div className="grid md:grid-cols-2 gap-10">
             <div>
               <SectionHeading title={t.education} icon={GraduationCap} />
@@ -1603,6 +1672,63 @@ export default function App() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+
+          {/* Row 2: Community Involvement (Securinets CTF) & Professional Development */}
+          <div className="grid md:grid-cols-2 gap-10 pt-4">
+            {/* Community & CTF Involvement */}
+            <div className="p-6 md:p-8 rounded-3xl ios-glass-card space-y-5">
+              <div className="flex items-center justify-between pb-3 border-b border-black/10 dark:border-white/10">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-sky-500/20 text-sky-400">
+                    <Shield size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-[var(--color-cyber-text-light)]">{t.communityTitle}</h3>
+                    <p className="text-xs font-mono text-sky-400">{t.communityData.role} · {t.communityData.period}</p>
+                  </div>
+                </div>
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-sky-500/10 text-sky-400 border border-sky-500/30">
+                  CTF & SOC
+                </span>
+              </div>
+
+              <ul className="space-y-3 text-sm leading-relaxed text-[var(--color-cyber-text)]">
+                {t.communityData.points.map((point: string, i: number) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <ChevronRight size={16} className="text-sky-400 shrink-0 mt-0.5" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Professional Development */}
+            <div className="p-6 md:p-8 rounded-3xl ios-glass-card space-y-5">
+              <div className="flex items-center gap-3 pb-3 border-b border-black/10 dark:border-white/10">
+                <div className="p-2.5 rounded-xl bg-indigo-500/20 text-indigo-400">
+                  <CheckCircle2 size={20} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[var(--color-cyber-text-light)]">{t.profDevTitle}</h3>
+                  <p className="text-xs font-mono text-indigo-400">Leadership, Incident Analysis & QA</p>
+                </div>
+              </div>
+
+              <div className="space-y-3.5">
+                {t.profDevList.map((item: { title: string; org: string }, i: number) => (
+                  <div key={i} className="p-3.5 rounded-2xl bg-black/5 dark:bg-white/[0.03] border border-black/5 dark:border-white/5 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-2 h-2 rounded-full bg-sky-400 shrink-0"></div>
+                      <span className="text-sm font-semibold text-[var(--color-cyber-text-light)]">{item.title}</span>
+                    </div>
+                    <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-400 whitespace-nowrap shrink-0">
+                      {item.org}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -1647,7 +1773,7 @@ export default function App() {
           </a>
         </div>
         <p className="font-medium">
-          {t.designedBy} <span className="text-[var(--color-cyber-text-light)] font-normal"><strong className="font-extrabold text-sky-400">TBINI</strong> Mustapha Amin</span>
+          {t.designedBy} <span className="text-[var(--color-cyber-text-light)] font-normal"><strong className="font-extrabold text-sky-400">TBINI</strong> Mustapha Amine</span>
         </p>
         <p className="text-xs mt-1.5 opacity-60">
           © {new Date().getFullYear()} {t.allRights}
