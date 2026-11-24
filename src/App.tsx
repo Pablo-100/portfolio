@@ -5,11 +5,12 @@ import {
   Terminal, Shield, Server, Code, Award, 
   Briefcase, GraduationCap, ChevronRight, ExternalLink,
   Menu, X, Download, Sun, Moon, Globe, Sparkles, Activity, Command, ArrowUpRight,
-  Users, Flag, CheckCircle2
+  Users, Flag, CheckCircle2, QrCode
 } from 'lucide-react';
 import { CyberHeroCanvas } from './components/CyberHeroCanvas';
 import { ArchitectureModal } from './components/ArchitectureModal';
 import { BentoProjectsGrid } from './components/BentoProjectsGrid';
+import { QrPassModal } from './components/QrPassModal';
 import { downloadPfeCv, PFE_CV_FILENAME, PFE_CV_URL } from './utils/downloadCv';
 
 const useMousePosition = () => {
@@ -413,6 +414,7 @@ const TRANSLATIONS = {
     hello: "> Hello, World! I am",
     getInTouch: "Get In Touch",
     downloadCV: "Download CV",
+    qrCodeCV: "QR Code CV",
     aboutMe: "About Me",
     keyProjects: "Key Projects",
     techArsenal: "Technical Arsenal",
@@ -701,6 +703,7 @@ const TRANSLATIONS = {
     hello: "> Bonjour le monde ! Je suis",
     getInTouch: "Me Contacter",
     downloadCV: "Télécharger CV",
+    qrCodeCV: "QR Code CV",
     aboutMe: "À Propos de Moi",
     keyProjects: "Projets Clés",
     techArsenal: "Arsenal Technique",
@@ -1000,6 +1003,7 @@ export default function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [archModalProject, setArchModalProject] = useState<string | null>(null);
+  const [isQrModalOpen, setIsQrModalOpen] = useState(false);
   const [proUiMode, setProUiMode] = useState(true);
   const mousePosition = useMousePosition();
 
@@ -1295,6 +1299,13 @@ export default function App() {
               >
                 <Download size={16} className="text-sky-500 dark:text-sky-400" /> {t.downloadCV}
               </a>
+              <button
+                type="button"
+                onClick={() => setIsQrModalOpen(true)}
+                className="flex items-center gap-2 px-5 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-emerald-500/50 transition-all hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+              >
+                <QrCode size={16} className="text-emerald-500 dark:text-emerald-400" /> {t.qrCodeCV}
+              </button>
               <a 
                 href={`https://github.com/${DATA.github}`} 
                 target="_blank" 
@@ -1758,12 +1769,22 @@ export default function App() {
               {t.contactText}
             </p>
             
-            <a 
-              href={`mailto:${DATA.email}`}
-              className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold text-lg hover:shadow-[0_10px_30px_rgba(14,165,233,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              <span>{t.sayHello}</span> <Mail size={20} />
-            </a>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <a 
+                href={`mailto:${DATA.email}`}
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold text-lg hover:shadow-[0_10px_30px_rgba(14,165,233,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
+              >
+                <span>{t.sayHello}</span> <Mail size={20} />
+              </a>
+              <button
+                type="button"
+                onClick={() => setIsQrModalOpen(true)}
+                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-emerald-500/50 font-semibold text-base transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <QrCode size={20} className="text-emerald-500 dark:text-emerald-400" />
+                <span>{t.qrCodeCV}</span>
+              </button>
+            </div>
           </div>
         </section>
 
@@ -1794,6 +1815,13 @@ export default function App() {
       <ArchitectureModal 
         projectTitle={archModalProject} 
         onClose={() => setArchModalProject(null)} 
+        lang={lang}
+      />
+
+      {/* QR Code CV Pass Modal */}
+      <QrPassModal
+        isOpen={isQrModalOpen}
+        onClose={() => setIsQrModalOpen(false)}
         lang={lang}
       />
     </div>
