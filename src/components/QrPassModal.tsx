@@ -385,7 +385,7 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md overflow-y-auto"
+          className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 16 }}
@@ -393,46 +393,46 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ type: 'spring', damping: 26, stiffness: 280 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-4xl rounded-3xl bg-slate-950/95 text-slate-100 border border-white/15 shadow-2xl overflow-hidden my-auto"
+            className="relative w-full max-w-4xl max-h-[94dvh] sm:max-h-[92dvh] rounded-2xl sm:rounded-3xl bg-slate-950/95 text-slate-100 border border-white/15 shadow-2xl overflow-hidden flex flex-col my-auto"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.02]">
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-sky-500/15 text-sky-400 border border-sky-500/25">
+            <div className="flex items-center justify-between gap-3 px-4 py-3.5 sm:px-6 sm:py-4 border-b border-white/10 bg-white/[0.02] shrink-0">
+              <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-sky-500/15 text-sky-400 border border-sky-500/25 shrink-0">
                   <QrCode size={20} />
                 </div>
-                <div>
-                  <h2 className="text-lg font-bold text-white leading-tight">{labels.modalTitle}</h2>
-                  <p className="text-xs text-slate-400">{labels.modalSub}</p>
+                <div className="min-w-0">
+                  <h2 className="text-base sm:text-lg font-bold text-white leading-tight truncate">{labels.modalTitle}</h2>
+                  <p className="text-[11px] sm:text-xs text-slate-400 line-clamp-2 sm:line-clamp-1">{labels.modalSub}</p>
                 </div>
               </div>
               <button
                 onClick={onClose}
                 aria-label="Close"
-                className="p-2 rounded-full bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors cursor-pointer"
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0"
               >
                 <X size={20} />
               </button>
             </div>
 
             {/* Body */}
-            <div className="grid md:grid-cols-12 gap-6 p-6 items-start">
+            <div className="overflow-y-auto grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 p-4 sm:p-6 items-start">
               {/* Left: Designer Pass Preview */}
               <div className="md:col-span-6 flex justify-center">
                 <div
-                  className={`relative w-full max-w-[340px] rounded-3xl border overflow-hidden transition-colors duration-300 ${themeCardClasses}`}
+                  className={`relative w-full max-w-[340px] rounded-2xl sm:rounded-3xl border overflow-hidden transition-colors duration-300 ${themeCardClasses}`}
                 >
                   {/* Top gradient accent stripe */}
                   <div className="h-2 w-full bg-gradient-to-r from-sky-600 via-sky-400 to-emerald-500" />
 
-                  <div className="p-6 flex flex-col items-center text-center">
-                    <div className={`text-[11px] font-mono font-bold tracking-widest uppercase ${themeAccentText}`}>
+                  <div className="p-4 sm:p-6 flex flex-col items-center text-center">
+                    <div className={`text-[10px] sm:text-[11px] font-mono font-bold tracking-widest uppercase ${themeAccentText}`}>
                       TBINI Mustapha Amine
                     </div>
-                    <h3 className="text-xl font-extrabold tracking-tight mt-1">
+                    <h3 className="text-lg sm:text-xl font-extrabold tracking-tight mt-1">
                       Curriculum Vitae · PFE
                     </h3>
-                    <div className={`mt-1.5 flex items-center justify-center gap-1.5 text-xs font-semibold ${themeEmeraldText}`}>
+                    <div className={`mt-1.5 flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold ${themeEmeraldText}`}>
                       <GraduationCap size={14} className="shrink-0" />
                       <span>{labels.pfeLine}</span>
                     </div>
@@ -441,27 +441,27 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                     </p>
 
                     {/* Crisp QR Frame (Always white quiet zone for 100% camera readability) */}
-                    <div className="relative mt-5 p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                    <div className="relative mt-4 sm:mt-5 p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
                       {/* Viewfinder corners */}
-                      <span className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-sky-500 rounded-tl-md" />
-                      <span className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-sky-500 rounded-tr-md" />
-                      <span className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-sky-500 rounded-bl-md" />
-                      <span className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-sky-500 rounded-br-md" />
+                      <span className="absolute top-2 left-2 w-3.5 h-3.5 sm:w-4 sm:h-4 border-t-2 border-l-2 border-sky-500 rounded-tl-md" />
+                      <span className="absolute top-2 right-2 w-3.5 h-3.5 sm:w-4 sm:h-4 border-t-2 border-r-2 border-sky-500 rounded-tr-md" />
+                      <span className="absolute bottom-2 left-2 w-3.5 h-3.5 sm:w-4 sm:h-4 border-b-2 border-l-2 border-sky-500 rounded-bl-md" />
+                      <span className="absolute bottom-2 right-2 w-3.5 h-3.5 sm:w-4 sm:h-4 border-b-2 border-r-2 border-sky-500 rounded-br-md" />
 
                       {qrDataUrl ? (
                         <img
                           src={qrDataUrl}
                           alt="QR Code CV PFE TBINI Mustapha Amine"
-                          className="w-48 h-48 sm:w-52 sm:h-52 block select-none"
+                          className="w-40 h-40 sm:w-52 sm:h-52 block select-none"
                         />
                       ) : (
-                        <div className="w-48 h-48 sm:w-52 sm:h-52 flex items-center justify-center text-slate-400 text-xs">
+                        <div className="w-40 h-40 sm:w-52 sm:h-52 flex items-center justify-center text-slate-400 text-xs">
                           Generating QR...
                         </div>
                       )}
                     </div>
 
-                    <div className="mt-4 text-xs font-bold tracking-tight">
+                    <div className="mt-3.5 sm:mt-4 text-xs font-bold tracking-tight">
                       {labels.scanHint}
                     </div>
 
@@ -472,14 +472,14 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                       {activeUrl}
                     </div>
 
-                    <div className={`mt-4 pt-3 border-t w-full space-y-1 text-[11px] ${cardTheme === 'clean' ? 'border-slate-200' : 'border-white/10'} ${themeMutedText}`}>
-                      <div className="flex items-center justify-center gap-3">
-                        <span className="inline-flex items-center gap-1">
+                    <div className={`mt-3.5 sm:mt-4 pt-3 border-t w-full space-y-1 text-[11px] ${cardTheme === 'clean' ? 'border-slate-200' : 'border-white/10'} ${themeMutedText}`}>
+                      <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1">
+                        <span className="inline-flex items-center gap-1 whitespace-nowrap">
                           <Phone size={11} /> +216 46-345-226
                         </span>
-                        <span>·</span>
-                        <span className="inline-flex items-center gap-1 truncate">
-                          <Mail size={11} /> mustaphaamintbini@gmail.com
+                        <span className="hidden sm:inline">·</span>
+                        <span className="inline-flex items-center gap-1 break-all">
+                          <Mail size={11} className="shrink-0" /> mustaphaamintbini@gmail.com
                         </span>
                       </div>
                       <div className="font-mono text-[10px] opacity-80">
@@ -491,17 +491,17 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
               </div>
 
               {/* Right: Controls & Exports */}
-              <div className="md:col-span-6 space-y-5">
+              <div className="md:col-span-6 space-y-4 sm:space-y-5">
                 {/* Destination Selector */}
                 <div className="space-y-2">
                   <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 block">
                     {labels.destLabel}
                   </label>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <button
                       type="button"
                       onClick={() => setPreset('cv-prod')}
-                      className={`px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all cursor-pointer text-left ${
+                      className={`px-3 py-2.5 min-h-[44px] rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all cursor-pointer text-left ${
                         preset === 'cv-prod'
                           ? 'bg-sky-500/20 border-sky-400 text-white'
                           : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
@@ -513,7 +513,7 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                     <button
                       type="button"
                       onClick={() => setPreset('portfolio-prod')}
-                      className={`px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all cursor-pointer text-left ${
+                      className={`px-3 py-2.5 min-h-[44px] rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all cursor-pointer text-left ${
                         preset === 'portfolio-prod'
                           ? 'bg-sky-500/20 border-sky-400 text-white'
                           : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
@@ -525,7 +525,7 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                     <button
                       type="button"
                       onClick={() => setPreset('cv-current')}
-                      className={`px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all cursor-pointer text-left ${
+                      className={`px-3 py-2.5 min-h-[44px] rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all cursor-pointer text-left ${
                         preset === 'cv-current'
                           ? 'bg-sky-500/20 border-sky-400 text-white'
                           : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
@@ -537,7 +537,7 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                     <button
                       type="button"
                       onClick={() => setPreset('custom')}
-                      className={`px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all cursor-pointer text-left ${
+                      className={`px-3 py-2.5 min-h-[44px] rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all cursor-pointer text-left ${
                         preset === 'custom'
                           ? 'bg-sky-500/20 border-sky-400 text-white'
                           : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
@@ -554,7 +554,7 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                   <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 block">
                     {labels.urlLabel}
                   </label>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                     <input
                       type="url"
                       value={preset === 'custom' ? customUrl : activeUrl}
@@ -562,13 +562,13 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                         setPreset('custom');
                         setCustomUrl(e.target.value);
                       }}
-                      className="flex-1 px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/15 text-xs font-mono text-slate-200 focus:outline-none focus:border-sky-400 transition-colors"
+                      className="flex-1 min-w-0 w-full px-3.5 py-2.5 min-h-[44px] rounded-xl bg-white/5 border border-white/15 text-xs font-mono text-slate-200 focus:outline-none focus:border-sky-400 transition-colors"
                       placeholder="https://..."
                     />
                     <button
                       type="button"
                       onClick={handleCopy}
-                      className="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold text-white flex items-center gap-1.5 transition-colors shrink-0 cursor-pointer"
+                      className="px-3.5 py-2.5 min-h-[44px] rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold text-white flex items-center justify-center gap-1.5 transition-colors shrink-0 cursor-pointer"
                     >
                       {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
                       <span>{copied ? labels.copied : labels.copyLink}</span>
@@ -581,7 +581,7 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                   <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 block">
                     {labels.themeLabel}
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                     {[
                       { id: 'clean' as const, label: labels.themeClean, dot: 'bg-white border border-slate-400' },
                       { id: 'midnight' as const, label: labels.themeMidnight, dot: 'bg-[#070B14] border border-slate-500' },
@@ -591,7 +591,7 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                         key={item.id}
                         type="button"
                         onClick={() => setCardTheme(item.id)}
-                        className={`px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all cursor-pointer ${
+                        className={`px-3 py-2.5 min-h-[44px] rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all cursor-pointer ${
                           cardTheme === item.id
                             ? 'bg-sky-500/20 border-sky-400 text-white'
                             : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
@@ -605,12 +605,12 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                 </div>
 
                 {/* Export Buttons */}
-                <div className="pt-2 space-y-2.5">
+                <div className="pt-1 sm:pt-2 space-y-2.5">
                   <button
                     type="button"
                     onClick={handleDownloadPngPass}
                     disabled={downloadingPng}
-                    className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-sky-500/25 transition-all cursor-pointer disabled:opacity-60"
+                    className="w-full py-3.5 px-5 min-h-[48px] rounded-2xl bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-sky-500/25 transition-all cursor-pointer disabled:opacity-60"
                   >
                     <Download size={17} />
                     <span>{labels.downloadPng}</span>
@@ -618,7 +618,7 @@ export const QrPassModal: React.FC<QrPassModalProps> = ({ isOpen, onClose, lang 
                   <button
                     type="button"
                     onClick={handleDownloadSvg}
-                    className="w-full py-3 px-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 font-semibold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                    className="w-full py-3 px-5 min-h-[46px] rounded-2xl bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 font-semibold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
                   >
                     <QrCode size={16} className="text-sky-400" />
                     <span>{labels.downloadSvg}</span>

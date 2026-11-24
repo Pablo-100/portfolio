@@ -171,10 +171,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 bg-black/80 backdrop-blur-md">
-      <div className="relative w-full max-w-xl bg-[#090d18] border border-sky-500/30 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-12 sm:pt-20 p-3 sm:p-4 bg-black/80 backdrop-blur-md">
+      <div className="relative w-full max-w-xl bg-[#090d18] border border-sky-500/30 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85dvh]">
         {/* Search Header */}
-        <div className="flex items-center gap-3 px-4 py-3 bg.slate-950/80 border-b border-sky-500/20">
+        <div className="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-3 bg-slate-950/80 border-b border-sky-500/20 shrink-0">
           <Search size={18} className="text-sky-400 shrink-0" />
           <input
             ref={inputRef}
@@ -182,21 +182,22 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Tapez une commande ou cherchez un projet, CV, contact..."
-            className="flex-1 bg-transparent border-none outline-none font-sans text-sm text-slate-100 placeholder-slate-500"
+            className="flex-1 min-w-0 bg-transparent border-none outline-none font-sans text-sm text-slate-100 placeholder-slate-500"
           />
           <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono font-semibold text-slate-400 bg-slate-800 rounded border border-slate-700">
             ESC
           </kbd>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+            aria-label="Fermer"
+            className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition shrink-0"
           >
             <X size={18} />
           </button>
         </div>
 
         {/* Action List */}
-        <div className="p-2 max-h-[380px] overflow-y-auto space-y-4 font-sans">
+        <div className="p-2 overflow-y-auto space-y-4 font-sans">
           {statusMsg && (
             <div className="m-2 p-2.5 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-mono flex items-center gap-2">
               <Check size={14} /> {statusMsg}
@@ -220,20 +221,20 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                       <button
                         key={item.id}
                         onClick={item.action}
-                        className="w-full flex items-center justify-between p-2.5 rounded-xl text-left hover:bg-sky-950/50 hover:border hover:border-sky-500/30 transition group"
+                        className="w-full flex items-center justify-between gap-2 p-2.5 min-h-[44px] rounded-xl text-left hover:bg-sky-950/50 hover:border hover:border-sky-500/30 transition group"
                       >
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 rounded-lg bg-slate-900 text-sky-400 group-hover:bg-sky-500 group-hover:text-slate-950 transition">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="p-2 rounded-lg bg-slate-900 text-sky-400 group-hover:bg-sky-500 group-hover:text-slate-950 transition shrink-0">
                             <Icon size={16} />
                           </div>
-                          <div>
-                            <div className="text-xs font-semibold text-slate-100 group-hover:text-sky-300 transition">
+                          <div className="min-w-0">
+                            <div className="text-xs font-semibold text-slate-100 group-hover:text-sky-300 transition truncate">
                               {item.label}
                             </div>
-                            <div className="text-[11px] text-slate-400">{item.desc}</div>
+                            <div className="text-[11px] text-slate-400 truncate">{item.desc}</div>
                           </div>
                         </div>
-                        <ArrowRight size={14} className="text-slate-600 group-hover:text-sky-400 transition" />
+                        <ArrowRight size={14} className="text-slate-600 group-hover:text-sky-400 transition shrink-0" />
                       </button>
                     );
                   })}
@@ -244,9 +245,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         </div>
 
         {/* Footer info bar */}
-        <div className="px-4 py-2 bg-[#050810] border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
-          <span>TBINI Mustapha Amin — Raycast Command Palette</span>
-          <span className="text-sky-400/80">⌘K pour fermer</span>
+        <div className="px-4 py-2 bg-[#050810] border-t border-slate-800/80 flex items-center justify-between gap-2 text-[11px] font-mono text-slate-500 shrink-0">
+          <span className="truncate">TBINI Mustapha Amin — Command Palette</span>
+          <span className="hidden sm:inline text-sky-400/80 shrink-0">⌘K pour fermer</span>
         </div>
       </div>
     </div>

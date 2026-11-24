@@ -388,7 +388,7 @@ function SkillTag({ skill }: { skill: string; key?: React.Key }) {
   const logoUrl = getLogoForSkill(skill);
 
   return (
-    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full ios-pill text-xs md:text-sm font-medium text-[var(--color-cyber-text-light)] hover:scale-105 active:scale-95 cursor-default group/tag shadow-2xs">
+    <span className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full ios-pill text-xs md:text-sm font-medium text-[var(--color-cyber-text-light)] hover:scale-105 active:scale-95 cursor-default group/tag shadow-2xs max-w-full">
       {logoUrl && !imgError && (
         <span className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center p-0.5 bg-white/95 rounded-md shrink-0 shadow-2xs group-hover/tag:scale-110 transition-transform duration-200">
           <img
@@ -399,7 +399,7 @@ function SkillTag({ skill }: { skill: string; key?: React.Key }) {
           />
         </span>
       )}
-      <span>{skill}</span>
+      <span className="leading-snug">{skill}</span>
     </span>
   );
 }
@@ -986,12 +986,12 @@ const TRANSLATIONS = {
 };
 
 const SectionHeading = ({ title, icon: Icon }: { title: string, icon: any }) => (
-  <div className="flex items-center gap-3.5 mb-10">
-    <div className="p-3.5 rounded-2xl bg-sky-500/15 text-[var(--color-cyber-blue)] border border-sky-500/20 shadow-sm backdrop-blur-md">
-      <Icon size={22} />
+  <div className="flex items-center gap-3 sm:gap-3.5 mb-7 sm:mb-10">
+    <div className="p-2.5 sm:p-3.5 rounded-2xl bg-sky-500/15 text-[var(--color-cyber-blue)] border border-sky-500/20 shadow-sm backdrop-blur-md shrink-0">
+      <Icon size={20} className="sm:w-[22px] sm:h-[22px]" />
     </div>
-    <h2 className="text-3xl font-extrabold font-display tracking-tight text-gradient">{title}</h2>
-    <div className="h-px flex-1 bg-gradient-to-r from-sky-500/30 via-sky-500/10 to-transparent ml-4"></div>
+    <h2 className="text-2xl sm:text-3xl font-extrabold font-display tracking-tight text-gradient leading-tight">{title}</h2>
+    <div className="h-px flex-1 bg-gradient-to-r from-sky-500/30 via-sky-500/10 to-transparent ml-2 sm:ml-4"></div>
   </div>
 );
 
@@ -1085,17 +1085,17 @@ export default function App() {
       </div>
 
       {/* iOS 27 Spatial Floating Dock Navbar */}
-      <div className="fixed top-5 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
-        <header className="pointer-events-auto ios-dock px-5 py-2.5 flex items-center justify-between gap-6 md:gap-8 max-w-5xl w-full">
+      <div className="fixed top-[max(0.75rem,env(safe-area-inset-top))] sm:top-5 left-0 right-0 z-50 px-3 sm:px-4 flex justify-center pointer-events-none">
+        <header className="pointer-events-auto ios-dock px-3 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-6 md:gap-8 max-w-5xl w-full">
           {/* Logo */}
           <button 
             onClick={() => scrollTo('about')}
-            className="flex items-center gap-2.5 group cursor-pointer shrink-0"
+            className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer shrink-0 min-h-[38px]"
           >
-            <div className="w-8 h-8 rounded-full bg-sky-500/20 border border-sky-400/30 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform shadow-sm">
-              <Terminal size={16} />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-sky-500/20 border border-sky-400/30 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform shadow-sm">
+              <Terminal size={15} className="sm:w-4 sm:h-4" />
             </div>
-            <span className="font-mono font-bold text-sm tracking-tight text-[var(--color-cyber-text-light)]">
+            <span className="font-mono font-bold text-xs sm:text-sm tracking-tight text-[var(--color-cyber-text-light)]">
               <span className="text-sky-400 font-extrabold">TBINI</span>
             </span>
           </button>
@@ -1129,10 +1129,10 @@ export default function App() {
           </nav>
 
           {/* Quick Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button 
               onClick={() => setProUiMode(!proUiMode)}
-              className={`ios-pill px-3 py-1.5 flex items-center gap-1.5 text-xs font-mono font-bold transition hover:scale-105 active:scale-95 ${
+              className={`ios-pill px-2.5 sm:px-3 py-1.5 min-h-[38px] sm:min-h-0 flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs font-mono font-bold transition hover:scale-105 active:scale-95 ${
                 proUiMode 
                   ? 'bg-sky-500/20 text-sky-400 border border-sky-400/50 shadow-[0_0_12px_rgba(56,189,248,0.25)]' 
                   : 'text-slate-400 border border-slate-300 dark:border-slate-700'
@@ -1144,7 +1144,7 @@ export default function App() {
             </button>
             <button 
               onClick={() => setLang(lang === 'en' ? 'fr' : 'en')} 
-              className="ios-pill px-3 py-1.5 flex items-center gap-1.5 text-xs font-mono font-medium text-[var(--color-cyber-text-light)] hover:scale-105 active:scale-95"
+              className="ios-pill px-2.5 sm:px-3 py-1.5 min-h-[38px] sm:min-h-0 flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs font-mono font-medium text-[var(--color-cyber-text-light)] hover:scale-105 active:scale-95"
               title="Change Language"
             >
               <Globe size={14} className="text-sky-400" /> 
@@ -1152,15 +1152,17 @@ export default function App() {
             </button>
             <button 
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} 
-              className="ios-pill p-2 flex items-center justify-center text-[var(--color-cyber-text-light)] hover:scale-105 active:scale-95"
+              className="ios-pill w-9 h-9 sm:w-auto sm:h-auto sm:p-2 flex items-center justify-center text-[var(--color-cyber-text-light)] hover:scale-105 active:scale-95"
               title="Toggle Theme"
+              aria-label="Toggle Theme"
             >
               {theme === 'dark' ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-sky-500" />}
             </button>
             
             <button 
-              className="md:hidden ios-pill p-2 text-[var(--color-cyber-text-light)]" 
+              className="md:hidden ios-pill w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-[var(--color-cyber-text-light)]" 
               onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open Navigation Menu"
             >
               <Menu size={18} />
             </button>
@@ -1176,26 +1178,27 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: '-100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-            className="fixed inset-0 z-50 bg-[var(--color-cyber-dark)]/90 backdrop-blur-3xl flex flex-col p-8 md:hidden justify-between"
+            className="fixed inset-0 h-[100dvh] z-50 bg-[var(--color-cyber-dark)]/95 backdrop-blur-3xl flex flex-col p-5 sm:p-8 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] md:hidden overflow-y-auto justify-between"
           >
-            <div className="flex justify-between items-center pt-4">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-sky-500/20 border border-sky-400/30 flex items-center justify-center text-sky-400">
+            <div className="flex justify-between items-center gap-3 shrink-0">
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="w-8 h-8 rounded-full bg-sky-500/20 border border-sky-400/30 flex items-center justify-center text-sky-400 shrink-0">
                   <Terminal size={16} />
                 </div>
-                <span className="font-mono text-sm tracking-tight text-[var(--color-cyber-text-light)]">
+                <span className="font-mono text-xs sm:text-sm tracking-tight text-[var(--color-cyber-text-light)] truncate">
                   ~/<span className="font-bold text-sky-400">TBINI</span>_MustaphaAmin
                 </span>
               </div>
               <button 
                 onClick={() => setMobileMenuOpen(false)} 
-                className="w-10 h-10 rounded-full bg-white/10 dark:bg-white/10 flex items-center justify-center text-[var(--color-cyber-text-light)]"
+                aria-label="Close Navigation Menu"
+                className="w-11 h-11 rounded-full bg-white/10 dark:bg-white/10 flex items-center justify-center text-[var(--color-cyber-text-light)] shrink-0"
               >
                 <X size={20} />
               </button>
             </div>
 
-            <div className="flex flex-col gap-3 font-sans text-center my-auto py-6">
+            <div className="flex flex-col gap-2.5 sm:gap-3 font-sans text-center my-auto py-5">
               {['About', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'].map((item) => {
                 const sectionId = item.toLowerCase();
                 const isActive = activeSection === sectionId;
@@ -1203,7 +1206,7 @@ export default function App() {
                   <button 
                     key={item} 
                     onClick={() => scrollTo(sectionId)}
-                    className={`py-3 px-6 rounded-2xl transition-all duration-300 font-semibold text-base ${
+                    className={`py-3 px-6 min-h-[46px] rounded-2xl transition-all duration-300 font-semibold text-base ${
                       isActive
                         ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/30'
                         : 'ios-glass-card text-[var(--color-cyber-text-light)]'
@@ -1215,16 +1218,17 @@ export default function App() {
               })}
             </div>
 
-            <div className="flex justify-center items-center gap-6 pb-6">
+            <div className="flex justify-center items-center gap-4 pb-2 shrink-0">
               <button 
                 onClick={() => setLang(lang === 'en' ? 'fr' : 'en')} 
-                className="ios-glass-card px-5 py-2.5 flex items-center gap-2 text-sm font-semibold text-[var(--color-cyber-text-light)]"
+                className="ios-glass-card px-5 py-2.5 min-h-[44px] flex items-center gap-2 text-sm font-semibold text-[var(--color-cyber-text-light)]"
               >
                 <Globe size={16} className="text-sky-400" /> {lang === 'en' ? 'Français' : 'English'}
               </button>
               <button 
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} 
-                className="ios-glass-card p-3 text-[var(--color-cyber-text-light)]"
+                aria-label="Toggle Theme"
+                className="ios-glass-card min-w-[44px] min-h-[44px] p-3 flex items-center justify-center text-[var(--color-cyber-text-light)]"
               >
                 {theme === 'dark' ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} className="text-sky-500" />}
               </button>
@@ -1233,10 +1237,10 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-36 pb-24">
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-24 sm:pt-32 md:pt-36 pb-16 sm:pb-24">
         
         {/* Hero Section - Frameless & Unboxed */}
-        <section className="relative min-h-[75vh] flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-16 mb-16">
+        <section className="relative md:min-h-[75vh] flex flex-col-reverse md:flex-row items-center justify-between gap-8 sm:gap-12 md:gap-16 mb-12 sm:mb-16">
           {proUiMode && <CyberHeroCanvas interactive={true} />}
           
           <motion.div 
@@ -1246,47 +1250,47 @@ export default function App() {
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
             }}
-            className="relative z-10 flex-1 flex flex-col gap-6"
+            className="relative z-10 flex-1 w-full flex flex-col gap-4 sm:gap-6"
           >
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
-              <div className="inline-flex flex-wrap items-center gap-2 px-4 py-1.5 rounded-full ios-badge text-sky-500 dark:text-sky-400 font-mono text-xs font-semibold tracking-wider uppercase mb-3 border border-sky-500/30 bg-sky-500/10 dark:bg-sky-950/60 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping"></span>
+              <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full ios-badge text-sky-500 dark:text-sky-400 font-mono text-[11px] sm:text-xs font-semibold tracking-wider uppercase mb-1 sm:mb-3 border border-sky-500/30 bg-sky-500/10 dark:bg-sky-950/60 shadow-sm max-w-full">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping shrink-0"></span>
                 <span>🟢 SOC L1 Systems Operational</span>
-                <span className="opacity-40">|</span>
+                <span className="opacity-40 hidden sm:inline">|</span>
                 <span className="text-[var(--color-cyber-text)] font-normal">{t.hello}</span>
               </div>
             </motion.div>
 
-            <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-4xl sm:text-5xl md:text-6xl font-normal font-display text-[var(--color-cyber-text-light)] tracking-tight leading-[1.1]">
+            <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-[clamp(1.85rem,7.5vw,3.75rem)] font-normal font-display text-[var(--color-cyber-text-light)] tracking-tight leading-[1.1]">
               <span className="font-extrabold text-sky-500 dark:text-sky-400 drop-shadow-sm">TBINI</span> Mustapha Amine
             </motion.h1>
 
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-2.5 text-sm md:text-base font-semibold text-emerald-600 dark:text-emerald-400">
-              <GraduationCap size={18} className="shrink-0" />
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-start sm:items-center gap-2 sm:gap-2.5 text-xs sm:text-sm md:text-base font-semibold text-emerald-600 dark:text-emerald-400">
+              <GraduationCap size={18} className="shrink-0 mt-0.5 sm:mt-0" />
               <span>{t.pfeHighlight}</span>
             </motion.div>
 
-            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-2xl md:text-3xl font-semibold text-[var(--color-cyber-text)] tracking-tight leading-snug">
+            <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-lg sm:text-2xl md:text-3xl font-semibold text-[var(--color-cyber-text)] tracking-tight leading-snug">
               <span className="text-gradient-blue font-bold">{t.role1}</span>
-              <span className="text-[var(--color-cyber-text)] font-normal text-xl md:text-2xl mx-2">&</span>
+              <span className="text-[var(--color-cyber-text)] font-normal text-base sm:text-xl md:text-2xl mx-1.5 sm:mx-2">&</span>
               <span className="text-gradient font-bold">{t.role2}</span>
-              <div className="mt-2.5 text-sky-500 dark:text-sky-400 font-medium text-lg md:text-xl flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-sky-500 dark:bg-sky-400 animate-pulse inline-block shadow-[0_0_8px_rgba(56,189,248,0.8)]"></span>
+              <div className="mt-2 sm:mt-2.5 text-sky-500 dark:text-sky-400 font-medium text-base sm:text-lg md:text-xl flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-sky-500 dark:bg-sky-400 animate-pulse inline-block shadow-[0_0_8px_rgba(56,189,248,0.8)] shrink-0"></span>
                 <span>{t.role3}</span>
               </div>
             </motion.h2>
 
-            <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-base md:text-lg text-[var(--color-cyber-text)] max-w-2xl leading-relaxed">
+            <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-sm sm:text-base md:text-lg text-[var(--color-cyber-text)] max-w-2xl leading-relaxed">
               {t.summary}
             </motion.p>
             
             {/* Action Buttons as iOS Liquid Glass Pills */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap items-center gap-3.5 mt-2 font-medium text-sm">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 mt-1 sm:mt-2 font-medium text-xs sm:text-sm">
               <a 
                 href={`mailto:${DATA.email}`} 
-                className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold hover:shadow-[0_8px_25px_rgba(14,165,233,0.4)] transition-all hover:scale-105 active:scale-95"
+                className="flex items-center justify-center gap-2 px-4 py-3 sm:px-6 sm:py-3.5 min-h-[44px] rounded-full bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold hover:shadow-[0_8px_25px_rgba(14,165,233,0.4)] transition-all hover:scale-105 active:scale-95"
               >
-                <Mail size={16} /> {t.getInTouch}
+                <Mail size={16} /> <span>{t.getInTouch}</span>
               </a>
               <a 
                 href={PFE_CV_URL}
@@ -1295,32 +1299,32 @@ export default function App() {
                   e.preventDefault();
                   void downloadPfeCv();
                 }}
-                className="flex items-center gap-2 px-6 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+                className="flex items-center justify-center gap-2 px-4 py-3 sm:px-6 sm:py-3.5 min-h-[44px] rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
               >
-                <Download size={16} className="text-sky-500 dark:text-sky-400" /> {t.downloadCV}
+                <Download size={16} className="text-sky-500 dark:text-sky-400" /> <span>{t.downloadCV}</span>
               </a>
               <button
                 type="button"
                 onClick={() => setIsQrModalOpen(true)}
-                className="flex items-center gap-2 px-5 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-emerald-500/50 transition-all hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+                className="flex items-center justify-center gap-2 px-4 py-3 sm:px-5 sm:py-3.5 min-h-[44px] rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-emerald-500/50 transition-all hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
               >
-                <QrCode size={16} className="text-emerald-500 dark:text-emerald-400" /> {t.qrCodeCV}
+                <QrCode size={16} className="text-emerald-500 dark:text-emerald-400" /> <span>{t.qrCodeCV}</span>
               </button>
               <a 
                 href={`https://github.com/${DATA.github}`} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="flex items-center gap-2 px-5 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95"
+                className="flex items-center justify-center gap-2 px-4 py-3 sm:px-5 sm:py-3.5 min-h-[44px] rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95"
               >
-                <Github size={16} /> GitHub
+                <Github size={16} /> <span>GitHub</span>
               </a>
               <a 
                 href={`https://linkedin.com/in/${DATA.linkedin}`} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="flex items-center gap-2 px-5 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95"
+                className="flex items-center justify-center gap-2 px-4 py-3 sm:px-5 sm:py-3.5 min-h-[44px] rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95"
               >
-                <Linkedin size={16} className="text-sky-500 dark:text-sky-400" /> LinkedIn
+                <Linkedin size={16} className="text-sky-500 dark:text-sky-400" /> <span>LinkedIn</span>
               </a>
             </motion.div>
           </motion.div>
@@ -1330,7 +1334,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 90 }}
-            className="relative w-64 h-64 md:w-80 md:h-80 group shrink-0 flex items-center justify-center my-6 md:my-0"
+            className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 group shrink-0 flex items-center justify-center my-4 sm:my-6 md:my-0"
           >
             {/* Ambient Organic Light Aura (No Box Frames) */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-500/30 via-cyan-400/20 to-indigo-500/30 blur-3xl group-hover:blur-[60px] group-hover:scale-110 transition-all duration-700 opacity-90 pointer-events-none"></div>
@@ -1349,25 +1353,25 @@ export default function App() {
               <div className="absolute inset-0 rounded-full ring-1 ring-white/20 dark:ring-white/10 pointer-events-none"></div>
             </div>
             
-            {/* Floating Glass Pills around photo - positioned safely so they never clip */}
+            {/* Floating Glass Pills around photo - positioned safely on every screen width */}
             <motion.div 
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-3 left-0 sm:-left-3 md:-left-5 ios-dock px-3.5 py-1.5 flex items-center gap-2 text-xs md:text-sm font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
+              className="absolute -top-3 left-1/2 -translate-x-1/2 sm:translate-x-0 sm:-left-3 md:-left-5 ios-dock px-3 sm:px-3.5 py-1 sm:py-1.5 flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs md:text-sm font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap max-w-[calc(100vw-2rem)]"
             >
-              <div className="p-1 rounded-full bg-sky-500/20 text-sky-400">
-                <Server size={14} />
+              <div className="p-1 rounded-full bg-sky-500/20 text-sky-400 shrink-0">
+                <Server size={13} className="sm:w-[14px] sm:h-[14px]" />
               </div>
-              <span>{t.avatarRoleBadge}</span>
+              <span className="truncate">{t.avatarRoleBadge}</span>
             </motion.div>
             
             <motion.div 
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute top-1/2 -right-2 sm:-right-4 md:-right-6 -translate-y-1/2 ios-dock px-3 py-1.5 flex items-center gap-2 text-xs font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
+              className="absolute top-1/2 -right-3 sm:-right-4 md:-right-6 -translate-y-1/2 ios-dock px-2.5 sm:px-3 py-1 sm:py-1.5 flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
             >
-              <div className="p-1 rounded-full bg-indigo-500/20 text-indigo-400">
-                <Shield size={13} />
+              <div className="p-1 rounded-full bg-indigo-500/20 text-indigo-400 shrink-0">
+                <Shield size={12} className="sm:w-[13px] sm:h-[13px]" />
               </div>
               <span>{t.badge1}</span>
             </motion.div>
@@ -1375,26 +1379,26 @@ export default function App() {
             <motion.div 
               animate={{ y: [0, 6, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-3 left-2 sm:left-4 ios-dock px-3 py-1.5 flex items-center gap-2 text-xs font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap"
+              className="absolute -bottom-3 left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-4 ios-dock px-3 py-1 sm:py-1.5 flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-semibold text-[var(--color-cyber-text-light)] shadow-lg z-20 whitespace-nowrap max-w-[calc(100vw-2rem)]"
             >
-              <div className="p-1 rounded-full bg-cyan-500/20 text-cyan-400">
-                <Code size={13} />
+              <div className="p-1 rounded-full bg-cyan-500/20 text-cyan-400 shrink-0">
+                <Code size={12} className="sm:w-[13px] sm:h-[13px]" />
               </div>
-              <span>{t.badge2}</span>
+              <span className="truncate">{t.badge2}</span>
             </motion.div>
           </motion.div>
         </section>
 
         {/* Skills Marquee Banner */}
-        <section className="py-8 overflow-hidden my-16 rounded-3xl ios-glass-card">
+        <section className="py-5 sm:py-8 overflow-hidden my-10 sm:my-16 rounded-2xl sm:rounded-3xl ios-glass-card">
           <div className="relative flex overflow-x-hidden group">
-            <div className="animate-marquee flex gap-8 items-center px-4">
+            <div className="animate-marquee flex gap-4 sm:gap-8 items-center px-3 sm:px-4">
               {Array(3).fill(MARQUEE_SKILLS_ORDERED).flat().map((item, i) => {
                 const logoUrl = getLogoForSkill(item.name);
                 return (
-                  <div key={i} className="flex items-center gap-3 px-5 py-2.5 rounded-full ios-glass-card hover:border-sky-500/50 whitespace-nowrap transition-all hover:scale-105 shrink-0">
+                  <div key={i} className="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full ios-glass-card hover:border-sky-500/50 whitespace-nowrap transition-all hover:scale-105 shrink-0">
                     {logoUrl && (
-                      <span className="w-5 h-5 flex items-center justify-center p-0.5 bg-white rounded-md shrink-0 shadow-xs">
+                      <span className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center p-0.5 bg-white rounded-md shrink-0 shadow-xs">
                         <img 
                           src={logoUrl} 
                           alt="" 
@@ -1403,7 +1407,7 @@ export default function App() {
                         />
                       </span>
                     )}
-                    <span className="font-mono text-sm font-semibold text-[var(--color-cyber-text-light)]">
+                    <span className="font-mono text-xs sm:text-sm font-semibold text-[var(--color-cyber-text-light)]">
                       {item.name}
                     </span>
                   </div>
@@ -1414,39 +1418,39 @@ export default function App() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-16">
+        <section id="about" className="py-10 sm:py-16">
           <SectionHeading title={t.aboutMe} icon={Terminal} />
-          <div className="grid md:grid-cols-2 gap-10 items-start">
-            <div className="space-y-6 text-base md:text-lg leading-relaxed text-[var(--color-cyber-text)]">
-              <p className="text-[var(--color-cyber-text-light)] font-medium text-lg md:text-xl leading-relaxed">
+          <div className="grid md:grid-cols-2 gap-7 sm:gap-10 items-start">
+            <div className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg leading-relaxed text-[var(--color-cyber-text)]">
+              <p className="text-[var(--color-cyber-text-light)] font-medium text-base sm:text-lg md:text-xl leading-relaxed">
                 {t.about1}
               </p>
               <p className="opacity-90">{t.about2}</p>
               <p className="opacity-90">{t.about3}</p>
             </div>
             
-            <div className="p-6 md:p-8 rounded-3xl bg-black/5 dark:bg-white/[0.03] space-y-6 backdrop-blur-md">
-              <h3 className="text-xl font-bold font-sans text-[var(--color-cyber-text-light)] flex items-center gap-3 pb-3 border-b border-black/10 dark:border-white/10">
-                <div className="p-2 rounded-xl bg-sky-500/20 text-sky-400">
+            <div className="p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-black/5 dark:bg-white/[0.03] space-y-5 sm:space-y-6 backdrop-blur-md">
+              <h3 className="text-lg sm:text-xl font-bold font-sans text-[var(--color-cyber-text-light)] flex items-center gap-3 pb-3 border-b border-black/10 dark:border-white/10">
+                <div className="p-2 rounded-xl bg-sky-500/20 text-sky-400 shrink-0">
                   <MapPin size={20} />
                 </div>
                 <span>{t.contactInfo}</span>
               </h3>
               
-              <ul className="space-y-3 font-sans text-sm">
-                <li className="flex items-center justify-between py-2 border-b border-black/5 dark:border-white/5">
+              <ul className="space-y-2.5 sm:space-y-3 font-sans text-sm">
+                <li className="flex flex-col sm:flex-row sm:items-center justify-between gap-0.5 sm:gap-3 py-2 border-b border-black/5 dark:border-white/5">
                   <span className="text-[var(--color-cyber-text)] font-medium">{t.locationLabel}</span>
                   <span className="text-[var(--color-cyber-text-light)] font-semibold">{t.location}</span>
                 </li>
-                <li className="flex items-center justify-between py-2 border-b border-black/5 dark:border-white/5">
+                <li className="flex flex-col sm:flex-row sm:items-center justify-between gap-0.5 sm:gap-3 py-2 border-b border-black/5 dark:border-white/5">
                   <span className="text-[var(--color-cyber-text)] font-medium">{t.emailLabel}</span>
-                  <a href={`mailto:${DATA.email}`} className="text-sky-500 dark:text-sky-400 font-semibold hover:underline">{DATA.email}</a>
+                  <a href={`mailto:${DATA.email}`} className="text-sky-500 dark:text-sky-400 font-semibold hover:underline break-all sm:break-normal">{DATA.email}</a>
                 </li>
-                <li className="flex items-center justify-between py-2 border-b border-black/5 dark:border-white/5">
+                <li className="flex flex-col sm:flex-row sm:items-center justify-between gap-0.5 sm:gap-3 py-2 border-b border-black/5 dark:border-white/5">
                   <span className="text-[var(--color-cyber-text)] font-medium">{t.phoneLabel}</span>
                   <span className="text-[var(--color-cyber-text-light)] font-semibold">{DATA.phone}</span>
                 </li>
-                <li className="flex items-center justify-between py-2">
+                <li className="flex flex-col sm:flex-row sm:items-center justify-between gap-0.5 sm:gap-3 py-2">
                   <span className="text-[var(--color-cyber-text)] font-medium">{t.languagesLabel}</span>
                   <span className="text-[var(--color-cyber-text-light)] font-semibold">{t.languages}</span>
                 </li>
@@ -1456,37 +1460,39 @@ export default function App() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="py-16">
+        <section id="experience" className="py-10 sm:py-16">
           <SectionHeading title={t.experience} icon={Briefcase} />
-          <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-sky-500/40 before:via-sky-500/20 before:to-transparent">
+          <div className="space-y-8 sm:space-y-12 relative before:absolute before:inset-0 before:ml-4 sm:before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-sky-500/40 before:via-sky-500/20 before:to-transparent">
             {t.experienceList.map((exp, index) => (
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 key={index} 
-                className={`relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active`}
+                className={`relative flex items-start md:items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active`}
               >
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-tr from-sky-500 to-sky-600 text-white shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 border-2 border-[var(--color-cyber-dark)]">
-                  <Briefcase size={16} />
+                <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-sky-500 to-sky-600 text-white shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 border-2 border-[var(--color-cyber-dark)] mt-1 md:mt-0">
+                  <Briefcase size={15} className="sm:w-4 sm:h-4" />
                 </div>
                 
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-4 md:p-6 transition-all duration-300">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
-                    <h3 className="font-extrabold text-[var(--color-cyber-text-light)] text-xl">{exp.role}</h3>
-                    <span className="font-mono text-xs font-semibold text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full whitespace-nowrap self-start md:self-auto">
+                <div className="w-[calc(100%-2.75rem)] sm:w-[calc(100%-3.5rem)] md:w-[calc(50%-3rem)] p-3 sm:p-4 md:p-6 transition-all duration-300">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-1.5 sm:gap-2">
+                    <h3 className="font-extrabold text-[var(--color-cyber-text-light)] text-base sm:text-xl leading-snug">{exp.role}</h3>
+                    <span className="font-mono text-[11px] sm:text-xs font-semibold text-sky-400 bg-sky-500/10 px-2.5 sm:px-3 py-1 rounded-full whitespace-normal sm:whitespace-nowrap self-start md:self-auto">
                       {exp.date}
                     </span>
                   </div>
                   
-                  <div className="text-sm font-medium text-[var(--color-cyber-text)] mb-4 flex items-center gap-2">
-                    <span className="text-sky-400 font-semibold">{exp.company}</span> • {exp.location}
+                  <div className="text-xs sm:text-sm font-medium text-[var(--color-cyber-text)] mb-3 sm:mb-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
+                    <span className="text-sky-400 font-semibold">{exp.company}</span>
+                    <span>•</span>
+                    <span>{exp.location}</span>
                   </div>
                   
-                  <ul className="space-y-2.5 text-sm leading-relaxed">
+                  <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm leading-relaxed">
                     {exp.points.map((point, i) => (
-                      <li key={i} className="flex items-start gap-2.5">
-                        <ChevronRight size={16} className="text-sky-400 shrink-0 mt-0.5" />
+                      <li key={i} className="flex items-start gap-2 sm:gap-2.5">
+                        <ChevronRight size={15} className="text-sky-400 shrink-0 mt-0.5 sm:w-4 sm:h-4" />
                         <span>{point}</span>
                       </li>
                     ))}
@@ -1498,7 +1504,7 @@ export default function App() {
         </section>
 
         {/* Key Projects Section */}
-        <section id="projects" className="py-16">
+        <section id="projects" className="py-10 sm:py-16">
           <SectionHeading title={t.keyProjects} icon={Code} />
           {proUiMode ? (
             <BentoProjectsGrid 
@@ -1516,7 +1522,7 @@ export default function App() {
               lang={lang} 
             />
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
               {[...t.projectsList].sort((a, b) => {
                 const aHasImage = !!(a as any).image;
                 const bHasImage = !!(b as any).image;
@@ -1533,14 +1539,14 @@ export default function App() {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                     key={index} 
-                    className="flex flex-col h-full group p-4 rounded-3xl hover:bg-black/5 dark:hover:bg-white/[0.03] transition-all duration-300"
+                    className="flex flex-col h-full group p-3 sm:p-4 rounded-2xl sm:rounded-3xl hover:bg-black/5 dark:hover:bg-white/[0.03] transition-all duration-300"
                   >
                     {(project as any).image && (
                       <a
                         href={projectGhUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="relative z-10 mb-5 rounded-2xl aspect-video bg-slate-950 p-1 overflow-hidden shadow-md group-hover:scale-[1.02] transition-transform duration-500 block cursor-pointer"
+                        className="relative z-10 mb-4 sm:mb-5 rounded-2xl aspect-video bg-slate-950 p-1 overflow-hidden shadow-md group-hover:scale-[1.02] transition-transform duration-500 block cursor-pointer"
                         title={lang === 'fr' ? 'Ouvrir le dépôt GitHub' : 'Open GitHub Repository'}
                       >
                         <img 
@@ -1551,17 +1557,17 @@ export default function App() {
                       </a>
                     )}
 
-                    <div className="relative z-10 flex justify-between items-start mb-3">
+                    <div className="relative z-10 flex flex-wrap justify-between items-start gap-2 mb-3">
                       <div className="p-2.5 rounded-xl bg-sky-500/15 text-sky-400">
                         <Terminal size={18} />
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
                             setArchModalProject(project.title);
                           }}
-                          className="p-1.5 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-mono hover:bg-sky-500 hover:text-white transition flex items-center gap-1 font-semibold"
+                          className="px-2.5 py-1.5 min-h-[36px] rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-mono hover:bg-sky-500 hover:text-white transition flex items-center gap-1 font-semibold"
                           title={lang === 'fr' ? "Voir l'architecture et le flux de données" : "View System Architecture Diagram"}
                         >
                           <Activity size={14} /> Arch
@@ -1571,7 +1577,7 @@ export default function App() {
                             href={projectGhUrl} 
                             target="_blank" 
                             rel="noreferrer" 
-                            className="p-1.5 rounded-lg text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors"
+                            className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors"
                             title={lang === 'fr' ? 'Voir le dépôt GitHub' : 'View GitHub Repository'}
                           >
                             <Github size={18} />
@@ -1582,7 +1588,7 @@ export default function App() {
                             href={(project as any).demoUrl} 
                             target="_blank" 
                             rel="noreferrer" 
-                            className="px-2.5 py-1 rounded-lg bg-sky-500 text-white hover:bg-sky-600 transition flex items-center gap-1 text-xs font-semibold shadow-xs"
+                            className="px-2.5 py-1.5 min-h-[36px] rounded-lg bg-sky-500 text-white hover:bg-sky-600 transition flex items-center gap-1 text-xs font-semibold shadow-xs"
                             title={lang === 'fr' ? "Voir l'application en direct" : 'View Live Application'}
                           >
                             <ExternalLink size={13} /> Live
@@ -1593,7 +1599,7 @@ export default function App() {
                             href={(project as any).link || `https://github.com/${DATA.github}`} 
                             target="_blank" 
                             rel="noreferrer" 
-                            className="p-2 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors"
+                            className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors"
                           >
                             <ExternalLink size={18} />
                           </a>
@@ -1606,19 +1612,19 @@ export default function App() {
                         href={projectGhUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="group/t inline-block mb-2 cursor-pointer"
+                        className="group/t inline-block mb-2 cursor-pointer max-w-full"
                         title={lang === 'fr' ? 'Ouvrir le dépôt GitHub' : 'Open GitHub Repository'}
                       >
-                        <h3 className="text-xl font-bold text-[var(--color-cyber-text-light)] group-hover/t:text-sky-400 group-hover:text-sky-400 transition-colors flex items-center gap-1.5">
-                          {project.title}
-                          <ArrowUpRight size={17} className="opacity-0 -translate-x-1 group-hover/t:opacity-100 group-hover/t:translate-x-0 transition-all text-sky-400" />
+                        <h3 className="text-lg sm:text-xl font-bold text-[var(--color-cyber-text-light)] group-hover/t:text-sky-400 group-hover:text-sky-400 transition-colors flex items-center gap-1.5 break-words">
+                          <span>{project.title}</span>
+                          <ArrowUpRight size={17} className="opacity-0 -translate-x-1 group-hover/t:opacity-100 group-hover/t:translate-x-0 transition-all text-sky-400 shrink-0" />
                         </h3>
                       </a>
                     ) : (
-                      <h3 className="text-xl font-bold text-[var(--color-cyber-text-light)] mb-2 group-hover:text-sky-400 transition-colors">{project.title}</h3>
+                      <h3 className="text-lg sm:text-xl font-bold text-[var(--color-cyber-text-light)] mb-2 group-hover:text-sky-400 transition-colors break-words">{project.title}</h3>
                     )}
 
-                    <p className="text-sm mb-5 flex-grow leading-relaxed opacity-90">
+                    <p className="text-xs sm:text-sm mb-4 sm:mb-5 flex-grow leading-relaxed opacity-90">
                       {project.description}
                     </p>
                   
@@ -1635,9 +1641,9 @@ export default function App() {
         </section>
 
         {/* Technical Arsenal Section */}
-        <section id="skills" className="py-16">
+        <section id="skills" className="py-10 sm:py-16">
           <SectionHeading title={t.techArsenal} icon={Server} />
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-7 sm:gap-10">
             {Object.entries(DATA.skills).map(([category, skills], index) => (
               <motion.div 
                 initial={{ opacity: 0, y: 15 }}
@@ -1645,12 +1651,12 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 key={category} 
-                className="space-y-4"
+                className="space-y-3 sm:space-y-4"
               >
-                <h3 className="text-lg font-bold font-sans text-[var(--color-cyber-text-light)] flex items-center gap-2">
+                <h3 className="text-base sm:text-lg font-bold font-sans text-[var(--color-cyber-text-light)] flex items-center gap-2">
                   <span className="text-sky-400 font-mono">#</span> {t.skillsCategories[category as keyof typeof t.skillsCategories] || category}
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {[...skills].sort((a, b) => {
                     const scoreA = STRONG_SKILLS.includes(a) ? 2 : (SIMPLE_SKILLS.includes(a) ? 0 : 1);
                     const scoreB = STRONG_SKILLS.includes(b) ? 2 : (SIMPLE_SKILLS.includes(b) ? 0 : 1);
@@ -1665,16 +1671,16 @@ export default function App() {
         </section>
 
         {/* Education, Certifications & Achievements Section */}
-        <section id="education" className="py-16 space-y-12">
+        <section id="education" className="py-10 sm:py-16 space-y-8 sm:space-y-12">
           {/* Row 1: Education & Certifications */}
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-10">
             <div>
               <SectionHeading title={t.education} icon={GraduationCap} />
-              <div className="space-y-6">
+              <div className="space-y-5 sm:space-y-6">
                 {t.educationList.map((edu, index) => (
                   <div key={index} className="pl-4 border-l-2 border-sky-500 py-1 space-y-1">
-                    <h3 className="font-bold text-[var(--color-cyber-text-light)] text-lg">{edu.degree}</h3>
-                    <div className="text-sky-400 font-semibold text-sm">{edu.school}</div>
+                    <h3 className="font-bold text-[var(--color-cyber-text-light)] text-base sm:text-lg leading-snug">{edu.degree}</h3>
+                    <div className="text-sky-400 font-semibold text-xs sm:text-sm">{edu.school}</div>
                     <div className="text-xs font-mono opacity-70">{edu.date}</div>
                   </div>
                 ))}
@@ -1683,13 +1689,13 @@ export default function App() {
             
             <div>
               <SectionHeading title={t.certifications} icon={Award} />
-              <ul className="space-y-3">
+              <ul className="space-y-2.5 sm:space-y-3">
                 {t.certificationsList.map((cert, index) => (
-                  <li key={index} className="flex items-center gap-3 py-2 border-b border-black/5 dark:border-white/5">
-                    <div className="p-1.5 rounded-lg bg-sky-500/15 text-sky-400 shrink-0">
+                  <li key={index} className="flex items-start sm:items-center gap-3 py-2 border-b border-black/5 dark:border-white/5">
+                    <div className="p-1.5 rounded-lg bg-sky-500/15 text-sky-400 shrink-0 mt-0.5 sm:mt-0">
                       <Award size={16} />
                     </div>
-                    <span className="text-sm font-medium text-[var(--color-cyber-text-light)]">{cert}</span>
+                    <span className="text-xs sm:text-sm font-medium text-[var(--color-cyber-text-light)] leading-snug">{cert}</span>
                   </li>
                 ))}
               </ul>
@@ -1697,25 +1703,25 @@ export default function App() {
           </div>
 
           {/* Row 2: Community Involvement (Securinets CTF) & Professional Development */}
-          <div className="grid md:grid-cols-2 gap-10 pt-4">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-10 pt-2 sm:pt-4">
             {/* Community & CTF Involvement */}
-            <div className="p-6 md:p-8 rounded-3xl ios-glass-card space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-black/10 dark:border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-sky-500/20 text-sky-400">
+            <div className="p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl ios-glass-card space-y-4 sm:space-y-5">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-black/10 dark:border-white/10">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-sky-500/20 text-sky-400 shrink-0">
                     <Shield size={20} />
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-[var(--color-cyber-text-light)]">{t.communityTitle}</h3>
+                  <div className="min-w-0">
+                    <h3 className="text-base sm:text-lg font-bold text-[var(--color-cyber-text-light)] leading-snug">{t.communityTitle}</h3>
                     <p className="text-xs font-mono text-sky-400">{t.communityData.role} · {t.communityData.period}</p>
                   </div>
                 </div>
-                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-sky-500/10 text-sky-400 border border-sky-500/30">
+                <span className="px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold bg-sky-500/10 text-sky-400 border border-sky-500/30 shrink-0">
                   CTF & SOC
                 </span>
               </div>
 
-              <ul className="space-y-3 text-sm leading-relaxed text-[var(--color-cyber-text)]">
+              <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm leading-relaxed text-[var(--color-cyber-text)]">
                 {t.communityData.points.map((point: string, i: number) => (
                   <li key={i} className="flex items-start gap-2.5">
                     <ChevronRight size={16} className="text-sky-400 shrink-0 mt-0.5" />
@@ -1726,25 +1732,25 @@ export default function App() {
             </div>
 
             {/* Professional Development */}
-            <div className="p-6 md:p-8 rounded-3xl ios-glass-card space-y-5">
+            <div className="p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl ios-glass-card space-y-4 sm:space-y-5">
               <div className="flex items-center gap-3 pb-3 border-b border-black/10 dark:border-white/10">
-                <div className="p-2.5 rounded-xl bg-indigo-500/20 text-indigo-400">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-indigo-500/20 text-indigo-400 shrink-0">
                   <CheckCircle2 size={20} />
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[var(--color-cyber-text-light)]">{t.profDevTitle}</h3>
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-bold text-[var(--color-cyber-text-light)] leading-snug">{t.profDevTitle}</h3>
                   <p className="text-xs font-mono text-indigo-400">Leadership, Incident Analysis & QA</p>
                 </div>
               </div>
 
-              <div className="space-y-3.5">
+              <div className="space-y-3">
                 {t.profDevList.map((item: { title: string; org: string }, i: number) => (
-                  <div key={i} className="p-3.5 rounded-2xl bg-black/5 dark:bg-white/[0.03] border border-black/5 dark:border-white/5 flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-2 h-2 rounded-full bg-sky-400 shrink-0"></div>
-                      <span className="text-sm font-semibold text-[var(--color-cyber-text-light)]">{item.title}</span>
+                  <div key={i} className="p-3 sm:p-3.5 rounded-2xl bg-black/5 dark:bg-white/[0.03] border border-black/5 dark:border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
+                    <div className="flex items-start sm:items-center gap-2.5 min-w-0">
+                      <div className="w-2 h-2 rounded-full bg-sky-400 shrink-0 mt-1.5 sm:mt-0"></div>
+                      <span className="text-xs sm:text-sm font-semibold text-[var(--color-cyber-text-light)] leading-snug">{item.title}</span>
                     </div>
-                    <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-400 whitespace-nowrap shrink-0">
+                    <span className="text-[11px] sm:text-xs font-mono px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-400 self-start sm:self-auto whitespace-normal sm:whitespace-nowrap shrink-0">
                       {item.org}
                     </span>
                   </div>
@@ -1755,31 +1761,31 @@ export default function App() {
         </section>
 
         {/* Contact CTA Section */}
-        <section id="contact" className="py-20 text-center max-w-2xl mx-auto">
-          <div className="relative py-12 px-6 rounded-3xl bg-gradient-to-b from-sky-500/10 via-transparent to-transparent border border-sky-500/20 backdrop-blur-sm">
+        <section id="contact" className="py-12 sm:py-20 text-center max-w-2xl mx-auto">
+          <div className="relative py-8 px-4 sm:py-12 sm:px-6 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-sky-500/10 via-transparent to-transparent border border-sky-500/20 backdrop-blur-sm">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full ios-badge text-sky-400 font-mono text-xs font-semibold mb-4">
               <span>{t.whatsNext}</span>
             </div>
             
-            <h2 className="text-3xl md:text-5xl font-extrabold font-display text-[var(--color-cyber-text-light)] mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold font-display text-[var(--color-cyber-text-light)] mb-4 sm:mb-6 tracking-tight">
               {t.getInTouch}
             </h2>
             
-            <p className="text-base md:text-lg mb-8 leading-relaxed text-[var(--color-cyber-text)] max-w-xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8 leading-relaxed text-[var(--color-cyber-text)] max-w-xl mx-auto">
               {t.contactText}
             </p>
             
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
               <a 
                 href={`mailto:${DATA.email}`}
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold text-lg hover:shadow-[0_10px_30px_rgba(14,165,233,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:px-8 sm:py-4 min-h-[48px] rounded-full bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold text-base sm:text-lg hover:shadow-[0_10px_30px_rgba(14,165,233,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 <span>{t.sayHello}</span> <Mail size={20} />
               </a>
               <button
                 type="button"
                 onClick={() => setIsQrModalOpen(true)}
-                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-emerald-500/50 font-semibold text-base transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:px-7 sm:py-4 min-h-[48px] rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-emerald-500/50 font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <QrCode size={20} className="text-emerald-500 dark:text-emerald-400" />
                 <span>{t.qrCodeCV}</span>
@@ -1791,15 +1797,15 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 dark:border-white/10 py-10 text-center font-sans text-sm bg-black/20 backdrop-blur-md">
+      <footer className="border-t border-white/10 dark:border-white/10 px-4 py-8 sm:py-10 pb-[max(2rem,env(safe-area-inset-bottom))] text-center font-sans text-xs sm:text-sm bg-black/20 backdrop-blur-md">
         <div className="flex justify-center gap-4 mb-4">
-          <a href={`https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" className="ios-pill p-3 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors">
+          <a href={`https://github.com/${DATA.github}`} target="_blank" rel="noreferrer" aria-label="GitHub" className="ios-pill min-w-[44px] min-h-[44px] flex items-center justify-center p-3 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors">
             <Github size={18} />
           </a>
-          <a href={`https://linkedin.com/in/${DATA.linkedin}`} target="_blank" rel="noreferrer" className="ios-pill p-3 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors">
+          <a href={`https://linkedin.com/in/${DATA.linkedin}`} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="ios-pill min-w-[44px] min-h-[44px] flex items-center justify-center p-3 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors">
             <Linkedin size={18} />
           </a>
-          <a href={`mailto:${DATA.email}`} className="ios-pill p-3 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors">
+          <a href={`mailto:${DATA.email}`} aria-label="Email" className="ios-pill min-w-[44px] min-h-[44px] flex items-center justify-center p-3 text-[var(--color-cyber-text)] hover:text-sky-400 transition-colors">
             <Mail size={18} />
           </a>
         </div>

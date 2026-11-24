@@ -1007,15 +1007,21 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
   const activeNode = nodes.find(n => n.id === activeStep) || nodes[0];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-5xl bg-[#090d18] border border-sky-500/30 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2 sm:p-5 bg-black/85 backdrop-blur-md animate-fade-in overflow-y-auto"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-5xl bg-[#090d18] border border-sky-500/30 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[94dvh] sm:max-h-[92dvh] my-auto"
+      >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-800 bg-[#0c1222]">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-sky-500/15 text-sky-400 border border-sky-500/30 shrink-0">
-              <Network size={22} />
+        <div className="flex items-start sm:items-center justify-between gap-2.5 p-3.5 sm:p-5 border-b border-slate-800 bg-[#0c1222] shrink-0">
+          <div className="flex items-start sm:items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="p-2 sm:p-2.5 rounded-xl bg-sky-500/15 text-sky-400 border border-sky-500/30 shrink-0">
+              <Network size={20} className="sm:w-[22px] sm:h-[22px]" />
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-[10px] sm:text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-950/80 text-sky-300 border border-sky-500/40">
                   {arch.badge}
@@ -1024,10 +1030,10 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
                   <GitBranch size={12} className="text-sky-400" /> main
                 </span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-white font-display mt-0.5">
+              <h3 className="text-base sm:text-xl font-bold text-white font-display mt-0.5 break-words">
                 {arch.title}
               </h3>
-              <p className="text-xs text-slate-400 line-clamp-1 mt-0.5">
+              <p className="text-[11px] sm:text-xs text-slate-400 line-clamp-2 sm:line-clamp-1 mt-0.5">
                 {arch.summary}
               </p>
             </div>
@@ -1060,7 +1066,7 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
             )}
             <button
               onClick={onClose}
-              className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
               aria-label="Close Architecture Modal"
             >
               <X size={20} />
@@ -1069,9 +1075,9 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
         </div>
 
         {/* Scrollable Modal Content */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-6">
+        <div className="p-3.5 sm:p-6 overflow-y-auto space-y-5 sm:space-y-6">
           {/* Key Architectural Highlights */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <div className="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5">
             {arch.keyHighlights.map((hl, i) => (
               <div 
                 key={i} 
@@ -1085,9 +1091,9 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
 
           {/* Pipeline Map - 4 Stages */}
           <div>
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3">
               <h4 className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold flex items-center gap-1.5">
-                <Activity size={14} /> 4-Stage Architectural Pipeline
+                <Activity size={14} className="shrink-0" /> 4-Stage Architectural Pipeline
               </h4>
               <span className="text-[11px] font-mono text-slate-400">
                 {lang === 'fr' ? 'Cliquez sur une étape pour inspecter le flux technique' : 'Click any stage to inspect technical flow'}
@@ -1103,14 +1109,14 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setActiveStep(node.id)}
-                      className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex flex-col justify-between h-full cursor-pointer ${
+                      className={`w-full text-left p-3.5 sm:p-4 rounded-xl border transition-all duration-300 flex flex-col justify-between h-full cursor-pointer ${
                         isSelected 
                           ? 'border-sky-400 bg-sky-950/40 ring-1 ring-sky-400 shadow-lg shadow-sky-500/10' 
                           : 'border-slate-800/90 bg-[#0d1326]/90 hover:border-sky-500/50 hover:bg-[#101730]'
                       }`}
                     >
                       <div>
-                        <div className="flex items-center justify-between mb-2.5">
+                        <div className="flex items-center justify-between gap-2 mb-2.5">
                           <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded ${
                             isSelected 
                               ? 'bg-sky-500 text-white' 
@@ -1118,7 +1124,7 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
                           }`}>
                             STAGE 0{node.id} · {node.stage}
                           </span>
-                          <div className={`p-1.5 rounded-lg ${isSelected ? 'bg-sky-500/20 text-sky-300' : 'text-slate-400'}`}>
+                          <div className={`p-1.5 rounded-lg shrink-0 ${isSelected ? 'bg-sky-500/20 text-sky-300' : 'text-slate-400'}`}>
                             <Icon size={16} />
                           </div>
                         </div>
@@ -1154,23 +1160,23 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
 
           {/* Interactive Deep Dive Detail Panel for the Selected Stage */}
           {activeNode && (
-            <div className="p-4 sm:p-5 rounded-xl bg-[#080d1a] border border-sky-500/30 space-y-4">
-              <div className="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-slate-800">
-                <div className="flex items-center gap-2">
-                  <div className="p-1.5 rounded-lg bg-sky-500/10 text-sky-400">
+            <div className="p-3.5 sm:p-5 rounded-xl bg-[#080d1a] border border-sky-500/30 space-y-4">
+              <div className="flex items-start sm:items-center justify-between flex-wrap gap-2 pb-3 border-b border-slate-800">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="p-1.5 rounded-lg bg-sky-500/10 text-sky-400 shrink-0">
                     <Terminal size={16} />
                   </div>
-                  <div>
-                    <span className="text-[11px] font-mono text-sky-400 font-semibold uppercase">
+                  <div className="min-w-0">
+                    <span className="text-[11px] font-mono text-sky-400 font-semibold uppercase block">
                       Stage 0{activeNode.id} Deep Dive · {activeNode.stage}
                     </span>
-                    <h5 className="text-sm font-bold text-white">
+                    <h5 className="text-sm font-bold text-white break-words">
                       {activeNode.title}
                     </h5>
                   </div>
                 </div>
 
-                <div className="text-xs font-mono text-slate-400 bg-slate-900/80 px-2.5 py-1 rounded border border-slate-800">
+                <div className="text-[11px] sm:text-xs font-mono text-slate-400 bg-slate-900/80 px-2.5 py-1 rounded border border-slate-800 max-w-full break-words">
                   Protocol / Spec: <span className="text-sky-300">{activeNode.deepDive.protocolOrFormat}</span>
                 </div>
               </div>
@@ -1183,8 +1189,8 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
                   <ul className="space-y-1.5">
                     {activeNode.deepDive.operations.map((op, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-slate-300">
-                        <span className="text-sky-400 font-mono mt-0.5">❯</span>
-                        <span>{op}</span>
+                        <span className="text-sky-400 font-mono mt-0.5 shrink-0">❯</span>
+                        <span className="break-words">{op}</span>
                       </li>
                     ))}
                   </ul>
@@ -1192,7 +1198,7 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
 
                 <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800/80 space-y-2">
                   <span className="font-mono text-slate-400 uppercase tracking-wider text-[10px] font-bold flex items-center gap-1.5">
-                    <Shield size={12} className="text-emerald-400" />
+                    <Shield size={12} className="text-emerald-400 shrink-0" />
                     {lang === 'fr' ? 'Sécurité & Tolérance :' : 'Security & Reliability :'}
                   </span>
                   <p className="text-slate-300 leading-relaxed text-xs">
@@ -1204,33 +1210,44 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
           )}
 
           {/* Live Operational Metrics & Deployment Telemetry */}
-          <div className="p-3.5 rounded-xl bg-[#080c16] border border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-300">
+          <div className="p-3 sm:p-3.5 rounded-xl bg-[#080c16] border border-slate-800 flex flex-col sm:flex-row sm:flex-wrap sm:items-center justify-between gap-2.5 sm:gap-3 text-xs font-mono text-slate-300">
             <div className="flex items-center gap-2 text-emerald-400 font-semibold">
-              <CheckCircle size={15} /> {arch.pipelineHealth}
+              <CheckCircle size={15} className="shrink-0" /> <span>{arch.pipelineHealth}</span>
             </div>
             <div className="flex items-center gap-2 text-sky-400">
-              <Activity size={15} /> {arch.latencyOrThroughput}
+              <Activity size={15} className="shrink-0" /> <span>{arch.latencyOrThroughput}</span>
             </div>
             <div className="flex items-center gap-2 text-purple-400">
-              <Terminal size={15} /> {arch.deploymentSpecs}
+              <Terminal size={15} className="shrink-0" /> <span>{arch.deploymentSpecs}</span>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="p-3 sm:p-4 border-t border-slate-800 bg-[#0a0f1e] flex items-center justify-between flex-wrap gap-2 text-xs">
-          <div className="text-slate-400 font-mono text-[11px] flex items-center gap-2">
-            <span>Verified against GitHub repository README</span>
+        <div className="p-3 sm:p-4 border-t border-slate-800 bg-[#0a0f1e] flex items-center justify-between flex-wrap gap-2 text-xs shrink-0">
+          <div className="text-slate-400 font-mono text-[11px] flex flex-wrap items-center gap-1.5 sm:gap-2 min-w-0">
+            <span>Verified README</span>
             <span className="text-slate-600">|</span>
-            <span className="text-sky-400 font-bold">{arch.repoName}</span>
+            <span className="text-sky-400 font-bold truncate">{arch.repoName}</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center flex-wrap gap-2">
+            {arch.demoUrl && (
+              <a
+                href={arch.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sm:hidden px-3 py-2 min-h-[38px] rounded-lg bg-sky-500 hover:bg-sky-600 text-white transition text-xs font-semibold flex items-center gap-1"
+              >
+                <ExternalLink size={13} />
+                <span>Live</span>
+              </a>
+            )}
             {arch.repoUrl && (
               <a
                 href={arch.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-1 rounded-lg bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-white border border-sky-500/30 transition text-xs font-mono font-semibold flex items-center gap-1"
+                className="px-3 py-2 sm:py-1.5 min-h-[38px] sm:min-h-0 rounded-lg bg-sky-500/10 hover:bg-sky-500 text-sky-400 hover:text-white border border-sky-500/30 transition text-xs font-mono font-semibold flex items-center gap-1"
               >
                 <Github size={13} />
                 <span>View Full README</span>
@@ -1238,7 +1255,7 @@ export const ArchitectureModal: React.FC<ArchitectureModalProps> = ({
             )}
             <button
               onClick={onClose}
-              className="px-4 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition text-xs font-semibold"
+              className="px-4 py-2 sm:py-1.5 min-h-[38px] sm:min-h-0 rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition text-xs font-semibold"
             >
               {lang === 'fr' ? 'Fermer' : 'Close'}
             </button>
