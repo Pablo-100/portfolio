@@ -10,6 +10,7 @@ import {
 import { CyberHeroCanvas } from './components/CyberHeroCanvas';
 import { ArchitectureModal } from './components/ArchitectureModal';
 import { BentoProjectsGrid } from './components/BentoProjectsGrid';
+import { downloadPfeCv, PFE_CV_FILENAME, PFE_CV_URL } from './utils/downloadCv';
 
 const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -426,6 +427,7 @@ const TRANSLATIONS = {
     avatarRoleBadge: "SysAdmin & Network Admin",
     role2: "SOC Analyst L1",
     role3: "Passionate Full-Stack Developer",
+    pfeHighlight: "Final-Year Systems & Network Security Engineering Student (TEK-UP) · Seeking PFE Internship",
     badge1: "SOC L1",
     badge2: "Full-Stack",
     summary: "System and Network Administrator & SOC Analyst L1 with hands-on experience in secure infrastructures, network administration, and security monitoring. Skilled in Linux & Windows Server, SIEM (ELK Stack), and incident detection. Passionate Full-Stack Developer building production-grade applications from scratch.",
@@ -713,6 +715,7 @@ const TRANSLATIONS = {
     avatarRoleBadge: "Admin Systèmes & Réseaux",
     role2: "Analyste SOC L1",
     role3: "Développeur Full-Stack Passionné",
+    pfeHighlight: "Élève Ingénieur Dernière Année Sécurité Réseaux (TEK-UP) · Recherche Stage PFE",
     badge1: "SOC L1",
     badge2: "Full-Stack",
     summary: "Administrateur Systèmes et Réseaux & Analyste SOC L1 avec une solide expérience des infrastructures sécurisées, de l'administration réseau et de la surveillance SIEM. Développeur Full-Stack passionné concevant des applications de niveau production.",
@@ -1254,6 +1257,11 @@ export default function App() {
               <span className="font-extrabold text-sky-500 dark:text-sky-400 drop-shadow-sm">TBINI</span> Mustapha Amine
             </motion.h1>
 
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-2.5 text-sm md:text-base font-semibold text-emerald-600 dark:text-emerald-400">
+              <GraduationCap size={18} className="shrink-0" />
+              <span>{t.pfeHighlight}</span>
+            </motion.div>
+
             <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="text-2xl md:text-3xl font-semibold text-[var(--color-cyber-text)] tracking-tight leading-snug">
               <span className="text-gradient-blue font-bold">{t.role1}</span>
               <span className="text-[var(--color-cyber-text)] font-normal text-xl md:text-2xl mx-2">&</span>
@@ -1277,11 +1285,13 @@ export default function App() {
                 <Mail size={16} /> {t.getInTouch}
               </a>
               <a 
-                href="/TBINI_Mustapha_Amin_CV_Final.docx.pdf" 
-                download="TBINI_Mustapha_Amine_CV.pdf" 
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 px-6 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95 shadow-sm"
+                href={PFE_CV_URL}
+                download={PFE_CV_FILENAME}
+                onClick={(e) => {
+                  e.preventDefault();
+                  void downloadPfeCv();
+                }}
+                className="flex items-center gap-2 px-6 py-3.5 rounded-full ios-glass-card text-[var(--color-cyber-text-light)] hover:border-sky-500/50 transition-all hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
               >
                 <Download size={16} className="text-sky-500 dark:text-sky-400" /> {t.downloadCV}
               </a>

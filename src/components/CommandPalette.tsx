@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, X, ArrowRight, Shield, Download, Mail, Phone, Code, Briefcase, Server, Check, Terminal, ExternalLink } from 'lucide-react';
+import { downloadPfeCv } from '../utils/downloadCv';
 
 interface CommandPaletteProps {
   isOpen: boolean;
@@ -126,14 +127,11 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       items: [
         {
           id: 'act-cv',
-          label: 'Télécharger le CV (PDF)',
-          desc: 'Obtenir le CV de TBINI Mustapha Amin',
+          label: 'Télécharger le CV PFE (PDF)',
+          desc: 'Obtenir le CV PFE de TBINI Mustapha Amine',
           icon: Download,
           action: () => {
-            const a = document.createElement('a');
-            a.href = '/TBINI_Mustapha_Amine_CV.pdf';
-            a.download = 'TBINI_Mustapha_Amine_CV.pdf';
-            a.click();
+            void downloadPfeCv();
             onClose();
           }
         },
